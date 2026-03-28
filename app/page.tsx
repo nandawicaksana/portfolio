@@ -82,13 +82,13 @@ export default function Portfolio() {
         }}
       />
 
-      <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
+<motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
 
       {/* NAVBAR */}
       <nav className={`fixed top-0 w-full backdrop-blur-xl border-b z-50 transition-colors ${isDarkMode ? "bg-[#030712]/60 border-white/5" : "bg-white/60 border-black/5"}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-5">
           <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="group cursor-pointer">
-            <h1 className="font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors">
+            <h1 className="font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors text-white">
               NAW<span className="text-cyan-500 italic">.</span>
             </h1>
           </motion.div>
@@ -111,23 +111,23 @@ export default function Portfolio() {
         </div>
       </nav>
 
-{/* HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 md:pt-0 overflow-hidden">
         {/* Decorative Circles (Glow Background) */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20 pointer-events-none ${isDarkMode ? "bg-cyan-500" : "bg-cyan-300"}`} />
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full blur-[120px] opacity-20 pointer-events-none ${isDarkMode ? "bg-cyan-500" : "bg-cyan-300"}`} />
         
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10"
+          className="relative z-10 w-full"
         >
           {/* Badge */}
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-[10px] uppercase tracking-[0.3em] font-bold text-cyan-500 mb-10 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold text-cyan-500 mb-6 md:mb-10 backdrop-blur-md"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -137,31 +137,31 @@ export default function Portfolio() {
           </motion.div>
 
           {/* Main Title */}
-          <h1 className={`text-6xl md:text-[120px] font-black tracking-tighter leading-none mb-8 ${isDarkMode ? "text-white" : "text-slate-900"}`}>
-            Nanda Aulia <br />
+          <h1 className={`text-5xl md:text-[120px] font-black tracking-tighter leading-[1.1] md:leading-none mb-6 md:mb-8 ${isDarkMode ? "text-white" : "text-slate-900"}`}>
+            Nanda Aulia <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
               Wicaksana
             </span>
           </h1>
 
           {/* Subtitle with Glassmorphism Effect */}
-          <div className="max-w-4xl mx-auto relative">
-             <p className="text-lg md:text-2xl text-slate-500 font-light leading-relaxed mb-12">
+          <div className="max-w-4xl mx-auto relative px-4">
+             <p className="text-base md:text-2xl text-slate-500 font-light leading-relaxed mb-10 md:mb-12">
               Architecting <span className={`font-medium ${isDarkMode ? "text-slate-200" : "text-slate-800"}`}>Internal Systems</span> & 
               <span className={`font-medium ${isDarkMode ? "text-slate-200" : "text-slate-800"}`}> Web Solutions</span> 
-              <span className="block text-sm md:text-base mt-2 opacity-70 italic">
+              <span className="block text-[12px] md:text-base mt-2 opacity-70 italic">
                 Focusing on Laravel Enterprise & High-Performance Next.js Architecture
               </span>
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-5 justify-center">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 justify-center items-center">
             <motion.a 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://wa.me/628129079905" 
-              className="px-10 py-4 bg-cyan-500 text-white font-bold rounded-2xl hover:bg-cyan-600 transition-all shadow-xl shadow-cyan-500/25 flex items-center gap-3"
+              className="w-full md:w-auto px-10 py-4 bg-cyan-500 text-white font-bold rounded-2xl hover:bg-cyan-600 transition-all shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-3"
             >
               Start Project <ChevronRight size={18} />
             </motion.a>
@@ -170,21 +170,20 @@ export default function Portfolio() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects" 
-              className={`px-10 py-4 border rounded-2xl font-bold transition-all backdrop-blur-md ${isDarkMode ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-black/10 bg-black/5 hover:bg-black/10"}`}
+              className={`w-full md:w-auto px-10 py-4 border rounded-2xl font-bold transition-all backdrop-blur-md ${isDarkMode ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-black/10 bg-black/5 hover:bg-black/10"}`}
             >
               Read Case Studies
             </motion.a>
           </div>
         </motion.div>
 
-        {/* Floating Background Icons (Optional - Adds Depth) */}
-        <div className="absolute inset-0 pointer-events-none opacity-20">
-          <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute top-[20%] left-[15%] text-cyan-500"><Code2 size={40} /></motion.div>
-          <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute bottom-[25%] right-[10%] text-blue-500"><Server size={35} /></motion.div>
-          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-[30%] right-[20%] text-purple-500"><Zap size={30} /></motion.div>
+        {/* Floating Background Icons */}
+        <div className="absolute inset-0 pointer-events-none opacity-10 md:opacity-20">
+          <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute top-[15%] left-[10%] text-cyan-500"><Code2 size={30} className="md:w-[40px]" /></motion.div>
+          <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute bottom-[20%] right-[5%] text-blue-500"><Server size={25} className="md:w-[35px]" /></motion.div>
+          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-[25%] right-[15%] text-purple-500"><Zap size={20} className="md:w-[30px]" /></motion.div>
         </div>
       </section>
-
       {/* VALUE PROPOSITION */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <motion.h2 
