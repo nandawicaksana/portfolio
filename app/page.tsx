@@ -40,12 +40,13 @@ export default function Portfolio() {
   ];
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+      // Tambahkan tipe 'MouseEvent' pada parameter e
+      const handleMouseMove = (e: MouseEvent) => {
+        setMousePos({ x: e.clientX, y: e.clientY });
+      };
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
