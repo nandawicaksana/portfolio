@@ -165,6 +165,17 @@ export default function Portfolio() {
             >
               Start Project <ChevronRight size={18} />
             </motion.a>
+
+            {/* TOMBOL RESUME BARU DI HERO */}
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="/resume-nanda-aulia.pdf" // Ganti dengan path file resume kamu
+              target="_blank"
+              className={`w-full md:w-auto px-10 py-4 border rounded-2xl font-bold transition-all backdrop-blur-md flex items-center justify-center gap-3 ${isDarkMode ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-black/10 bg-black/5 hover:bg-black/10"}`}
+            >
+              <ExternalLink size={18} className="text-cyan-500" /> Download Resume
+            </motion.a>
             
             <motion.a 
               whileHover={{ scale: 1.05 }}
@@ -231,7 +242,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ABOUT */}
+{/* ABOUT */}
       <section id="about" className="py-32 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
         <motion.div whileInView="visible" initial="hidden" viewport={{ once: true }} variants={containerVariants}>
           <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-6">Introduction</h2>
@@ -239,6 +250,27 @@ export default function Portfolio() {
           <p className="text-slate-500 text-lg leading-relaxed mb-6">
             Sebagai IT Support & Developer, saya menjembatani infrastruktur teknis dengan kebutuhan bisnis. Spesialisasi saya adalah membangun sistem internal (ERP/HRIS) menggunakan Laravel yang teroptimasi secara performa dan keamanan.
           </p>
+
+          {/* CTA DOWNLOAD RESUME - POSITIONED HERE */}
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mb-10"
+          >
+            <a 
+              href="/resume-nanda-aulia.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 text-cyan-500 font-bold hover:gap-5 transition-all group"
+            >
+              <span className="border-b-2 border-cyan-500/30 group-hover:border-cyan-500 pb-1">
+                Grab my full professional resume
+              </span>
+              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
+
           <div className="flex flex-wrap gap-3">
             {["PHP", "Laravel", "Next.js", "MySQL", "PostgreSQL", "Tailwind"].map((t) => (
               <span key={t} className={`px-4 py-2 border rounded-lg text-xs font-mono font-bold ${isDarkMode ? "bg-white/5 border-white/10" : "bg-black/5 border-black/10"}`}>{t}</span>
@@ -252,19 +284,19 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="relative group"
         >
-           <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-           <div className={`relative aspect-video rounded-3xl border p-2 overflow-hidden ${isDarkMode ? "bg-slate-900 border-white/10" : "bg-white border-black/10"}`}>
-              <div className={`w-full h-full rounded-2xl flex items-center justify-center p-8 text-center ${isDarkMode ? "bg-[#030712]" : "bg-slate-50"}`}>
-                <code className="text-cyan-500 text-xs sm:text-sm md:text-base leading-relaxed">
-                  <span className="text-purple-500 italic">class</span> <span className={`font-bold ${isDarkMode ? "text-white" : "text-black"}`}>NandaWicaksana</span> {"{"} <br/>
-                  &nbsp;&nbsp;<span className="text-slate-500">// Problem solving at scale</span><br/>
-                  &nbsp;&nbsp;<span className={isDarkMode ? "text-white" : "text-black"}>skills()</span> {"{"} <br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;return ["<span className="text-emerald-500">Reliability</span>", "<span className="text-emerald-500">Security</span>"];<br/>
-                  &nbsp;&nbsp;{"}"}<br/>
-                  {"}"}
-                </code>
-              </div>
-           </div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <div className={`relative aspect-video rounded-3xl border p-2 overflow-hidden ${isDarkMode ? "bg-slate-900 border-white/10" : "bg-white border-black/10"}`}>
+               <div className={`w-full h-full rounded-2xl flex items-center justify-center p-8 text-center ${isDarkMode ? "bg-[#030712]" : "bg-slate-50"}`}>
+                 <code className="text-cyan-500 text-xs sm:text-sm md:text-base leading-relaxed">
+                   <span className="text-purple-500 italic">class</span> <span className={`font-bold ${isDarkMode ? "text-white" : "text-black"}`}>NandaWicaksana</span> {"{"} <br/>
+                   &nbsp;&nbsp;<span className="text-slate-500">// Problem solving at scale</span><br/>
+                   &nbsp;&nbsp;<span className={isDarkMode ? "text-white" : "text-black"}>skills()</span> {"{"} <br/>
+                   &nbsp;&nbsp;&nbsp;&nbsp;return ["<span className="text-emerald-500">Reliability</span>", "<span className="text-emerald-500">Security</span>"];<br/>
+                   &nbsp;&nbsp;{"}"}<br/>
+                   {"}"}
+                 </code>
+               </div>
+            </div>
         </motion.div>
       </section>
 
