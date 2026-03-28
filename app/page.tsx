@@ -7,20 +7,31 @@ import {
   Phone, ExternalLink, ChevronRight, X, Layout 
 } from "lucide-react";
 
+// Define TypeScript Interface untuk Project
+interface Project {
+  title: string;
+  tag: string;
+  color: string;
+  description?: string;
+  thumbnail?: string;
+  images: string[];
+}
+
 export default function Portfolio() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   
-  // State untuk Modal Project
-  const [selectedProject, setSelectedProject] = useState(null);
+  // State untuk Modal Project dengan Type Safety
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Daftar Project (Sesuaikan dengan file di public/projects/hrms/)
-  const projects = [
+  // Daftar Project
+  const projects: Project[] = [
     { 
       title: "HRMS Enterprise", 
       tag: "Management", 
-      color: "from-blue-500/20",
+      color: "from-blue-600/40",
+      thumbnail: "/projects/hrms/hrms-index-dashboard-chart.png",
       description: "Sistem Manajemen Sumber Daya Manusia terintegrasi.",
       images: [
         "/projects/hrms/hrms-halaman-auth-login.png",
@@ -34,19 +45,33 @@ export default function Portfolio() {
         "/projects/hrms/hrms-rekap-gaji.png",
       ]
     },
-    { title: "E-Commerce Flashsale", tag: "High Traffic", color: "from-orange-500/20", images: [] },
-    { title: "WA Automation Bot", tag: "Internal Tool", color: "from-emerald-500/20", images: [] },
-    { title: "Analytic Dashboard", tag: "Data Visualization", color: "from-purple-500/20", images: [] },
+    { 
+      title: "E-Commerce Flashsale", 
+      tag: "High Traffic", 
+      color: "from-orange-500/20", 
+      images: [] 
+    },
+    { 
+      title: "WA Automation Bot", 
+      tag: "Internal Tool", 
+      color: "from-emerald-500/20", 
+      images: [] 
+    },
+    { 
+      title: "Analytic Dashboard", 
+      tag: "Data Visualization", 
+      color: "from-purple-500/20", 
+      images: [] 
+    },
   ];
 
   useEffect(() => {
-      // Tambahkan tipe 'MouseEvent' pada parameter e
-      const handleMouseMove = (e: MouseEvent) => {
-        setMousePos({ x: e.clientX, y: e.clientY });
-      };
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -104,11 +129,11 @@ export default function Portfolio() {
         </motion.div>
 
         <motion.div className="mt-12 flex flex-col sm:flex-row gap-6 z-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-          <a href="https://wa.me/628129079905" className="group relative px-10 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all">
-            <span className="relative z-10 flex items-center gap-2">Get in Touch <ChevronRight size={18} /></span>
+          <a href="https://wa.me/628129079905" className="group relative px-10 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all text-center">
+            <span className="relative z-10 flex items-center justify-center gap-2">Get in Touch <ChevronRight size={18} /></span>
             <div className="absolute inset-0 bg-cyan-400 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
           </a>
-          <a href="#projects" className="px-10 py-4 border border-white/10 rounded-full font-bold hover:bg-white/5 transition-all">
+          <a href="#projects" className="px-10 py-4 border border-white/10 rounded-full font-bold hover:bg-white/5 transition-all text-center">
             Browse Work
           </a>
         </motion.div>
@@ -149,8 +174,8 @@ export default function Portfolio() {
         <div className="relative group">
            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
            <div className="relative aspect-video bg-slate-900 rounded-3xl border border-white/10 p-2 overflow-hidden">
-              <div className="w-full h-full bg-[#030712] rounded-2xl flex items-center justify-center p-8">
-                <code className="text-cyan-400 text-sm md:text-base">
+              <div className="w-full h-full bg-[#030712] rounded-2xl flex items-center justify-center p-8 text-center">
+                <code className="text-cyan-400 text-xs sm:text-sm md:text-base leading-relaxed">
                   <span className="text-purple-400 italic">class</span> <span className="text-white font-bold">NandaWicaksana</span> {"{"} <br/>
                   &nbsp;&nbsp;<span className="text-slate-500">// Problem solving at scale</span><br/>
                   &nbsp;&nbsp;<span className="text-white">skills()</span> {"{"} <br/>
@@ -171,7 +196,7 @@ export default function Portfolio() {
               <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Portfolio</h2>
               <h3 className="text-5xl font-black">Featured Work</h3>
             </div>
-            <p className="text-slate-500 max-w-sm text-right font-medium">A selection of tools and platforms built to solve business complexities.</p>
+            <p className="text-slate-500 max-w-sm md:text-right font-medium">A selection of tools and platforms built to solve business complexities.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-10">
@@ -184,13 +209,29 @@ export default function Portfolio() {
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
                 onClick={() => proj.images.length > 0 && setSelectedProject(proj)}
-                className="group relative h-[400px] rounded-3xl overflow-hidden border border-white/10 cursor-pointer"
+                className="group relative h-[450px] rounded-3xl overflow-hidden border border-white/10 cursor-pointer bg-slate-900"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${proj.color} to-transparent opacity-40 group-hover:opacity-100 transition-opacity`} />
-                <div className="absolute inset-0 p-12 flex flex-col justify-end">
-                  <span className="text-[10px] uppercase tracking-widest text-cyan-400 font-bold mb-4">{proj.tag}</span>
-                  <h4 className="text-3xl font-bold mb-4 text-white group-hover:text-cyan-400 transition-colors">{proj.title}</h4>
-                  <div className="flex items-center gap-2 text-sm font-bold text-slate-400 group-hover:text-white transition-colors">
+                {/* Background Image / Gradient */}
+                {proj.thumbnail ? (
+                  <div className="absolute inset-0 w-full h-full">
+                    <img 
+                      src={proj.thumbnail} 
+                      alt={proj.title}
+                      className="w-full h-full object-cover opacity-30 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
+                    />
+                  </div>
+                ) : (
+                  <div className={`absolute inset-0 bg-gradient-to-br ${proj.color} to-transparent opacity-40 group-hover:opacity-100 transition-opacity`} />
+                )}
+
+                {/* Dark Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-10" />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-12 flex flex-col justify-end z-20">
+                  <span className="text-[10px] uppercase tracking-widest text-cyan-400 font-bold mb-4 drop-shadow-lg">{proj.tag}</span>
+                  <h4 className="text-4xl font-black mb-4 text-white group-hover:text-cyan-400 transition-colors drop-shadow-xl">{proj.title}</h4>
+                  <div className="flex items-center gap-2 text-sm font-bold text-slate-300 group-hover:text-white transition-colors">
                     Explore Project <ExternalLink size={16} />
                   </div>
                 </div>
@@ -204,7 +245,6 @@ export default function Portfolio() {
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 overflow-hidden">
-            {/* Overlay */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -213,14 +253,12 @@ export default function Portfolio() {
               className="absolute inset-0 bg-black/95 backdrop-blur-md"
             />
             
-            {/* Modal Content */}
             <motion.div 
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative bg-[#0d1117] w-full max-w-6xl max-h-[90vh] rounded-3xl border border-white/10 overflow-hidden flex flex-col shadow-2xl"
+              className="relative bg-[#0d1117] w-full max-w-6xl max-h-[90vh] rounded-3xl border border-white/10 overflow-hidden flex flex-col shadow-2xl z-[110]"
             >
-              {/* Header Modal */}
               <div className="sticky top-0 z-20 p-6 border-b border-white/5 bg-[#0d1117]/80 backdrop-blur-md flex justify-between items-center">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-cyan-500/10 rounded-xl">
@@ -239,7 +277,6 @@ export default function Portfolio() {
                 </button>
               </div>
 
-              {/* Scrollable Images */}
               <div className="overflow-y-auto p-6 md:p-12 space-y-12">
                 {selectedProject.images.map((img, idx) => (
                   <motion.div 
@@ -257,7 +294,7 @@ export default function Portfolio() {
                       <img 
                         src={img} 
                         alt={`${selectedProject.title} screenshot ${idx}`}
-                        className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700"
+                        className="w-full h-auto object-cover hover:scale-[1.01] transition-transform duration-700"
                       />
                     </div>
                   </motion.div>
@@ -292,7 +329,7 @@ export default function Portfolio() {
       {/* FOOTER */}
       <footer className="py-20 border-t border-white/5 px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-slate-500 font-medium">© 2026 Nanda Aulia. Built with precision.</p>
+          <p className="text-slate-500 font-medium text-center">© 2026 Nanda Aulia. Built with precision.</p>
           <div className="flex gap-10 text-[10px] uppercase tracking-widest font-bold text-slate-400">
             <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-white transition-colors">GitHub</a>
