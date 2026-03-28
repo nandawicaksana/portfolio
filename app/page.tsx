@@ -25,6 +25,7 @@ export default function Portfolio() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -85,15 +86,19 @@ export default function Portfolio() {
 <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
 
 {/* NAVBAR */}
+{/* NAVBAR */}
       <nav className={`fixed top-0 w-full backdrop-blur-xl border-b z-50 transition-colors ${isDarkMode ? "bg-[#030712]/60 border-white/5" : "bg-white/60 border-black/5"}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-5">
+          {/* Logo */}
           <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="group cursor-pointer">
             <h1 className={`font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors ${isDarkMode ? "text-white" : "text-slate-900"}`}>
               NAW<span className="text-cyan-500 italic">.</span>
             </h1>
           </motion.div>
-          <div className="flex items-center gap-6 md:gap-10">
-            <div className="flex gap-4 md:gap-8 text-[10px] md:text-xs uppercase tracking-widest font-bold items-center">
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-10">
+            <div className="flex gap-8 text-xs uppercase tracking-widest font-bold items-center">
               {["Value", "About", "Projects", "Contact"].map((item) => (
                 <a key={item} href={`#${item.toLowerCase()}`} className={`hover:text-cyan-500 transition-colors relative group ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
                   {item}
@@ -105,10 +110,55 @@ export default function Portfolio() {
               onClick={() => setTheme(isDarkMode ? "light" : "dark")}
               className={`p-2 rounded-xl border transition-all ${isDarkMode ? "border-white/10 hover:bg-white/5" : "border-black/10 hover:bg-black/5"}`}
             >
+              {isDarkMode ? <Sun size={18} className="text-yellow-400" /> : <Moon size={18} className="text-blue-600" />}
+            </button>
+          </div>
+
+          {/* Mobile Menu Trigger & Toggle Theme */}
+          <div className="flex md:hidden items-center gap-4">
+            <button 
+              onClick={() => setTheme(isDarkMode ? "light" : "dark")}
+              className={`p-2 rounded-lg border ${isDarkMode ? "border-white/10" : "border-black/10"}`}
+            >
               {isDarkMode ? <Sun size={16} className="text-yellow-400" /> : <Moon size={16} className="text-blue-600" />}
+            </button>
+            
+            {/* Hamburger Button (Kamu butuh state untuk mobile menu ini) */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} // Pastikan kamu buat state [isMenuOpen, setIsMenuOpen] di atas
+              className={`p-2 z-[70] relative ${isDarkMode ? "text-white" : "text-black"}`}
+            >
+              {isMenuOpen ? <X size={24} /> : <Layout size={24} />}
             </button>
           </div>
         </div>
+
+        {/* MOBILE OVERLAY MENU */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className={`fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 ${isDarkMode ? "bg-[#030712]" : "bg-white"}`}
+            >
+              {["About", "Value", "Projects", "Contact"].map((item, i) => (
+                <motion.a
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-4xl font-black tracking-tighter ${isDarkMode ? "text-white hover:text-cyan-500" : "text-slate-900 hover:text-cyan-500"}`}
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* HERO SECTION */}
