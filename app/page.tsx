@@ -84,10 +84,9 @@ export default function Portfolio() {
       />
 
 <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
-
 {/* NAVBAR */}
       <nav className={`fixed top-0 w-full backdrop-blur-xl border-b z-[100] transition-colors ${isDarkMode ? "bg-[#030712]/60 border-white/5" : "bg-white/60 border-black/5"}`}>
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-5">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-5 relative z-[120]">
           {/* Logo */}
           <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="group cursor-pointer">
             <h1 className={`font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors ${isDarkMode ? "text-white" : "text-slate-900"}`}>
@@ -98,7 +97,7 @@ export default function Portfolio() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-10">
             <div className="flex gap-8 text-xs uppercase tracking-widest font-bold items-center">
-              {["About", "Value", "Projects", "Contact"].map((item) => (
+              {[ "Value", "About", "Projects", "Contact"].map((item) => (
                 <a key={item} href={`#${item.toLowerCase()}`} className={`hover:text-cyan-500 transition-colors relative group ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cyan-500 transition-all group-hover:w-full" />
@@ -114,54 +113,55 @@ export default function Portfolio() {
           </div>
 
           {/* Mobile Menu Trigger & Toggle Theme */}
-          <div className="flex md:hidden items-center gap-4">
+          <div className="flex md:hidden items-center gap-4 relative z-[130]">
             <button 
               onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-              className={`p-2 rounded-lg border ${isDarkMode ? "border-white/10" : "border-black/10"}`}
+              className={`p-2 rounded-lg border transition-all ${isDarkMode ? "border-white/10" : "border-black/10"}`}
             >
               {isDarkMode ? <Sun size={16} className="text-yellow-400" /> : <Moon size={16} className="text-blue-600" />}
             </button>
             
+            {/* Hamburger Button (Kamu butuh state untuk mobile menu ini) */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className={`p-2 z-[110] relative ${isDarkMode ? "text-white" : "text-black"}`}
+              className={`p-2 relative ${isDarkMode ? "text-white" : "text-black"}`}
             >
               {isMenuOpen ? <X size={24} /> : <Layout size={24} />}
             </button>
           </div>
         </div>
 
-        {/* MOBILE OVERLAY MENU */}
-        <AnimatePresence mode="wait">
+        {/* MOBILE OVERLAY MENU (FINAL FIX FOR OVERLAPPING) */}
+        <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className={`fixed inset-0 z-[105] flex flex-col items-start px-10 pt-32 gap-6 backdrop-blur-3xl ${isDarkMode ? "bg-[#030712]/95" : "bg-white/95"}`}
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0 }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className={`absolute top-0 right-0 w-full h-[100vh] z-[110] flex flex-col items-center justify-center gap-10 backdrop-blur-3xl ${isDarkMode ? "bg-[#030712]/95" : "bg-white/95"}`}
             >
               {/* Decorative Label */}
-              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-cyan-500 mb-2">Navigation</span>
+              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-cyan-500 mb-2 opacity-70">Navigation</span>
 
-              {["About", "Value", "Projects", "Contact"].map((item, i) => (
+              {["Value", "About", "Projects", "Contact"].map((item, i) => (
                 <motion.a
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-5xl font-black tracking-tighter ${isDarkMode ? "text-white" : "text-slate-900"} hover:text-cyan-500 transition-colors`}
+                  className={`text-5xl font-black tracking-tighter ${isDarkMode ? "text-white hover:text-cyan-500" : "text-slate-900 hover:text-cyan-500"} transition-colors`}
                 >
                   {item}<span className="text-cyan-500">.</span>
                 </motion.a>
               ))}
 
               {/* Mobile Footer Info */}
-              <div className="mt-auto pb-12 w-full border-t border-white/5 pt-8">
-                 <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-4">Get in touch</p>
-                 <a href="mailto:nannsky9@gmail.com" className="text-sm font-medium text-cyan-500">nannsky9@gmail.com</a>
+              <div className="flex gap-6 mt-16 pb-12">
+                 <a href="#" className="text-slate-500 text-xs font-bold uppercase tracking-widest transition-colors hover:text-cyan-500">LinkedIn</a>
+                 <a href="#" className="text-slate-500 text-xs font-bold uppercase tracking-widest transition-colors hover:text-cyan-500">GitHub</a>
               </div>
             </motion.div>
           )}
