@@ -84,18 +84,18 @@ export default function Portfolio() {
 
 <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
 
-      {/* NAVBAR */}
+{/* NAVBAR */}
       <nav className={`fixed top-0 w-full backdrop-blur-xl border-b z-50 transition-colors ${isDarkMode ? "bg-[#030712]/60 border-white/5" : "bg-white/60 border-black/5"}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-5">
           <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="group cursor-pointer">
-            <h1 className="font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors text-white">
+            <h1 className={`font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors ${isDarkMode ? "text-white" : "text-slate-900"}`}>
               NAW<span className="text-cyan-500 italic">.</span>
             </h1>
           </motion.div>
           <div className="flex items-center gap-6 md:gap-10">
-            <div className="flex gap-4 md:gap-10 text-[10px] md:text-xs uppercase tracking-widest font-bold">
-              {["About", "Projects", "Contact"].map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-cyan-500 transition-colors relative group">
+            <div className="flex gap-4 md:gap-8 text-[10px] md:text-xs uppercase tracking-widest font-bold items-center">
+              {["Value", "About", "Projects", "Contact"].map((item) => (
+                <a key={item} href={`#${item.toLowerCase()}`} className={`hover:text-cyan-500 transition-colors relative group ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cyan-500 transition-all group-hover:w-full" />
                 </a>
@@ -195,14 +195,17 @@ export default function Portfolio() {
           <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-[25%] right-[15%] text-purple-500"><Zap size={20} className="md:w-[30px]" /></motion.div>
         </div>
       </section>
-      {/* VALUE PROPOSITION */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
+      
+      {/* VALUE PROPOSITION SECTION */}
+      <section id="value" className="py-24 px-6 max-w-7xl mx-auto scroll-mt-20">
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-12 text-center"
-        >Value Proposition</motion.h2>
+        >
+          Value Proposition
+        </motion.h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
             { title: "Fast Problem Solver", desc: "Quickly identifying bottlenecks in infrastructure and code.", icon: <Zap className="text-yellow-500" /> },
@@ -225,9 +228,9 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* STATS */}
+      {/* STATS SECTION */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-1px border rounded-3xl overflow-hidden backdrop-blur-sm ${isDarkMode ? "bg-white/5 border-white/5" : "bg-black/5 border-black/5"}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-[1px] border rounded-3xl overflow-hidden backdrop-blur-sm ${isDarkMode ? "bg-white/5 border-white/10" : "bg-black/5 border-black/10"}`}>
           {[
             { label: "Experience", val: "3+ Years", icon: <Server className="text-cyan-500" /> },
             { label: "Projects Completed", val: "20+", icon: <Code2 className="text-purple-500" /> },
