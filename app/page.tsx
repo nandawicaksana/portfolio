@@ -74,7 +74,13 @@ export default function Portfolio() {
 
   return (
     <div className={`min-h-screen transition-colors duration-500 font-sans overflow-x-hidden selection:bg-cyan-500/30 ${isDarkMode ? "bg-[#030712] text-slate-200" : "bg-slate-50 text-slate-900"}`}>
-      
+      <div
+        className="fixed w-40 h-40 rounded-full pointer-events-none z-50 blur-3xl opacity-20 bg-cyan-500"
+        style={{
+          left: mousePos.x - 80,
+          top: mousePos.y - 80,
+        }}
+      />
       {/* Background Spotlight */}
       <div 
         className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 opacity-50"
@@ -194,12 +200,17 @@ export default function Portfolio() {
           </motion.div>
 
           {/* Main Title */}
-          <h1 className={`text-5xl md:text-[120px] font-black tracking-tighter leading-[1.1] md:leading-none mb-6 md:mb-8 ${isDarkMode ? "text-white" : "text-slate-900"}`}>
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className={`text-5xl md:text-[120px] font-black tracking-tighter leading-[1.1] md:leading-none mb-6 md:mb-8 ${isDarkMode ? "text-white" : "text-slate-900"}`}
+          >
             Nanda Aulia <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
               Wicaksana
             </span>
-          </h1>
+          </motion.h1>
 
           {/* Subtitle with Glassmorphism Effect */}
           <div className="max-w-4xl mx-auto relative px-4">
@@ -246,7 +257,10 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Floating Background Icons */}
-        <div className="absolute inset-0 pointer-events-none opacity-10 md:opacity-20">
+        <div className="absolute inset-0 pointer-events-none opacity-10 md:opacity-20"
+          style={{
+            transform: `translate(${mousePos.x * 0.01}px, ${mousePos.y * 0.01}px)`
+          }}>
           <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute top-[15%] left-[10%] text-cyan-500"><Code2 size={30} className="md:w-[40px]" /></motion.div>
           <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute bottom-[20%] right-[5%] text-blue-500"><Server size={25} className="md:w-[35px]" /></motion.div>
           <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-[25%] right-[15%] text-purple-500"><Zap size={20} className="md:w-[30px]" /></motion.div>
@@ -254,7 +268,14 @@ export default function Portfolio() {
       </section>
       
       {/* VALUE PROPOSITION SECTION */}
-      <section id="value" className="py-24 px-6 max-w-7xl mx-auto scroll-mt-20">
+      <motion.section
+          id="value"
+          className="py-24 px-6 max-w-7xl mx-auto scroll-mt-20"
+          initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
+          whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -266,7 +287,7 @@ export default function Portfolio() {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             { title: "Fast Problem Solver", desc: "Quickly identifying bottlenecks in infrastructure and code.", icon: <Zap className="text-yellow-500" /> },
-            { title: "Real-world Experience", desc: "3+ years of building tools that actually get used in business.", icon: <Lightbulb className="text-cyan-500" /> },
+            { title: "Real-world Experience", desc: "5+ years of building tools that actually get used in business.", icon: <Lightbulb className="text-cyan-500" /> },
             { title: "Performance First", desc: "Scalable architecture focused on speed and reliability.", icon: <Rocket className="text-purple-500" /> }
           ].map((item, i) => (
             <motion.div 
@@ -283,13 +304,19 @@ export default function Portfolio() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* STATS SECTION */}
-      <section className="py-12 px-6 max-w-7xl mx-auto">
+      <motion.section
+        className="py-12 px-6 max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
+        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
+        transition={{ duration : 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-[1px] border rounded-3xl overflow-hidden backdrop-blur-sm ${isDarkMode ? "bg-white/5 border-white/10" : "bg-black/5 border-black/10"}`}>
           {[
-            { label: "Experience", val: "3+ Years", icon: <Server className="text-cyan-500" /> },
+            { label: "Experience", val: "5+ Years", icon: <Server className="text-cyan-500" /> },
             { label: "Projects Completed", val: "20+", icon: <Code2 className="text-purple-500" /> },
             { label: "Availability", val: "Remote/Jakarta", icon: <Globe className="text-emerald-500" /> },
           ].map((stat, i) => (
@@ -300,10 +327,17 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
 {/* ABOUT */}
-      <section id="about" className="py-32 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+        <motion.section
+        id="about"
+        className="py-32 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center"
+        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
+        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
+        transition={{ duration : 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <motion.div whileInView="visible" initial="hidden" viewport={{ once: true }} variants={containerVariants}>
           <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-6">Introduction</h2>
           <h3 className="text-4xl font-bold mb-8 leading-tight">Focusing on Performance and Scalable Architectures.</h3>
@@ -358,10 +392,16 @@ export default function Portfolio() {
                </div>
             </div>
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* TECH STACK */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
+      <motion.section
+        className="py-24 px-6 max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
+        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
+        transition={{ duration : 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Tech Stack</h2>
           <h3 className="text-3xl font-bold">Tools I Use Daily</h3>
@@ -382,10 +422,17 @@ export default function Portfolio() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* PROJECTS */}
-      <section id="projects" className={`py-32 px-6 ${isDarkMode ? "bg-white/[0.01]" : "bg-slate-100"}`}>
+       <motion.section
+        id="projects"
+        className={`py-32 px-6 ${isDarkMode ? "bg-white/[0.01]" : "bg-slate-100"}`}
+        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
+        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
+        transition={{ duration : 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
             <div>
@@ -403,13 +450,13 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 onClick={() => proj.images.length > 0 && setSelectedProject(proj)}
                 className={`group relative h-[450px] rounded-3xl overflow-hidden border cursor-pointer ${isDarkMode ? "border-white/10 bg-slate-900" : "border-black/5 bg-white shadow-2xl"}`}
               >
                 {proj.thumbnail ? (
                   <div className="absolute inset-0 w-full h-full">
-                    <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" />
+                    <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-60 group-hover:scale-110 group-hover:rotate-[0.5deg] transition-all duration-700"></img>
                   </div>
                 ) : (
                   <div className={`absolute inset-0 bg-gradient-to-br ${proj.color} to-transparent opacity-40 group-hover:opacity-100 transition-opacity`} />
@@ -426,14 +473,14 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
+</motion.section>
 
       {/* GALLERY MODAL */}
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 overflow-hidden">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedProject(null)} className="absolute inset-0 bg-black/95 backdrop-blur-md" />
-            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className={`relative w-full max-w-6xl max-h-[90vh] rounded-3xl border overflow-hidden flex flex-col shadow-2xl z-[110] ${isDarkMode ? "bg-[#0d1117] border-white/10" : "bg-white border-black/10"}`}>
+            <motion.div initial={{ scale: 0.8, opacity: 0, y: 40 }} transition={{ type: "spring", damping: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className={`relative w-full max-w-6xl max-h-[90vh] rounded-3xl border overflow-hidden flex flex-col shadow-2xl z-[110] ${isDarkMode ? "bg-[#0d1117] border-white/10" : "bg-white border-black/10"}`}>
               <div className={`sticky top-0 z-20 p-6 border-b backdrop-blur-md flex justify-between items-center ${isDarkMode ? "border-white/5 bg-[#0d1117]/80" : "border-black/5 bg-white/80"}`}>
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-cyan-500/10 rounded-xl"><Layout className="text-cyan-500" size={24} /></div>
@@ -463,7 +510,14 @@ export default function Portfolio() {
       </AnimatePresence>
 
 {/* CONTACT - PERSONAL VERSION */}
-      <section id="contact" className="py-40 px-6 max-w-4xl mx-auto text-center">
+      <motion.section
+        id="contact"
+        className="py-40 px-6 max-w-4xl mx-auto text-center"
+        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
+        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
+        transition={{ duration : 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">Let's work together.</h2>
         <p className="text-xl text-slate-500 mb-12">I'm currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open.</p>
         <div className="flex flex-col md:flex-row justify-center gap-6">
@@ -474,7 +528,7 @@ export default function Portfolio() {
             <Phone size={20} className="text-emerald-500" /> WhatsApp
           </a>
         </div>
-      </section>
+   </motion.section>
 
       {/* FOOTER */}
       <footer className={`py-20 border-t px-8 ${isDarkMode ? "border-white/5" : "border-black/5"}`}>
