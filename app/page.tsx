@@ -62,9 +62,27 @@ export default function Portfolio() {
         "/projects/hrms/hrms-rekap-gaji.png",
       ]
     },
-    { title: "E-Commerce Flashsale", tag: "High Traffic", color: "from-orange-500/20", images: [] },
-    { title: "WA Automation Bot", tag: "Internal Tool", color: "from-emerald-500/20", images: [] },
-    { title: "Analytic Dashboard", tag: "Data Visualization", color: "from-purple-500/20", images: [] },
+    { 
+      title: "E-Commerce Flashsale", 
+      tag: "Coming Soon", 
+      color: "from-orange-500/20",
+      description: "Currently in development",
+      images: []
+    },
+    { 
+      title: "WA Automation Bot", 
+      tag: "Coming Soon", 
+      color: "from-emerald-500/20",
+      description: "Internal tool in progress",
+      images: []
+    },
+    { 
+      title: "Analytic Dashboard", 
+      tag: "Coming Soon", 
+      color: "from-purple-500/20",
+      description: "Data platform under development",
+      images: []
+    },
   ];
 
   const containerVariants = {
@@ -239,69 +257,73 @@ export default function Portfolio() {
           <p className={`text-base md:text-2xl font-light leading-relaxed mb-10 ${
             isDarkMode ? "text-slate-400" : "text-slate-600"
           }`}>
-            Building <span className={`font-medium ${
+            I build <span className={`font-medium ${
               isDarkMode ? "text-slate-200" : "text-slate-900"
-            }`}>Scalable Business Systems</span> & 
-            <span className={`font-medium ${
+            }`}>high-performance business systems </span> 
+             that handle <span className={`font-medium ${
               isDarkMode ? "text-slate-200" : "text-slate-900"
-            }`}> High-Performance Web Applications</span>
+            }`}>real traffic & real operations</span>.
 
-            <span className="block text-sm md:text-base mt-3 opacity-70 italic">
-              From infrastructure to application layer — delivering reliable systems that actually work in production
+            <span className="block text-sm mt-3 opacity-70 italic">
+              Used in production — HRMS, automation tools, and scalable web platforms
             </span>
           </p>
         </motion.div>
 
-        {/* CTA */}
-        <motion.div 
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0 }
-          }}
-          className="flex flex-col md:flex-row gap-4 justify-center items-center"
-        >
-          
-          {/* PRIMARY */}
-          <motion.a 
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            href="https://wa.me/628129079905"
-            className="group relative px-10 py-4 bg-cyan-500 text-white font-bold rounded-2xl shadow-xl shadow-cyan-500/30 overflow-hidden"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Start Project <ChevronRight size={18} />
-            </span>
+       {/* CTA */}
+<motion.div 
+  variants={{
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  }}
+  className="flex flex-col md:flex-row gap-4 justify-center items-center"
+>
 
-            {/* glow hover */}
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition" />
-          </motion.a>
+  {/* PRIMARY (MONEY BUTTON) */}
+  <motion.a 
+    whileHover={{ scale: 1.06, y: -3 }}
+    whileTap={{ scale: 0.95 }}
+    href="https://wa.me/628129079905"
+    className="group relative px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-2xl shadow-2xl shadow-cyan-500/30 overflow-hidden"
+  >
+    <span className="relative z-10 flex items-center gap-2">
+      🚀 Hire Me Now <ChevronRight size={18} />
+    </span>
 
-          {/* SECONDARY */}
-          <motion.a 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="#projects"
-            className={`px-10 py-4 border rounded-2xl font-bold backdrop-blur-md ${
-              isDarkMode 
-              ? "border-white/10 bg-white/5 hover:bg-white/10"
-              : "border-black/10 bg-white hover:bg-slate-50 shadow-sm"
-            }`}
-          >
-            Explore My Work
-          </motion.a>
+    {/* glow hover */}
+    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition" />
 
-          {/* RESUME */}
-          <motion.a 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="/resume-nanda-aulia.pdf"
-            target="_blank"
-            className="px-10 py-4 text-cyan-500 font-bold flex items-center gap-2"
-          >
-            View Resume <ExternalLink size={16} />
-          </motion.a>
+    {/* animated border glow */}
+    <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-white/30 transition" />
+  </motion.a>
 
-        </motion.div>
+  {/* SECONDARY */}
+  <motion.a 
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    href="#projects"
+    className={`px-10 py-4 border rounded-2xl font-bold backdrop-blur-md ${
+      isDarkMode 
+      ? "border-white/10 bg-white/5 hover:bg-white/10"
+      : "border-black/10 bg-white hover:bg-slate-50 shadow-sm"
+    }`}
+  >
+    🔍 See Real Projects
+  </motion.a>
+
+  {/* RESUME */}
+  <motion.a 
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    href="/resume-nanda-aulia.pdf"
+    target="_blank"
+    className="px-10 py-4 text-cyan-500 font-bold flex items-center gap-2 group"
+  >
+    📄 Download CV 
+    <ExternalLink size={16} className="group-hover:translate-x-1 transition" />
+  </motion.a>
+
+</motion.div>
       </motion.div>
 
       {/* FLOATING ICONS */}
@@ -639,9 +661,20 @@ export default function Portfolio() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                onClick={() => proj.images.length > 0 && setSelectedProject(proj)}
-                className={`group relative h-[450px] rounded-3xl overflow-hidden border cursor-pointer ${isDarkMode ? "border-white/10 bg-slate-900" : "border-black/5 bg-white shadow-2xl"}`}
+                onClick={() => {
+                                  if (proj.images.length > 0) {
+                                    setSelectedProject(proj)
+                                  }
+                                }}
+                className={`group relative h-[450px] rounded-3xl overflow-hidden border 
+                ${proj.images.length > 0 ? "cursor-pointer" : "cursor-not-allowed opacity-80"}
+                ${isDarkMode ? "border-white/10 bg-slate-900" : "border-black/5 bg-white shadow-2xl"}`}
               >
+                {proj.images.length === 0 && (
+                  <div className="absolute top-6 right-6 px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-cyan-400">
+                    Coming Soon
+                  </div>
+                )}
                 {proj.thumbnail ? (
                   <div className="absolute inset-0 w-full h-full">
                     <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-60 group-hover:scale-110 group-hover:rotate-[0.5deg] transition-all duration-700"></img>
@@ -654,7 +687,8 @@ export default function Portfolio() {
                   <span className="text-[10px] uppercase tracking-widest text-cyan-500 font-bold mb-4 drop-shadow-lg">{proj.tag}</span>
                   <h4 className={`text-4xl font-black mb-4 group-hover:text-cyan-500 transition-colors drop-shadow-xl ${isDarkMode ? "text-white" : "text-black"}`}>{proj.title}</h4>
                   <div className="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-cyan-500 transition-colors">
-                    Explore Project <ExternalLink size={16} />
+                    {proj.images.length > 0 ? "Explore Project" : "In Development"}
+                    {proj.images.length > 0 && <ExternalLink size={16} />}
                   </div>
                 </div>
               </motion.div>
@@ -721,11 +755,10 @@ export default function Portfolio() {
       {/* FOOTER */}
       <footer className={`py-20 border-t px-8 ${isDarkMode ? "border-white/5" : "border-black/5"}`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-slate-500 text-sm">© 2026 Nanda Aulia Wicaksana. Built with Next.js.</p>
+          <p className="text-slate-500 text-sm">© 2026 Nanda Aulia Wicaksana.</p>
           <div className="flex gap-8 text-[10px] uppercase tracking-widest font-bold">
-            <a href="#" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Globe size={14}/> LinkedIn</a>
-            <a href="#" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Users size={14}/> GitHub</a>
-            <a href="#" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Camera size={14}/> Instagram</a>
+            <a href="https://www.linkedin.com/in/nandaaw/" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Globe size={14}/> LinkedIn</a>
+            <a href="https://github.com/nandawicaksana" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Users size={14}/> GitHub</a>
           </div>
         </div>
       </footer>
