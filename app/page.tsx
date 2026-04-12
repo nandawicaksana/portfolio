@@ -126,7 +126,7 @@ export default function Portfolio() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-10">
             <div className="flex gap-8 text-xs uppercase tracking-widest font-bold items-center">
-              {[ "Value", "About", "Projects", "Contact"].map((item) => (
+              {[ "Nilai", "Tentang Saya", "Proyek","Peningkatan","Kontak"].map((item) => (
                 <a key={item} href={`#${item.toLowerCase()}`} className={`hover:text-cyan-500 transition-colors relative group ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cyan-500 transition-all group-hover:w-full" />
@@ -348,7 +348,7 @@ export default function Portfolio() {
       
       {/* VALUE PROPOSITION SECTION */}
       <motion.section
-          id="value"
+          id="nilai"
           className="py-24 px-6 max-w-7xl mx-auto scroll-mt-20"
           initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
           whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
@@ -414,7 +414,7 @@ export default function Portfolio() {
 
 {/* ABOUT */}
         <motion.section
-          id="about"
+          id="tentang saya"
           className="py-32 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center"
           initial={{ opacity: 0, y: 100, scale: 0.95, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
@@ -430,7 +430,7 @@ export default function Portfolio() {
             className="max-w-2xl"
           >
             <span className="text-xs uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4 block">
-              Building Scalable Systems That Actually Work in Production
+              Membangun Sistem yang Dapat Diskalakan dan Berfungsi di Production
             </span>
 
             <h3
@@ -438,7 +438,7 @@ export default function Portfolio() {
                 isDarkMode ? "text-white" : "text-slate-900"
               }`}
             >
-              About Me.
+              Tentang Saya.
             </h3>
 
             <p
@@ -645,7 +645,7 @@ export default function Portfolio() {
 
       {/* PROJECTS */}
        <motion.section
-        id="projects"
+        id="proyek"
         className={`py-32 px-6 ${isDarkMode ? "bg-white/[0.01]" : "bg-slate-100"}`}
         initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
         whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
@@ -656,7 +656,7 @@ export default function Portfolio() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
             <div>
               <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Portfolio</h2>
-              <h3 className="text-5xl font-black">Beberapa project saya</h3>
+              <h3 className="text-5xl font-black">Beberapa proyek saya</h3>
             </div>
             <p className="text-slate-500 max-w-sm md:text-right font-medium">Kumpulan sistem dan platform yang dibangun untuk menyelesaikan kompleksitas bisnis.</p>
           </div>
@@ -859,7 +859,7 @@ export default function Portfolio() {
 
 {/* CONTACT - PERSONAL VERSION */}
       <motion.section
-        id="contact"
+        id="kontak"
         className="py-40 px-6 max-w-4xl mx-auto text-center"
         initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
         whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
