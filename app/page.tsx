@@ -63,11 +63,15 @@ export default function Portfolio() {
       ]
     },
     { 
-      title: "E-Commerce Flashsale", 
-      tag: "Coming Soon", 
+      title: "Reservasi Ruang Rapat", 
+      tag: "Agenda & Booking", 
       color: "from-orange-500/20",
-      description: "Currently in development",
-      images: []
+      description: "Sistem Reservasi Ruang Rapat dengan fitur manajemen jadwal dan notifikasi.",
+      images: [
+        "/projects/agenda/index.png",
+        "/projects/agenda/login.png",
+        "/projects/agenda/dashboard.png",
+      ]
     },
     { 
       title: "WA Automation Bot", 
