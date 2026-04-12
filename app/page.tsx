@@ -74,20 +74,20 @@ export default function Portfolio() {
         "/projects/agenda/dashboard.png",
       ]
     },
-    { 
-      title: "WA Automation Bot", 
-      tag: "Coming Soon", 
-      color: "from-emerald-500/20",
-      description: "Internal tool in progress",
-      images: []
-    },
-    { 
-      title: "Analytic Dashboard", 
-      tag: "Coming Soon", 
-      color: "from-purple-500/20",
-      description: "Data platform under development",
-      images: []
-    },
+    // { 
+    //   title: "WA Automation Bot", 
+    //   tag: "Coming Soon", 
+    //   color: "from-emerald-500/20",
+    //   description: "Internal tool in progress",
+    //   images: []
+    // },
+    // { 
+    //   title: "Analytic Dashboard", 
+    //   tag: "Coming Soon", 
+    //   color: "from-purple-500/20",
+    //   description: "Data platform under development",
+    //   images: []
+    // },
   ];
 
   const containerVariants = {
@@ -516,7 +516,7 @@ export default function Portfolio() {
                 className="inline-flex items-center gap-3 text-cyan-500 font-bold group transition-all"
               >
                 <span className="border-b-2 border-cyan-500/30 group-hover:border-cyan-500 pb-1">
-                  Grab my full professional resume
+                  Lihat resume profesional lengkap saya.
                 </span>
                 <ChevronRight
                   size={20}
