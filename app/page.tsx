@@ -64,8 +64,9 @@ export default function Portfolio() {
     },
     { 
       title: "Reservasi Ruang Rapat", 
-      tag: "Agenda & Booking", 
+      tag: "Scheduling System", 
       color: "from-orange-500/20",
+      thumbnail: "/projects/agenda/index.png",
       description: "Sistem Reservasi Ruang Rapat dengan fitur manajemen jadwal dan notifikasi.",
       images: [
         "/projects/agenda/index.png",
@@ -261,15 +262,15 @@ export default function Portfolio() {
           <p className={`text-base md:text-2xl font-light leading-relaxed mb-10 ${
             isDarkMode ? "text-slate-400" : "text-slate-600"
           }`}>
-            I build <span className={`font-medium ${
+            Saya membangun <span className={`font-medium ${
               isDarkMode ? "text-slate-200" : "text-slate-900"
-            }`}>high-performance business systems </span> 
-             that handle <span className={`font-medium ${
+            }`}>sistem bisnis berperforma tinggi </span> 
+            yang mampu menangani <span className={`font-medium ${
               isDarkMode ? "text-slate-200" : "text-slate-900"
-            }`}>real traffic & real operations</span>.
+            }`}>traffic nyata & operasional real</span>.
 
             <span className="block text-sm mt-3 opacity-70 italic">
-              Used in production — HRMS, automation tools, and scalable web platforms
+              Digunakan langsung di production — HRMS, automation tools, dan platform web scalable
             </span>
           </p>
         </motion.div>
@@ -363,11 +364,13 @@ export default function Portfolio() {
           Value Proposition
         </motion.h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {[
-            { title: "Fast Problem Solver", desc: "Quickly identifying bottlenecks in infrastructure and code.", icon: <Zap className="text-yellow-500" /> },
-            { title: "Real-world Experience", desc: "5+ years of building tools that actually get used in business.", icon: <Lightbulb className="text-cyan-500" /> },
-            { title: "Performance First", desc: "Scalable architecture focused on speed and reliability.", icon: <Rocket className="text-purple-500" /> }
-          ].map((item, i) => (
+          {
+          [
+            { title: "Cepat Menyelesaikan Masalah", desc: "Cepat mengidentifikasi bottleneck pada sistem dan kode.", icon: <Zap className="text-yellow-500" /> },
+            { title: "Pengalaman Nyata", desc: "5+ tahun membangun sistem yang benar-benar digunakan dalam bisnis.", icon: <Lightbulb className="text-cyan-500" /> },
+            { title: "Fokus Performa", desc: "Arsitektur scalable dengan fokus pada kecepatan dan stabilitas.", icon: <Rocket className="text-purple-500" /> }
+          ]
+          .map((item, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -393,11 +396,13 @@ export default function Portfolio() {
         viewport={{ once: true }}
       >
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-[1px] border rounded-3xl overflow-hidden backdrop-blur-sm ${isDarkMode ? "bg-white/5 border-white/10" : "bg-black/5 border-black/10"}`}>
-          {[
-            { label: "Experience", val: "5+ Years", icon: <Server className="text-cyan-500" /> },
-            { label: "Projects Completed", val: "20+", icon: <Code2 className="text-purple-500" /> },
-            { label: "Availability", val: "Remote/Jakarta", icon: <Globe className="text-emerald-500" /> },
-          ].map((stat, i) => (
+          {
+          [
+            { label: "Pengalaman", val: "5+ Tahun", icon: <Server className="text-cyan-500" /> },
+            { label: "Proyek Selesai", val: "8+", icon: <Code2 className="text-purple-500" /> },
+            { label: "Ketersediaan", val: "Remote/Jakarta", icon: <Globe className="text-emerald-500" /> },
+          ]
+          .map((stat, i) => (
             <div key={i} className={`p-10 flex flex-col items-center text-center group transition-colors ${isDarkMode ? "bg-[#030712] hover:bg-white/[0.02]" : "bg-white hover:bg-slate-50"}`}>
               <div className="mb-4 transform group-hover:scale-110 transition-transform">{stat.icon}</div>
               <span className={`text-3xl font-bold mb-1 ${isDarkMode ? "text-white" : "text-black"}`}>{stat.val}</span>
@@ -579,7 +584,7 @@ export default function Portfolio() {
                       isDarkMode ? "text-white" : "text-slate-900"
                     }`}
                   >
-                    NandaWicaksana
+                    Nanda Aulia Wicaksana
                   </span>{" "}
                   {"{"} <br />
                   &nbsp;&nbsp;
@@ -617,8 +622,8 @@ export default function Portfolio() {
         viewport={{ once: true }}
       >
         <div className="text-center mb-16">
-          <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Tech Stack</h2>
-          <h3 className="text-3xl font-bold">Tools I Use Daily</h3>
+          <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Teknologi</h2>
+          <h3 className="text-3xl font-bold">Tools yang Saya Gunakan</h3>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {["HTML5", "CSS3", "JavaScript", "PHP", "Laravel", "MySQL", "Next.js", "QA Testing", "ERD Design", "SEO"].map((skill, i) => (
@@ -651,9 +656,9 @@ export default function Portfolio() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
             <div>
               <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Portfolio</h2>
-              <h3 className="text-5xl font-black">Featured Work</h3>
+              <h3 className="text-5xl font-black">Beberapa project saya</h3>
             </div>
-            <p className="text-slate-500 max-w-sm md:text-right font-medium">A selection of tools and platforms built to solve business complexities.</p>
+            <p className="text-slate-500 max-w-sm md:text-right font-medium">Kumpulan sistem dan platform yang dibangun untuk menyelesaikan kompleksitas bisnis.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-10">
@@ -691,7 +696,7 @@ export default function Portfolio() {
                   <span className="text-[10px] uppercase tracking-widest text-cyan-500 font-bold mb-4 drop-shadow-lg">{proj.tag}</span>
                   <h4 className={`text-4xl font-black mb-4 group-hover:text-cyan-500 transition-colors drop-shadow-xl ${isDarkMode ? "text-white" : "text-black"}`}>{proj.title}</h4>
                   <div className="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-cyan-500 transition-colors">
-                    {proj.images.length > 0 ? "Explore Project" : "In Development"}
+                    {proj.images.length > 0 ? "Explore Project" : "Sedang Dikembangkan"}
                     {proj.images.length > 0 && <ExternalLink size={16} />}
                   </div>
                 </div>
@@ -712,7 +717,7 @@ export default function Portfolio() {
                   <div className="p-2 bg-cyan-500/10 rounded-xl"><Layout className="text-cyan-500" size={24} /></div>
                   <div>
                     <h3 className={`text-xl font-bold ${isDarkMode ? "text-white" : "text-black"}`}>{selectedProject.title}</h3>
-                    <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold">Screenshot Gallery</p>
+                    <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold">Galeri Screenshot</p>
                   </div>
                 </div>
                 <button onClick={() => setSelectedProject(null)} className="p-3 hover:bg-red-500/10 rounded-full transition-colors text-slate-400 hover:text-red-500"><X size={24} /></button>
@@ -735,6 +740,123 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
+{/* WEBSITE OPTIMIZATION */}
+<motion.section
+  id="optimization"
+  className="py-32 px-6 max-w-7xl mx-auto relative"
+  initial={{ opacity: 0, y: 100 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+>
+
+  {/* 🔥 BACKGROUND GLOW */}
+  <div className="absolute inset-0 -z-10">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/10 blur-[120px]" />
+  </div>
+
+  {/* HEADER */}
+  <div className="text-center mb-20">
+    <h2 className="text-xs uppercase tracking-[0.5em] text-cyan-500 font-bold mb-4">
+      Optimasi Website
+    </h2>
+    <h3 className="text-4xl md:text-6xl font-black leading-tight">
+      Revamp & Peningkatan Website
+    </h3>
+    <p className="text-slate-500 mt-6 max-w-xl mx-auto text-sm md:text-base">
+      Beberapa website nyata yang telah saya optimasi, perbaiki, dan tingkatkan performanya untuk stabilitas dan kecepatan.
+    </p>
+  </div>
+
+  {(() => {
+    const optimizedWebsites = [
+      {
+        img: "/projects/optimization/allfour.avif",
+        category: "Perbaikan UI & SEO",
+        title: "Allfour Strings",
+        desc: "Redesigned and developed the overall UI, improved layout consistency, and optimized SEO structure."
+      },
+      {
+        img: "/projects/optimization/cgoin.png",
+        category: "Performa & SEO",
+        title: "Cargo.in",
+        desc: "Reduced load time and improved API response handling for better performance and visibility."
+      },
+      {
+        img: "/projects/optimization/everlogi.png",
+        category: "Integrasi AI",
+        title: "Everlogi",
+        desc: "Built AI chatbot with API integration, structured data, and optimized conversation flow."
+      },
+    ];
+
+    return (
+      <div className="relative overflow-hidden">
+
+        {/* fade kiri */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+
+        {/* fade kanan */}
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+
+        <motion.div
+          className="flex gap-8"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            duration: 25,
+            ease: "linear",
+          }}
+        >
+          {[...optimizedWebsites, ...optimizedWebsites].map((item, i) => (
+            <div
+              key={i}
+              className={`min-w-[340px] rounded-[28px] overflow-hidden border backdrop-blur-xl group transition-all duration-500 ${
+                isDarkMode
+                  ? "bg-white/[0.03] border-white/10 hover:bg-white/[0.06]"
+                  : "bg-white/80 border-black/5 shadow-2xl hover:shadow-cyan-500/10"
+              }`}
+            >
+              {/* IMAGE */}
+              <div className="h-[200px] flex items-center justify-center bg-white relative overflow-hidden">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="max-h-[110px] object-contain group-hover:scale-110 transition duration-700"
+                />
+              </div>
+
+              {/* CONTENT */}
+              <div className="p-6">
+                <span className="text-[10px] uppercase tracking-widest text-cyan-500 font-semibold">
+                  {item.category}
+                </span>
+
+                <h4 className="font-bold text-lg mt-2 group-hover:text-cyan-500 transition">
+                  {item.title}
+                </h4>
+
+                <p className="text-xs text-slate-500 mt-3 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    );
+  })()}
+
+  {/* IMPACT */}
+  <div className="mt-20 text-center max-w-2xl mx-auto">
+    <p className="text-slate-500 leading-relaxed text-sm md:text-base">
+        Meningkatkan kecepatan loading, memperbaiki bug kritis, dan meningkatkan performa sistem pada berbagai website production.
+        Menghasilkan respon lebih cepat, pengalaman pengguna yang lebih baik, dan sistem yang lebih stabil.
+    </p>
+  </div>
+
+</motion.section>
+
 {/* CONTACT - PERSONAL VERSION */}
       <motion.section
         id="contact"
@@ -744,8 +866,8 @@ export default function Portfolio() {
         transition={{ duration : 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">Let's work together.</h2>
-        <p className="text-xl text-slate-500 mb-12">I'm currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open.</p>
+        <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">Ayo Bekerja Sama.</h2>
+        <p className="text-xl text-slate-500 mb-12">Saat ini saya terbuka untuk peluang baru. Baik untuk diskusi project atau sekadar menyapa, silakan hubungi saya di :</p>
         <div className="flex flex-col md:flex-row justify-center gap-6">
           <a href="mailto:nannsky9@gmail.com" className={`flex items-center justify-center gap-4 px-8 py-4 border rounded-2xl font-bold transition-all ${isDarkMode ? "bg-white/5 border-white/10 hover:bg-white/10" : "bg-black/5 border-black/10 hover:bg-black/10"}`}>
             <Mail size={20} className="text-cyan-500" /> nannsky9@gmail.com
