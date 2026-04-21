@@ -758,19 +758,19 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
       {
         img: "/projects/optimization/allfour.avif",
         title: "Allfour Strings",
-        desc: "Redesign UI dan optimasi SEO.",
+        desc: "Redesigned and developed the overall UI, improved layout consistency, and optimized SEO structure.",
         color: "bg-yellow-300"
       },
       {
         img: "/projects/optimization/cgoin.png",
         title: "Cargo.in",
-        desc: "Optimasi performa & API.",
+        desc: "Redesigned and developed the overall UI, improved layout consistency, and optimized SEO structure.",
         color: "bg-blue-300"
       },
       {
         img: "/projects/optimization/everlogi.png",
         title: "Everlogi",
-        desc: "Integrasi AI chatbot.",
+        desc: "Built AI chatbot with API integration, structured data, and optimized conversation flow.",
         color: "bg-green-300"
       },
     ].map((item, i) => (
