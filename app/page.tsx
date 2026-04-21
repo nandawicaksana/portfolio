@@ -6,8 +6,9 @@ import { useTheme } from "next-themes";
 import { 
   Code2, Server, Globe, Mail, Phone, ExternalLink, 
   ChevronRight, X, Layout, Zap, Lightbulb, Rocket, 
- CheckCircle2, Sun, Moon, Users, Camera
+ CheckCircle2, Sun, Moon, Users, Camera, Github, Linkedin,
 } from "lucide-react";
+
 
 // Interface untuk Project
 interface Project {
@@ -96,7 +97,8 @@ export default function Portfolio() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 font-sans overflow-x-hidden selection:bg-cyan-500/30 ${isDarkMode ? "bg-[#030712] text-slate-200" : "bg-slate-50 text-slate-900"}`}>
+    <div className={`min-h-screen font-sans overflow-x-hidden 
+${isDarkMode ? "bg-[#0f172a] text-white" : "bg-[#f4f4f5] text-black"}`}>
       <div
         className="fixed w-40 h-40 rounded-full pointer-events-none z-50 blur-3xl opacity-20 bg-cyan-500"
         style={{
@@ -114,596 +116,575 @@ export default function Portfolio() {
 
 <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
 {/* NAVBAR */}
-      <nav className={`fixed top-0 w-full backdrop-blur-xl border-b z-[100] transition-colors ${isDarkMode ? "bg-[#030712]/60 border-white/5" : "bg-white/60 border-black/5"}`}>
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-5 relative z-[120]">
-          {/* Logo */}
-          <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="group cursor-pointer">
-            <h1 className={`font-black text-xl md:text-2xl tracking-tighter group-hover:text-cyan-500 transition-colors ${isDarkMode ? "text-white" : "text-slate-900"}`}>
-              NAW<span className="text-cyan-500 italic">.</span>
-            </h1>
-          </motion.div>
+     <nav className={`fixed top-0 w-full z-50 
+${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
+  <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-6">
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-10">
-            <div className="flex gap-8 text-xs uppercase tracking-widest font-bold items-center">
-              {[ "Nilai", "Tentang Saya", "Proyek","Peningkatan","Kontak"].map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className={`hover:text-cyan-500 transition-colors relative group ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
-                  {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cyan-500 transition-all group-hover:w-full" />
-                </a>
-              ))}
-            </div>
-            <button 
-              onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-              className={`p-2 rounded-xl border transition-all ${isDarkMode ? "border-white/10 hover:bg-white/5" : "border-black/10 hover:bg-black/5"}`}
-            >
-              {isDarkMode ? <Sun size={18} className="text-yellow-400" /> : <Moon size={18} className="text-blue-600" />}
-            </button>
-          </div>
+    {/* LOGO */}
+    <h1 className="font-black text-lg">
+      NAW<span className="text-blue-500">.</span>
+    </h1>
 
-          {/* Mobile Menu Trigger & Toggle Theme */}
-          <div className="flex md:hidden items-center gap-4 relative z-[130]">
-            <button 
-              onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-              className={`p-2 rounded-lg border transition-all ${isDarkMode ? "border-white/10" : "border-black/10"}`}
-            >
-              {isDarkMode ? <Sun size={16} className="text-yellow-400" /> : <Moon size={16} className="text-blue-600" />}
-            </button>
-            
-            {/* Hamburger Button (Kamu butuh state untuk mobile menu ini) */}
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className={`p-2 relative ${isDarkMode ? "text-white" : "text-black"}`}
-            >
-              {isMenuOpen ? <X size={24} /> : <Layout size={24} />}
-            </button>
-          </div>
-        </div>
+    {/* DESKTOP */}
+    <div className="hidden md:flex gap-4">
+      {["About","Skills","Projects","Contact"].map((item) => (
+        <a key={item} href={`#${item.toLowerCase()}`} className="nav-cartoon">
+          {item}
+        </a>
+      ))}
+    </div>
 
-        {/* MOBILE OVERLAY MENU (FINAL FIX FOR OVERLAPPING) */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className={`absolute top-0 right-0 w-full h-[100vh] z-[110] flex flex-col items-center justify-center gap-10 backdrop-blur-3xl ${isDarkMode ? "bg-[#030712]/95" : "bg-white/95"}`}
-            >
-              {/* Decorative Label */}
-              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-cyan-500 mb-2 opacity-70">Navigation</span>
+    {/* RIGHT */}
+    <div className="flex items-center gap-3">
 
-              {["Value", "About", "Projects", "Contact"].map((item, i) => (
-                <motion.a
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`text-5xl font-black tracking-tighter ${isDarkMode ? "text-white hover:text-cyan-500" : "text-slate-900 hover:text-cyan-500"} transition-colors`}
-                >
-                  {item}<span className="text-cyan-500">.</span>
-                </motion.a>
-              ))}
+      {/* THEME */}
+      <button
+        onClick={() => setTheme(isDarkMode ? "light" : "dark")}
+        className="nav-cartoon"
+      >
+        {isDarkMode ? <Sun size={16}/> : <Moon size={16}/>}
+      </button>
 
-              {/* Mobile Footer Info */}
-              <div className="flex gap-6 mt-16 pb-12">
-                 <a href="#" className="text-slate-500 text-xs font-bold uppercase tracking-widest transition-colors hover:text-cyan-500">LinkedIn</a>
-                 <a href="#" className="text-slate-500 text-xs font-bold uppercase tracking-widest transition-colors hover:text-cyan-500">GitHub</a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      {/* HAMBURGER */}
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="nav-cartoon md:hidden"
+      >
+        {isMenuOpen ? <X size={18}/> : <Layout size={18}/>}
+      </button>
+    </div>
+  </div>
+
+  {/* MOBILE MENU */}
+  <AnimatePresence>
+    {isMenuOpen && (
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -20, opacity: 0 }}
+        className="md:hidden px-6 pb-6 flex flex-col gap-4"
+      >
+        {["About","Skills","Projects","Contact"].map((item) => (
+          <a
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            onClick={() => setIsMenuOpen(false)}
+            className="nav-cartoon text-center"
+          >
+            {item}
+          </a>
+        ))}
+      </motion.div>
+    )}
+  </AnimatePresence>
+</nav>
 
       {/* HERO SECTION */}
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 md:pt-0 overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-6 pt-32">
 
-      {/* BACKGROUND GLOW */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[700px] h-[400px] md:h-[700px] rounded-full blur-[140px] pointer-events-none ${
-          isDarkMode ? "bg-cyan-500/20" : "bg-cyan-300/40"
-        }`}
-      />
+  <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.15 } }
-        }}
-        className="relative z-10 w-full"
-      >
+    {/* LEFT */}
+    <div>
 
-        {/* BADGE */}
-        <motion.div 
-          variants={{
-            hidden: { opacity: 0, y: 10, scale: 0.9 },
-            visible: { opacity: 1, y: 0, scale: 1 }
-          }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-[10px] uppercase tracking-[0.3em] font-bold text-cyan-500 mb-8 backdrop-blur-md"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-          </span>
-          IT System & Web Engineer
-        </motion.div>
-
-        {/* TITLE */}
-        <motion.h1
-          variants={{
-            hidden: { opacity: 0, y: 40 },
-            visible: { opacity: 1, y: 0 }
-          }}
-          className={`text-5xl md:text-[110px] font-black tracking-tighter leading-[1.05] mb-6 ${
-            isDarkMode ? "text-white" : "text-slate-900"
-          }`}
-        >
-          Nanda Aulia <br className="hidden md:block" />
-          <span className="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-            Wicaksana
-          </span>
-        </motion.h1>
-
-        {/* SUBTITLE */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0 }
-          }}
-          className="max-w-4xl mx-auto px-4"
-        >
-          <p className={`text-base md:text-2xl font-light leading-relaxed mb-10 ${
-            isDarkMode ? "text-slate-400" : "text-slate-600"
-          }`}>
-            Saya membangun <span className={`font-medium ${
-              isDarkMode ? "text-slate-200" : "text-slate-900"
-            }`}>sistem bisnis berperforma tinggi </span> 
-            yang mampu menangani <span className={`font-medium ${
-              isDarkMode ? "text-slate-200" : "text-slate-900"
-            }`}>traffic nyata & operasional real</span>.
-
-            <span className="block text-sm mt-3 opacity-70 italic">
-              Digunakan langsung di production — HRMS, automation tools, dan platform web scalable
-            </span>
-          </p>
-        </motion.div>
-
-       {/* CTA */}
-<motion.div 
-  variants={{
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
-  }}
-  className="flex flex-col md:flex-row gap-4 justify-center items-center"
->
-
-  {/* PRIMARY (MONEY BUTTON) */}
-  <motion.a 
-    whileHover={{ scale: 1.06, y: -3 }}
-    whileTap={{ scale: 0.95 }}
-    href="https://wa.me/628129079905"
-    className="group relative px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-2xl shadow-2xl shadow-cyan-500/30 overflow-hidden"
-  >
-    <span className="relative z-10 flex items-center gap-2">
-      🚀 Hire Me Now <ChevronRight size={18} />
-    </span>
-
-    {/* glow hover */}
-    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition" />
-
-    {/* animated border glow */}
-    <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-white/30 transition" />
-  </motion.a>
-
-  {/* SECONDARY */}
-  <motion.a 
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    href="#projects"
-    className={`px-10 py-4 border rounded-2xl font-bold backdrop-blur-md ${
-      isDarkMode 
-      ? "border-white/10 bg-white/5 hover:bg-white/10"
-      : "border-black/10 bg-white hover:bg-slate-50 shadow-sm"
-    }`}
-  >
-    🔍 See Real Projects
-  </motion.a>
-
-  {/* RESUME */}
-  <motion.a 
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    href="/resume-nanda-aulia.pdf"
-    target="_blank"
-    className="px-10 py-4 text-cyan-500 font-bold flex items-center gap-2 group"
-  >
-    📄 Download CV 
-    <ExternalLink size={16} className="group-hover:translate-x-1 transition" />
-  </motion.a>
-
-</motion.div>
-      </motion.div>
-
-      {/* FLOATING ICONS */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <motion.div animate={{ y: [0, -25, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-[15%] left-[10%] text-cyan-500">
-          <Code2 size={40} />
-        </motion.div>
-        <motion.div animate={{ y: [0, 25, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute bottom-[20%] right-[5%] text-blue-500">
-          <Server size={35} />
-        </motion.div>
-        <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 7, repeat: Infinity }} className="absolute top-[25%] right-[15%] text-purple-500">
-          <Zap size={30} />
-        </motion.div>
+      {/* BADGE */}
+      <div className="badge-cartoon mb-6">
+        FULL STACK DEVELOPER
       </div>
 
-    </section>
-      
-      {/* VALUE PROPOSITION SECTION */}
-      <motion.section
-          id="nilai"
-          className="py-24 px-6 max-w-7xl mx-auto scroll-mt-20"
-          initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
-          whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-        <motion.h2 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-12 text-center"
-        >
-          Value Proposition
-        </motion.h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {
-          [
-            { title: "Cepat Menyelesaikan Masalah", desc: "Cepat mengidentifikasi bottleneck pada sistem dan kode.", icon: <Zap className="text-yellow-500" /> },
-            { title: "Pengalaman Nyata", desc: "5+ tahun membangun sistem yang benar-benar digunakan dalam bisnis.", icon: <Lightbulb className="text-cyan-500" /> },
-            { title: "Fokus Performa", desc: "Arsitektur scalable dengan fokus pada kecepatan dan stabilitas.", icon: <Rocket className="text-purple-500" /> }
-          ]
-          .map((item, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`p-8 rounded-3xl border transition-all group ${isDarkMode ? "bg-white/[0.02] border-white/5 hover:border-cyan-500/30" : "bg-white border-black/5 shadow-lg shadow-black/5 hover:border-cyan-500/30"}`}
-            >
-              <div className="mb-4 p-3 bg-cyan-500/5 w-fit rounded-2xl group-hover:scale-110 transition-transform">{item.icon}</div>
-              <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
+      {/* TITLE */}
+      <h1 className="text-4xl md:text-7xl font-black leading-tight mb-6">
+        Hello I'm <br />
+        <span className="text-blue">Nanda</span>{" "}
+        <span className="text-green">Aulia</span>
+      </h1>
+
+      {/* DESC */}
+      <p className="text-gray-600 max-w-md mb-6">
+        Saya membangun sistem bisnis berperforma tinggi
+        yang mampu menangani traffic nyata dan operasional real.
+      </p>
+
+      {/* INFO */}
+      <div className="flex items-center gap-4 text-sm mb-8">
+        <span>📧 nannsky9@gmail.com</span>
+        <span>📍 Jakarta</span>
+      </div>
+
+      {/* CTA */}
+      <div className="flex gap-4 flex-wrap">
+        <a href="#" className="btn-cartoon btn-pink">
+          View My Work
+        </a>
+        <a href="#" className="btn-cartoon bg-white">
+          Download CV
+        </a>
+      </div>
+
+      {/* SOCIAL */}
+      <div className="flex gap-3 mt-8">
+        <div className="nav-cartoon">G</div>
+        <div className="nav-cartoon">in</div>
+        <div className="nav-cartoon">@</div>
+      </div>
+    </div>
+
+    {/* RIGHT IMAGE */}
+    <div className="relative flex justify-center">
+
+      <div className="border-cartoon shadow-cartoon-lg bg-white p-2 rotate-2">
+        <img
+          src="/your-image.jpg"
+          className="w-[300px] h-[300px] object-cover"
+        />
+      </div>
+
+      {/* STICKER */}
+      <div className="absolute -top-4 right-10 badge-cartoon rotate-6">
+        ⚡
+      </div>
+
+      <div className="absolute bottom-0 left-10 badge-cartoon bg-pink rotate-[-6deg]">
+        🚀
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+    {/* ABOUT */}
+    <motion.section
+      id="tentang"
+      className="py-32 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+
+      {/* LEFT */}
+      <div>
+
+        {/* TITLE */}
+        <h2 className="text-4xl md:text-5xl font-black mb-6">
+          About <span className="text-blue-500">Me</span>
+        </h2>
+
+        <div className="w-16 h-[4px] bg-green-400 mb-6"></div>
+
+        {/* TEXT */}
+        <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-4`}>
+          Saya adalah Full Stack Developer dengan pengalaman membangun sistem bisnis
+          yang stabil dan scalable di production.
+        </p>
+
+        <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-4`}>
+          Fokus pada Laravel, Next.js, dan performance optimization untuk memastikan
+          sistem berjalan cepat, aman, dan efisien.
+        </p>
+
+        <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-6`}>
+          Berpengalaman meningkatkan performa hingga 70% dan membangun sistem
+          yang digunakan langsung dalam operasional bisnis.
+        </p>
+
+        {/* BADGE INFO */}
+        <div className="flex flex-wrap gap-4 mt-6">
+
+          <div className="border-2 border-black px-4 py-2 shadow-[3px_3px_0px_black] bg-purple-200 text-sm font-bold">
+            🎓 Bachelor’s Degree in Computer Science at Nusa Mandiri University
+          </div>
+
+          <div className="border-2 border-black px-4 py-2 shadow-[3px_3px_0px_black] bg-blue-200 text-sm font-bold">
+            📍 Bekasi, Indonesia
+          </div>
+
+          <div className="border-2 border-black px-4 py-2 shadow-[3px_3px_0px_black] bg-green-200 text-sm font-bold">
+            💼 Available for Work
+          </div>
+
         </div>
+
+      </div>
+
+      {/* RIGHT */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        {[
+          {
+            title: "Clean Code",
+            desc: "Menulis kode yang scalable dan mudah dirawat.",
+            icon: "💻",
+            color: "bg-pink-300"
+          },
+          {
+            title: "Problem Solving",
+            desc: "Menyelesaikan masalah kompleks dengan efisien.",
+            icon: "🧠",
+            color: "bg-blue-300"
+          },
+          {
+            title: "Collaboration",
+            desc: "Bekerja efektif dalam tim dan komunikasi.",
+            icon: "👥",
+            color: "bg-green-300"
+          },
+          {
+            title: "Performance",
+            desc: "Optimasi sistem untuk kecepatan & stabilitas.",
+            icon: "⚡",
+            color: "bg-purple-300"
+          }
+        ].map((item, i) => (
+
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
+            className="card-cartoon p-6"
+          >
+
+            {/* ICON */}
+            <div className={`w-12 h-12 flex items-center justify-center text-xl mb-4 
+            border-2 border-black shadow-[3px_3px_0px_black] ${item.color}`}>
+              {item.icon}
+            </div>
+
+            {/* TITLE */}
+            <h3 className="font-black text-lg mb-2">
+              {item.title}
+            </h3>
+
+            {/* DESC */}
+            <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-sm`}>
+              {item.desc}
+            </p>
+
+          </motion.div>
+
+        ))}
+
+      </div>
+
+    </motion.section>
+      
+      {/* VALUE PROPOSITION */}
+      <motion.section
+        id="nilai"
+        className="py-24 px-6 max-w-7xl mx-auto scroll-mt-20"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+
+        {/* TITLE */}
+        <h2 className="text-center text-sm uppercase tracking-[0.4em] font-bold mb-16">
+          VALUE PROPOSITION
+        </h2>
+
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {[
+            {
+              title: "Cepat Menyelesaikan Masalah",
+              desc: "Cepat mengidentifikasi bottleneck pada sistem dan kode.",
+              icon: "⚡",
+              color: "bg-yellow-300"
+            },
+            {
+              title: "Pengalaman Nyata",
+              desc: "5+ tahun membangun sistem yang benar-benar digunakan dalam bisnis.",
+              icon: "💡",
+              color: "bg-blue-300"
+            },
+            {
+              title: "Fokus Performa",
+              desc: "Arsitektur scalable dengan fokus pada kecepatan dan stabilitas.",
+              icon: "🚀",
+              color: "bg-pink-300"
+            }
+          ].map((item, i) => (
+
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -6, rotate: -1 }}
+              className={`card-cartoon p-6 relative`}
+            >
+
+              {/* ICON BOX */}
+              <div className={`w-12 h-12 flex items-center justify-center text-xl font-bold mb-4 
+              border-2 border-black shadow-[3px_3px_0px_black] ${item.color}`}>
+                {item.icon}
+              </div>
+
+              {/* TITLE */}
+              <h3 className="text-lg font-black mb-2">
+                {item.title}
+              </h3>
+
+              {/* DESC */}
+              <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-sm leading-relaxed`}>
+                {item.desc}
+              </p>
+
+            </motion.div>
+
+          ))}
+
+        </div>
+
       </motion.section>
 
       {/* STATS SECTION */}
       <motion.section
-        className="py-12 px-6 max-w-7xl mx-auto"
-        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
-        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
-        transition={{ duration : 0.8, ease: "easeOut" }}
+        className="py-20 px-6 max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-[1px] border rounded-3xl overflow-hidden backdrop-blur-sm ${isDarkMode ? "bg-white/5 border-white/10" : "bg-black/5 border-black/10"}`}>
-          {
-          [
-            { label: "Pengalaman", val: "5+ Tahun", icon: <Server className="text-cyan-500" /> },
-            { label: "Proyek Selesai", val: "8+", icon: <Code2 className="text-purple-500" /> },
-            { label: "Ketersediaan", val: "Remote/Jakarta", icon: <Globe className="text-emerald-500" /> },
-          ]
-          .map((stat, i) => (
-            <div key={i} className={`p-10 flex flex-col items-center text-center group transition-colors ${isDarkMode ? "bg-[#030712] hover:bg-white/[0.02]" : "bg-white hover:bg-slate-50"}`}>
-              <div className="mb-4 transform group-hover:scale-110 transition-transform">{stat.icon}</div>
-              <span className={`text-3xl font-bold mb-1 ${isDarkMode ? "text-white" : "text-black"}`}>{stat.val}</span>
-              <span className="text-xs uppercase tracking-widest text-slate-500 font-bold">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </motion.section>
 
-{/* ABOUT */}
-        <motion.section
-          id="tentang saya"
-          className="py-32 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center"
-          initial={{ opacity: 0, y: 100, scale: 0.95, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          {/* LEFT */}
-          <motion.div
-            whileInView="visible"
-            initial="hidden"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="max-w-2xl"
-          >
-            <span className="text-xs uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4 block">
-              Membangun Sistem yang Dapat Diskalakan dan Berfungsi di Production
-            </span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <h3
-              className={`text-4xl md:text-5xl font-bold mb-8 leading-tight ${
-                isDarkMode ? "text-white" : "text-slate-900"
-              }`}
-            >
-              Tentang Saya.
-            </h3>
+          {[
+            {
+              label: "Pengalaman",
+              val: "5+ Tahun",
+              icon: "🧠",
+              color: "bg-yellow-300"
+            },
+            {
+              label: "Proyek",
+              val: "8+",
+              icon: "💻",
+              color: "bg-blue-300"
+            },
+            {
+              label: "Ketersediaan",
+              val: "Di tempat / Jarak Jauh",
+              icon: "🌍",
+              color: "bg-green-300"
+            }
+          ].map((item, i) => (
 
-            <p
-              className={`text-[17px] leading-relaxed md:leading-loose mb-6 ${
-                isDarkMode ? "text-slate-400" : "text-slate-600"
-              }`}
-            >
-              Saya adalah{" "}
-              <span
-                className={`font-semibold ${
-                  isDarkMode ? "text-white" : "text-slate-900"
-                }`}
-              >
-                IT System & Web Engineer
-              </span>{" "}
-              dengan pengalaman 5+ tahun, saat ini menjabat sebagai Supervisor IT.
-              Fokus saya adalah membangun sistem yang{" "}
-              <span
-                className={`font-semibold ${
-                  isDarkMode ? "text-white" : "text-slate-900"
-                }`}
-              >
-                stabil, scalable, dan siap digunakan di lingkungan bisnis nyata
-              </span>
-              .
-            </p>
-
-            <p
-              className={`text-[17px] leading-relaxed md:leading-loose mb-6 ${
-                isDarkMode ? "text-slate-400" : "text-slate-600"
-              }`}
-            >
-              Berpengalaman dalam{" "}
-              <span
-                className={`font-semibold ${
-                  isDarkMode ? "text-white" : "text-slate-900"
-                }`}
-              >
-                Laravel & CodeIgniter
-              </span>{" "}
-              serta modern stack seperti{" "}
-              <span
-                className={`font-semibold ${
-                  isDarkMode ? "text-white" : "text-slate-900"
-                }`}
-              >
-                React & Next.js
-              </span>
-              , dengan pendekatan performance-first dan clean architecture.
-            </p>
-
-            <p
-              className={`text-[17px] leading-relaxed md:leading-loose ${
-                isDarkMode ? "text-slate-400" : "text-slate-600"
-              }`}
-            >
-              Meningkatkan performa website hingga{" "}
-              <span className="text-cyan-500 font-semibold">
-                70% traffic growth
-              </span>
-              , serta memastikan sistem berjalan aman, optimal, dan minim downtime.
-            </p>
-
-            {/* CTA */}
             <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-10 mb-12"
-            >
-              <a
-                href="/resume-nanda-aulia.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-cyan-500 font-bold group transition-all"
-              >
-                <span className="border-b-2 border-cyan-500/30 group-hover:border-cyan-500 pb-1">
-                  Lihat resume profesional lengkap saya.
-                </span>
-                <ChevronRight
-                  size={20}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </a>
-            </motion.div>
-
-            {/* TECH */}
-            <div className="flex flex-wrap gap-3 mt-6">
-              {["PHP", "Laravel", "Next.js", "MySQL", "PostgreSQL", "Tailwind"].map(
-                (t) => (
-                  <span
-                    key={t}
-                    className={`px-4 py-2 border rounded-lg text-xs font-mono font-bold transition-all hover:scale-105 ${
-                      isDarkMode
-                        ? "bg-white/5 border-white/10 hover:bg-white/10"
-                        : "bg-white border-black/10 shadow-sm hover:bg-slate-50"
-                    }`}
-                  >
-                    {t}
-                  </span>
-                )
-              )}
-            </div>
-          </motion.div>
-
-          {/* RIGHT */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative group"
-          >
-            {/* Glow */}
-            <div
-              className={`absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur transition duration-1000 ${
-                isDarkMode
-                  ? "opacity-20 group-hover:opacity-40"
-                  : "opacity-40 group-hover:opacity-60"
-              }`}
-            />
-
-            {/* Card */}
-            <div
-              className={`relative aspect-video rounded-3xl border p-2 overflow-hidden ${
-                isDarkMode
-                  ? "bg-slate-900 border-white/10"
-                  : "bg-white border-black/10 shadow-xl shadow-black/5"
-              }`}
-            >
-              <div
-                className={`w-full h-full rounded-2xl flex items-center justify-center p-8 text-center ${
-                  isDarkMode ? "bg-[#030712]" : "bg-white"
-                }`}
-              >
-                <code
-                  className={`text-xs sm:text-sm md:text-base leading-relaxed ${
-                    isDarkMode ? "text-cyan-400" : "text-cyan-600"
-                  }`}
-                >
-                  <span className="text-purple-500 italic">class</span>{" "}
-                  <span
-                    className={`font-bold ${
-                      isDarkMode ? "text-white" : "text-slate-900"
-                    }`}
-                  >
-                    Nanda Aulia Wicaksana
-                  </span>{" "}
-                  {"{"} <br />
-                  &nbsp;&nbsp;
-                  <span className="text-slate-500">// Problem solving at scale</span>
-                  <br />
-                  &nbsp;&nbsp;
-                  <span
-                    className={`${
-                      isDarkMode ? "text-white" : "text-slate-900"
-                    }`}
-                  >
-                    skills()
-                  </span>{" "}
-                  {"{"} <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-emerald-500">
-                    return ["Reliability", "Security"];
-                  </span>
-                  <br />
-                  &nbsp;&nbsp;{"}"}
-                  <br />
-                  {"}"}
-                </code>
-              </div>
-            </div>
-          </motion.div>
-        </motion.section>
-
-      {/* TECH STACK */}
-      <motion.section
-        className="py-24 px-6 max-w-7xl mx-auto"
-        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
-        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
-        transition={{ duration : 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <div className="text-center mb-16">
-          <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Teknologi</h2>
-          <h3 className="text-3xl font-bold">Tools yang Saya Gunakan</h3>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {["HTML5", "CSS3", "JavaScript", "PHP", "Laravel", "MySQL", "Next.js", "QA Testing", "ERD Design", "SEO"].map((skill, i) => (
-            <motion.div 
-              key={skill}
-              initial={{ opacity: 0, y: 10 }}
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              whileHover={{ y: -5, backgroundColor: isDarkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)" }}
-              className={`p-6 rounded-2xl border flex items-center gap-3 transition-colors ${isDarkMode ? "bg-white/[0.02] border-white/5" : "bg-white border-black/5 shadow-sm"}`}
+              whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
+              className="card-cartoon p-8 text-center"
             >
-              <CheckCircle2 size={16} className="text-cyan-500 flex-shrink-0" />
-              <span className="text-sm font-bold tracking-wide">{skill}</span>
+
+              {/* ICON */}
+              <div className={`w-14 h-14 mx-auto flex items-center justify-center text-2xl mb-4 
+              border-2 border-black shadow-[3px_3px_0px_black] ${item.color}`}>
+                {item.icon}
+              </div>
+
+              {/* VALUE */}
+              <div className="text-3xl font-black mb-2">
+                {item.val}
+              </div>
+
+              {/* LABEL */}
+              <div className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+                {item.label}
+              </div>
+
             </motion.div>
+
           ))}
+
         </div>
+
       </motion.section>
 
-      {/* PROJECTS */}
-       <motion.section
-        id="proyek"
-        className={`py-32 px-6 ${isDarkMode ? "bg-white/[0.01]" : "bg-slate-100"}`}
-        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
-        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
-        transition={{ duration : 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
-            <div>
-              <h2 className="text-sm uppercase tracking-[0.4em] text-cyan-500 font-bold mb-4">Portfolio</h2>
-              <h3 className="text-5xl font-black">Beberapa proyek saya</h3>
-            </div>
-            <p className="text-slate-500 max-w-sm md:text-right font-medium">Kumpulan sistem dan platform yang dibangun untuk menyelesaikan kompleksitas bisnis.</p>
+
+
+{/* TECH STACK */}
+<motion.section
+  className="py-24 px-6 max-w-7xl mx-auto"
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+>
+
+  {/* HEADER */}
+  <div className="text-center mb-16">
+    <h2 className="text-sm uppercase tracking-[0.4em] font-bold mb-4">
+      SKILLS
+    </h2>
+    <h3 className="text-3xl md:text-4xl font-black text-blue-500">
+      Tools yang Saya Gunakan
+    </h3>
+    <div className="w-16 h-[4px] bg-green-400 mx-auto mt-3"></div>
+  </div>
+
+  {/* GRID */}
+  <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-6 justify-items-center">
+
+    {[
+      { name: "React", icon: "https://cdn.simpleicons.org/react" },
+      { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs" },
+      { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript" },
+      { name: "Vue", icon: "https://cdn.simpleicons.org/vue.js" },
+      { name: "Node", icon: "https://cdn.simpleicons.org/nodedotjs" },
+      { name: "Express", icon: "https://cdn.simpleicons.org/express" },
+      { name: "Laravel", icon: "https://cdn.simpleicons.org/laravel" },
+      { name: "PHP", icon: "https://cdn.simpleicons.org/php" },
+      { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql" },
+      { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql" },
+      { name: "Git", icon: "https://cdn.simpleicons.org/git" },
+      { name: "GitHub", icon: "https://cdn.simpleicons.org/github" },
+      { name: "GitLab", icon: "https://cdn.simpleicons.org/gitlab" },
+      { name: "HTML5", icon: "https://cdn.simpleicons.org/html5" },
+      { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript" },
+      { name: "Tailwind", icon: "https://cdn.simpleicons.org/tailwindcss" },
+    ].map((skill, i) => {
+
+      const colors = [
+        "bg-yellow-300",
+        "bg-blue-300",
+        "bg-green-300",
+        "bg-pink-300",
+        "bg-purple-300",
+        "bg-orange-300"
+      ];
+
+      return (
+        <motion.div
+          key={skill.name}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.03 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -6, rotate: i % 2 === 0 ? -3 : 3 }}
+          className="relative group"
+        >
+
+          {/* BOX */}
+          <div
+            className={`w-16 h-16 flex items-center justify-center 
+            border-2 border-black shadow-[4px_4px_0px_black] 
+            ${colors[i % colors.length]}`}
+          >
+            <img
+              src={skill.icon}
+              alt={skill.name}
+              className="w-8 h-8 object-contain"
+            />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-10">
-            {projects.map((proj, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                onClick={() => {
-                                  if (proj.images.length > 0) {
-                                    setSelectedProject(proj)
-                                  }
-                                }}
-                className={`group relative h-[450px] rounded-3xl overflow-hidden border 
-                ${proj.images.length > 0 ? "cursor-pointer" : "cursor-not-allowed opacity-80"}
-                ${isDarkMode ? "border-white/10 bg-slate-900" : "border-black/5 bg-white shadow-2xl"}`}
-              >
-                {proj.images.length === 0 && (
-                  <div className="absolute top-6 right-6 px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-cyan-400">
-                    Coming Soon
-                  </div>
-                )}
-                {proj.thumbnail ? (
-                  <div className="absolute inset-0 w-full h-full">
-                    <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-60 group-hover:scale-110 group-hover:rotate-[0.5deg] transition-all duration-700"></img>
-                  </div>
-                ) : (
-                  <div className={`absolute inset-0 bg-gradient-to-br ${proj.color} to-transparent opacity-40 group-hover:opacity-100 transition-opacity`} />
-                )}
-                <div className={`absolute inset-0 z-10 ${isDarkMode ? "bg-gradient-to-t from-[#030712] via-[#030712]/40" : "bg-gradient-to-t from-white via-white/40"} to-transparent`} />
-                <div className="absolute inset-0 p-12 flex flex-col justify-end z-20">
-                  <span className="text-[10px] uppercase tracking-widest text-cyan-500 font-bold mb-4 drop-shadow-lg">{proj.tag}</span>
-                  <h4 className={`text-4xl font-black mb-4 group-hover:text-cyan-500 transition-colors drop-shadow-xl ${isDarkMode ? "text-white" : "text-black"}`}>{proj.title}</h4>
-                  <div className="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-cyan-500 transition-colors">
-                    {proj.images.length > 0 ? "Explore Project" : "Sedang Dikembangkan"}
-                    {proj.images.length > 0 && <ExternalLink size={16} />}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+          {/* TOOLTIP */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 
+          text-[10px] font-bold bg-black text-white px-2 py-1 opacity-0 
+          group-hover:opacity-100 transition">
+            {skill.name}
           </div>
+
+        </motion.div>
+      );
+    })}
+
+  </div>
+
+</motion.section>
+
+     {/* PROJECTS */}
+<motion.section
+  id="proyek"
+  className="py-32 px-6 max-w-7xl mx-auto"
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+>
+
+  {/* HEADER */}
+  <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+
+    <div>
+      <h2 className="text-sm uppercase tracking-[0.4em] font-bold mb-4">
+        PORTFOLIO
+      </h2>
+
+      <h3 className="text-4xl md:text-5xl font-black ">
+        Beberapa Proyek Saya
+      </h3>
+    </div>
+
+    <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} max-w-sm`}>
+      Sistem nyata yang digunakan dalam operasional bisnis.
+    </p>
+
+  </div>
+
+  {/* GRID */}
+  <div className="grid md:grid-cols-2 gap-8">
+
+    {projects.map((proj, i) => (
+
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: i * 0.1 }}
+        viewport={{ once: true }}
+        whileHover={{ y: -8, rotate: i % 2 === 0 ? -1 : 1 }}
+        onClick={() => {
+          if (proj.images.length > 0) setSelectedProject(proj);
+        }}
+        className={`card-cartoon p-4 cursor-pointer`}
+      >
+
+        {/* IMAGE */}
+        <div className="border-2 border-black shadow-[3px_3px_0px_black] overflow-hidden mb-4 bg-white">
+          {proj.thumbnail ? (
+            <img
+              src={proj.thumbnail}
+              className="w-full h-[220px] object-cover hover:scale-105 transition"
+            />
+          ) : (
+            <div className="h-[220px] flex items-center justify-center text-sm">
+              No Preview
+            </div>
+          )}
         </div>
+
+        {/* TAG */}
+        <div className="text-xs font-bold mb-2 uppercase tracking-widest">
+          {proj.tag}
+        </div>
+
+        {/* TITLE */}
+        <h4 className="text-2xl font-black mb-2">
+          {proj.title}
+        </h4>
+
+        {/* ACTION */}
+        <div className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-sm font-bold`}>
+          {proj.images.length > 0 ? "View Detail →" : "Coming Soon"}
+        </div>
+
+      </motion.div>
+
+    ))}
+
+  </div>
+
 </motion.section>
 
       {/* GALLERY MODAL */}
@@ -743,151 +724,247 @@ export default function Portfolio() {
 {/* WEBSITE OPTIMIZATION */}
 <motion.section
   id="optimization"
-  className="py-32 px-6 max-w-7xl mx-auto relative"
-  initial={{ opacity: 0, y: 100 }}
+  className={`py-32 px-6 max-w-7xl mx-auto 
+  ${isDarkMode 
+    ? "bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#020617]" 
+    : ""
+  }`}
+  initial={{ opacity: 0, y: 60 }}
   whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
+  transition={{ duration: 0.6 }}
   viewport={{ once: true }}
 >
 
-  {/* 🔥 BACKGROUND GLOW */}
-  <div className="absolute inset-0 -z-10">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/10 blur-[120px]" />
-  </div>
-
   {/* HEADER */}
-  <div className="text-center mb-20">
-    <h2 className="text-xs uppercase tracking-[0.5em] text-cyan-500 font-bold mb-4">
-      Optimasi Website
+  <div className="text-center mb-16">
+    <h2 className="text-sm uppercase tracking-[0.4em] font-bold mb-4">
+      OPTIMASI WEBSITE
     </h2>
-    <h3 className="text-4xl md:text-6xl font-black leading-tight">
+
+    <h3 className="text-4xl md:text-5xl font-black">
       Revamp & Peningkatan Website
     </h3>
-    <p className="text-slate-500 mt-6 max-w-xl mx-auto text-sm md:text-base">
-      Beberapa website nyata yang telah saya optimasi, perbaiki, dan tingkatkan performanya untuk stabilitas dan kecepatan.
+
+    <p className={`${isDarkMode ? "text-slate-300" : "text-gray-600"} mt-6 max-w-xl mx-auto`}>
+      Website nyata yang telah saya optimasi untuk performa & stabilitas.
     </p>
   </div>
 
-  {(() => {
-    const optimizedWebsites = [
+  {/* GRID */}
+  <div className="grid md:grid-cols-3 gap-8">
+
+    {[
       {
         img: "/projects/optimization/allfour.avif",
-        category: "Perbaikan UI & SEO",
         title: "Allfour Strings",
-        desc: "Redesigned and developed the overall UI, improved layout consistency, and optimized SEO structure."
+        desc: "Redesign UI dan optimasi SEO.",
+        color: "bg-yellow-300"
       },
       {
         img: "/projects/optimization/cgoin.png",
-        category: "Performa & SEO",
         title: "Cargo.in",
-        desc: "Reduced load time and improved API response handling for better performance and visibility."
+        desc: "Optimasi performa & API.",
+        color: "bg-blue-300"
       },
       {
         img: "/projects/optimization/everlogi.png",
-        category: "Integrasi AI",
         title: "Everlogi",
-        desc: "Built AI chatbot with API integration, structured data, and optimized conversation flow."
+        desc: "Integrasi AI chatbot.",
+        color: "bg-green-300"
       },
-    ];
+    ].map((item, i) => (
 
-    return (
-      <div className="relative overflow-hidden">
+      <motion.div
+        key={i}
+        whileHover={{ y: -8, rotate: i % 2 === 0 ? -1 : 1 }}
+        className={`relative p-4 border-2 
+        ${isDarkMode 
+          ? "bg-[#1e293b] border-white shadow-[6px_6px_0px_white]" 
+          : "bg-white border-black shadow-[6px_6px_0px_black]"
+        }`}
+      >
 
-        {/* fade kiri */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+        {/* TOP COLOR BAR (BIAR LUCU) */}
+        <div className={`w-12 h-2 mb-3 ${item.color}`} />
 
-        {/* fade kanan */}
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+        {/* IMAGE */}
+        <div className={`border-2 mb-4 overflow-hidden 
+        ${isDarkMode 
+          ? "border-white shadow-[3px_3px_0px_white]" 
+          : "border-black shadow-[3px_3px_0px_black]"
+        } bg-white`}>
+          <img
+            src={item.img}
+            className="w-full h-[160px] object-contain"
+          />
+        </div>
 
-        <motion.div
-          className="flex gap-8"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            duration: 25,
-            ease: "linear",
-          }}
-        >
-          {[...optimizedWebsites, ...optimizedWebsites].map((item, i) => (
-            <div
-              key={i}
-              className={`min-w-[340px] rounded-[28px] overflow-hidden border backdrop-blur-xl group transition-all duration-500 ${
-                isDarkMode
-                  ? "bg-white/[0.03] border-white/10 hover:bg-white/[0.06]"
-                  : "bg-white/80 border-black/5 shadow-2xl hover:shadow-cyan-500/10"
-              }`}
-            >
-              {/* IMAGE */}
-              <div className="h-[200px] flex items-center justify-center bg-white relative overflow-hidden">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="max-h-[110px] object-contain group-hover:scale-110 transition duration-700"
-                />
-              </div>
+        {/* TITLE */}
+        <h4 className="font-black text-lg mb-2 text-white">
+          {item.title}
+        </h4>
 
-              {/* CONTENT */}
-              <div className="p-6">
-                <span className="text-[10px] uppercase tracking-widest text-cyan-500 font-semibold">
-                  {item.category}
-                </span>
+        {/* DESC */}
+        <p className={`${isDarkMode ? "text-slate-300" : "text-gray-600"} text-sm`}>
+          {item.desc}
+        </p>
 
-                <h4 className="font-bold text-lg mt-2 group-hover:text-cyan-500 transition">
-                  {item.title}
-                </h4>
+        {/* STICKER */}
+        <div className="absolute -top-3 -right-3 rotate-12 text-xl">
+          🚀
+        </div>
 
-                <p className="text-xs text-slate-500 mt-3 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    );
-  })()}
+      </motion.div>
+
+    ))}
+
+  </div>
 
   {/* IMPACT */}
   <div className="mt-20 text-center max-w-2xl mx-auto">
-    <p className="text-slate-500 leading-relaxed text-sm md:text-base">
-        Meningkatkan kecepatan loading, memperbaiki bug kritis, dan meningkatkan performa sistem pada berbagai website production.
-        Menghasilkan respon lebih cepat, pengalaman pengguna yang lebih baik, dan sistem yang lebih stabil.
+    <p className={`${isDarkMode ? "text-slate-300" : "text-gray-600"} text-sm md:text-base`}>
+      Meningkatkan kecepatan loading, memperbaiki bug kritis,
+      dan meningkatkan performa sistem pada berbagai website production.
     </p>
   </div>
 
 </motion.section>
 
-{/* CONTACT - PERSONAL VERSION */}
-      <motion.section
-        id="kontak"
-        className="py-40 px-6 max-w-4xl mx-auto text-center"
-        initial={{ opacity: 0, y: 100, scale:0.95, filter: "blur(10px)"}}
-        whileInView={{ opacity: 1, y: 0, scale:1, filter: "blur(0px)"}}
-        transition={{ duration : 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">Ayo Bekerja Sama.</h2>
-        <p className="text-xl text-slate-500 mb-12">Saat ini saya terbuka untuk peluang baru. Baik untuk diskusi project atau sekadar menyapa, silakan hubungi saya di :</p>
-        <div className="flex flex-col md:flex-row justify-center gap-6">
-          <a href="mailto:nannsky9@gmail.com" className={`flex items-center justify-center gap-4 px-8 py-4 border rounded-2xl font-bold transition-all ${isDarkMode ? "bg-white/5 border-white/10 hover:bg-white/10" : "bg-black/5 border-black/10 hover:bg-black/10"}`}>
-            <Mail size={20} className="text-cyan-500" /> nannsky9@gmail.com
-          </a>
-          <a href="https://wa.me/628129079905" className={`flex items-center justify-center gap-4 px-8 py-4 border rounded-2xl font-bold transition-all ${isDarkMode ? "bg-white/5 border-white/10 hover:bg-white/10" : "bg-black/5 border-black/10 hover:bg-black/10"}`}>
-            <Phone size={20} className="text-emerald-500" /> WhatsApp
-          </a>
-        </div>
-   </motion.section>
+{/* CONTACT */}
+<motion.section
+  id="kontak"
+  className={`py-32 px-6 max-w-4xl mx-auto text-center 
+  ${isDarkMode 
+    ? "bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#020617]" 
+    : ""
+  }`}
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+>
 
-      {/* FOOTER */}
-      <footer className={`py-20 border-t px-8 ${isDarkMode ? "border-white/5" : "border-black/5"}`}>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-slate-500 text-sm">© 2026 Nanda Aulia Wicaksana.</p>
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest font-bold">
-            <a href="https://www.linkedin.com/in/nandaaw/" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Globe size={14}/> LinkedIn</a>
-            <a href="https://github.com/nandawicaksana" className="hover:text-cyan-500 transition-colors flex items-center gap-2"><Users size={14}/> GitHub</a>
-          </div>
-        </div>
-      </footer>
+  {/* TITLE */}
+  <h2 className="text-4xl md:text-6xl font-black mb-6">
+    Ayo <span className="text-blue-500">Bekerja</span> Sama 🚀
+  </h2>
+
+  {/* DESC */}
+  <p className={`${isDarkMode ? "text-slate-300" : "text-gray-600"} mb-12 max-w-xl mx-auto`}>
+    Terbuka untuk project baru, kolaborasi, atau sekadar ngobrol santai.
+  </p>
+
+  {/* CONTACT BUTTON */}
+  <div className="flex flex-col md:flex-row justify-center gap-6">
+
+    {/* EMAIL */}
+    <a
+      href="mailto:nannsky9@gmail.com"
+      className={`flex items-center justify-center gap-3 px-8 py-4 font-bold border-2 
+      ${isDarkMode 
+        ? "bg-[#1e293b] border-white text-white shadow-[5px_5px_0px_white]" 
+        : "bg-white border-black shadow-[5px_5px_0px_black]"
+      }
+      hover:-translate-y-1 transition`}
+    >
+      📧 Email Me
+    </a>
+
+    {/* WHATSAPP */}
+    <a
+      href="https://wa.me/628129079905"
+      className={`flex items-center justify-center gap-3 px-8 py-4 font-bold border-2 
+      ${isDarkMode 
+        ? "bg-[#1e293b] border-white text-white shadow-[5px_5px_0px_white]" 
+        : "bg-white border-black shadow-[5px_5px_0px_black]"
+      }
+      hover:-translate-y-1 transition`}
+    >
+      💬 WhatsApp
+    </a>
+
+  </div>
+
+  {/* STICKER (PLAYFUL TOUCH) */}
+  <div className="mt-12 text-2xl rotate-6">
+    ✨
+  </div>
+
+</motion.section>
+
+{/* FOOTER */}
+<footer className={`py-20 px-6 
+${isDarkMode 
+  ? "bg-[#020617] border-t border-white/10" 
+  : "bg-white border-t border-black/10"
+}`}>
+
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+
+    {/* LEFT */}
+    <div className="text-center md:text-left">
+      <h3 className="text-xl font-black">
+        NAW<span className="text-blue-500">.</span>
+      </h3>
+      <p className={`${isDarkMode ? "text-slate-400" : "text-gray-600"} text-sm mt-2`}>
+        Full Stack Developer
+      </p>
+    </div>
+
+    {/* SOCIAL */}
+   <div className="flex gap-4">
+
+      {[
+        { icon: <Github size={18} />, link: "https://github.com/nandawicaksana" },
+        { icon: <Linkedin size={18} />, link: "https://www.linkedin.com/in/nandaaw/" },
+        { icon: <Mail size={18} />, link: "mailto:nannsky9@gmail.com" }
+      ].map((item, i) => (
+
+        <a
+          key={i}
+          href={item.link}
+          target="_blank"
+          className={`w-12 h-12 flex items-center justify-center 
+          border-2 
+          ${isDarkMode 
+            ? "bg-[#1e293b] border-white text-white shadow-[4px_4px_0px_white]" 
+            : "bg-white border-black text-black shadow-[4px_4px_0px_black]"
+          }
+          transition-all duration-200
+          hover:bg-pink-400 hover:text-black hover:-translate-y-1 hover:rotate-3`}
+        >
+          {item.icon}
+        </a>
+
+      ))}
+
+    </div>
+
+    {/* RIGHT */}
+    <div className="text-center md:text-right">
+      <p className={`${isDarkMode ? "text-slate-400" : "text-gray-600"} text-sm`}>
+        Made with ❤️ © 2026
+      </p>
+      <p className="text-xs text-slate-500 mt-1">
+        React • TypeScript • Framer Motion
+      </p>
+    </div>
+
+  </div>
+
+  {/* QUOTE */}
+  <div className="mt-12 text-center">
+    <p className="text-sm font-bold text-pink-400">
+      "life sometimes needs a little surprise ✨"
+    </p>
+  </div>
+
+  {/* FLOATING STICKER */}
+  <div className="fixed bottom-6 right-6 text-2xl rotate-12">
+    🚀
+  </div>
+
+</footer>
     </div>
   );
 }

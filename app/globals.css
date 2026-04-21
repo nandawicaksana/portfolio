@@ -1,38 +1,144 @@
 @import "tailwindcss";
 
+/* 🎨 BASE COLOR */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f4f4f5;
+  --text: #000000;
+
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --pink: #ec4899;
+  --yellow: #facc15;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* 🌙 DARK MODE (tetap flat, bukan glow) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #0f0f0f;
+    --text: #ffffff;
   }
 }
 
+/* BASE */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
 }
 
-.card {
-  @apply bg-white/5 border border-white/10 p-5 rounded-2xl text-center hover:bg-white/10 transition;
+/* ✏️ GLOBAL BORDER STYLE (BIAR KONSISTEN) */
+.border-cartoon {
+  border: 3px solid black;
 }
 
+/* 🧱 SHADOW KOTAK (SIGNATURE BANGET) */
+.shadow-cartoon {
+  box-shadow: 4px 4px 0px black;
+}
+
+.shadow-cartoon-lg {
+  box-shadow: 8px 8px 0px black;
+}
+
+/* 🎯 BUTTON STYLE */
+.btn-cartoon {
+  padding: 12px 24px;
+  font-weight: 700;
+  border: 3px solid black;
+  background: var(--green);
+  color: black;
+
+  box-shadow: 4px 4px 0px black;
+  transition: all 0.2s ease;
+}
+
+.btn-cartoon:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px black;
+}
+
+/* 🎨 VARIANT BUTTON */
+.btn-blue {
+  background: var(--blue);
+}
+.btn-pink {
+  background: var(--pink);
+}
+.btn-yellow {
+  background: var(--yellow);
+}
+
+/* 🧱 CARD STYLE */
+.card-cartoon {
+  background: white;
+  border: 3px solid black;
+  box-shadow: 6px 6px 0px black;
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.card-cartoon:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px black;
+}
+
+/* 🔲 NAV BUTTON */
+.nav-cartoon {
+  border: 2px solid black;
+  padding: 8px 16px;
+  font-weight: 600;
+  background: white;
+  box-shadow: 3px 3px 0px black;
+  transition: 0.2s;
+}
+
+.nav-cartoon:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px black;
+}
+
+.dark .card-cartoon {
+  background: #1e1e1e;
+  color: white;
+  border: 3px solid white;
+  box-shadow: 6px 6px 0px white;
+}
+
+/* 🎯 TAG / BADGE */
+.badge-cartoon {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid black;
+  background: var(--green);
+  box-shadow: 2px 2px 0px black;
+}
+
+/* 🎨 TEXT ACCENT (NO GRADIENT!) */
+.text-blue {
+  color: var(--blue);
+}
+.text-green {
+  color: var(--green);
+}
+.text-pink {
+  color: var(--pink);
+}
+
+/* ❌ HAPUS SEMUA GLASS / BLUR EFFECT */
+.no-glass {
+  backdrop-filter: none !important;
+  background: white !important;
+}
+
+/* SCROLL */
 html {
   scroll-behavior: smooth;
 }
 
+/* HIDE SCROLLBAR */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
