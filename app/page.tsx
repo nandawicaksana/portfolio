@@ -113,8 +113,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className={`min-h-screen font-sans overflow-x-hidden 
-${isDarkMode ? "bg-[#0f172a] text-white" : "bg-[#f4f4f5] text-black"}`}>
+    <div className={`min-h-screen font-sans overflow-x-hidden`}>
       <div
         className="fixed w-40 h-40 rounded-full pointer-events-none z-50 blur-3xl opacity-20 bg-cyan-500"
         style={{
@@ -132,8 +131,7 @@ ${isDarkMode ? "bg-[#0f172a] text-white" : "bg-[#f4f4f5] text-black"}`}>
 
 <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
 {/* NAVBAR */}
-     <nav className={`fixed top-0 w-full z-50 
-${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
+     <nav className="fixed top-0 w-full z-50 bg-[var(--bg)]">
   <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-6">
 
     {/* LOGO */}
@@ -246,9 +244,15 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
 
       {/* SOCIAL */}
       <div className="flex gap-3 mt-8">
-        <div className="nav-cartoon">G</div>
-        <div className="nav-cartoon">in</div>
-        <div className="nav-cartoon">@</div>
+        <a href="#" className="nav-cartoon bg-[#38bdf8] text-white hover:-translate-y-1 transition">
+          <FaGithub />
+        </a>
+        <a href="#" className="nav-cartoon bg-[#38bdf8] text-white hover:-translate-y-1 transition">
+          <FaLinkedin />
+        </a>
+        <a href="#" className="nav-cartoon bg-[#38bdf8] text-white hover:-translate-y-1 transition">
+          <Mail size={16} />
+        </a>
       </div>
     </div>
 
@@ -269,16 +273,16 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
       >
 
         {/* FRAME */}
-        <div className="border-cartoon shadow-cartoon-lg bg-white p-2 rotate-[3deg]">
+        <div className="border-cartoon shadow-cartoon-lg bg-[var(--surface)] p-2 rotate-[3deg]">
           <img
             src="/your-image.jpg"
-            className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] object-cover rounded-2xl border-2 border-black shadow-[4px_4px_0px_black]"
+            className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] object-cover rounded-2xl border-2 border-[var(--border)] shadow-[4px_4px_0px_var(--shadow)]"
           />
         </div>
 
         {/* ⚡ TOP RIGHT */}
         <motion.div
-          className="absolute -top-3 -right-3 rotate-6"
+          className="absolute -top-4 -right-4 rotate-[12deg]"
           animate={{ rotate: [0, 360] }}
           transition={{
             duration: 6,
@@ -286,7 +290,9 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
             ease: "linear"
           }}
         >
-          <div className="badge-cartoon">⚡</div>
+        <div className="badge-cartoon scale-150 shadow-[6px_6px_0px_var(--shadow)]">
+          ⚡
+        </div>
         </motion.div>
 
         {/* 🚀 BOTTOM LEFT */}
@@ -302,7 +308,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
             ease: "easeInOut"
           }}
         >
-          <div className="badge-cartoon bg-pink">🚀</div>
+          <div className="badge-cartoon scale-100 bg-pink">🚀</div>
         </motion.div>
 
         {/* SHADOW (BIAR NGAMBANG) */}
@@ -412,7 +418,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
 
             {/* ICON */}
             <div className={`w-12 h-12 flex items-center justify-center text-xl mb-4 
-            border-2 border-black shadow-[3px_3px_0px_black] ${item.color}`}>
+            border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] ${item.color}`}>
               {item.icon}
             </div>
 
@@ -485,7 +491,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
 
               {/* ICON BOX */}
               <div className={`w-12 h-12 flex items-center justify-center text-xl font-bold mb-4 
-              border-2 border-black shadow-[3px_3px_0px_black] ${item.color}`}>
+              border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] ${item.color}`}>
                 {item.icon}
               </div>
 
@@ -551,7 +557,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
 
               {/* ICON */}
               <div className={`w-14 h-14 mx-auto flex items-center justify-center text-2xl mb-4 
-              border-2 border-black shadow-[3px_3px_0px_black] ${item.color}`}>
+              border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] ${item.color}`}>
                 {item.icon}
               </div>
 
@@ -713,7 +719,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
       >
 
         {/* IMAGE */}
-        <div className="border-2 border-black shadow-[3px_3px_0px_black] overflow-hidden mb-4 bg-white">
+        <div className="border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] overflow-hidden mb-4 bg-white">
           {proj.thumbnail ? (
             <img
               src={proj.thumbnail}
@@ -853,7 +859,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
         <div className={`border-2 mb-4 overflow-hidden 
         ${isDarkMode 
           ? "border-white shadow-[3px_3px_0px_white]" 
-          : "border-black shadow-[3px_3px_0px_black]"
+          : "border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)]"
         } bg-white`}>
           <img
             src={item.img}

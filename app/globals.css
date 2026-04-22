@@ -3,14 +3,41 @@
 /* 🎨 BASE COLOR */
 :root {
   --bg: #f4f4f5;
-  --text: #000000;
+  --text: #000;
+
+  --border: black;
+  --shadow: black;
+
 
   --green: #22c55e;
   --blue: #3b82f6;
   --pink: #ec4899;
   --yellow: #facc15;
 }
+.dark {
+  --bg: #0f172a;
+  --text: #fff;
 
+  --border: white;
+  --shadow: white;
+}
+
+.dark .nav-cartoon {
+  border: 2px solid white;
+  box-shadow: 3px 3px 0px white;
+}
+
+.dark .btn-cartoon {
+  border: 2px solid white;
+  box-shadow: 4px 4px 0px white;
+  color: black;
+}
+
+/* GLOBAL APPLY */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
 /* 🌙 DARK MODE (tetap flat, bukan glow) */
 @media (prefers-color-scheme: dark) {
   :root {
@@ -28,27 +55,27 @@ body {
 
 /* ✏️ GLOBAL BORDER STYLE (BIAR KONSISTEN) */
 .border-cartoon {
-  border: 3px solid black;
+  border: 3px solid var(--border);
 }
 
 /* 🧱 SHADOW KOTAK (SIGNATURE BANGET) */
 .shadow-cartoon {
-  box-shadow: 4px 4px 0px black;
+  box-shadow: 4px 4px 0px var(--shadow);
 }
 
 .shadow-cartoon-lg {
-  box-shadow: 8px 8px 0px black;
+    box-shadow: 8px 8px 0px var(--shadow);
 }
 
 /* 🎯 BUTTON STYLE */
 .btn-cartoon {
   padding: 12px 24px;
   font-weight: 700;
-  border: 3px solid black;
+  border: 3px solid var(--border);
   background: var(--green);
   color: black;
 
-  box-shadow: 4px 4px 0px black;
+  box-shadow: 4px 4px 0px var(--shadow);
   transition: all 0.2s ease;
 }
 
@@ -71,7 +98,7 @@ body {
 /* 🧱 CARD STYLE */
 .card-cartoon {
   background: white;
-  border: 3px solid black;
+  border: 3px solid var(--border);
   box-shadow: 6px 6px 0px black;
   padding: 20px;
   border-radius: 12px;
@@ -85,11 +112,11 @@ body {
 
 /* 🔲 NAV BUTTON */
 .nav-cartoon {
-  border: 2px solid black;
+  border: 2px solid var(--border);
+  box-shadow: 3px 3px 0px var(--shadow);
   padding: 8px 16px;
   font-weight: 600;
-  background: white;
-  box-shadow: 3px 3px 0px black;
+  background: transparent;
   transition: 0.2s;
 }
 
@@ -111,9 +138,10 @@ body {
   padding: 6px 12px;
   font-size: 12px;
   font-weight: bold;
-  border: 2px solid black;
   background: var(--green);
-  box-shadow: 2px 2px 0px black;
+  border: 3px solid var(--border);
+  box-shadow: 4px 4px 0px var(--shadow);
+
 }
 
 /* 🎨 TEXT ACCENT (NO GRADIENT!) */
