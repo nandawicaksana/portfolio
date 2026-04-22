@@ -24,6 +24,21 @@ interface Project {
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [lang, setLang] = useState<"en" | "id">("en");
+  const t = {
+  en: {
+    hello: "Hello I'm",
+    desc: "I build high-performance business systems that handle real-world traffic and operations.",
+    work: "View My Work",
+    cv: "Download CV"
+  },
+  id: {
+    hello: "Halo Saya",
+    desc: "Saya membangun sistem bisnis berperforma tinggi yang mampu menangani traffic nyata.",
+    work: "Lihat Karya",
+    cv: "Download CV"
+  }
+};
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -138,12 +153,20 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
     {/* RIGHT */}
     <div className="flex items-center gap-3">
 
+
       {/* THEME */}
       <button
         onClick={() => setTheme(isDarkMode ? "light" : "dark")}
         className="nav-cartoon"
       >
         {isDarkMode ? <Sun size={16}/> : <Moon size={16}/>}
+      </button>
+
+      <button
+        onClick={() => setLang(lang === "en" ? "id" : "en")}
+        className="nav-cartoon"
+      >
+        {lang === "en" ? "ID" : "EN"}
       </button>
 
       {/* HAMBURGER */}
@@ -181,7 +204,7 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
 </nav>
 
       {/* HERO SECTION */}
-    <section className="min-h-screen flex items-center justify-center px-6 pt-32">
+<section className="min-h-screen flex items-center justify-center px-6 pt-32">
 
   <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
@@ -195,15 +218,14 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
 
       {/* TITLE */}
       <h1 className="text-4xl md:text-7xl font-black leading-tight mb-6">
-        Hello I'm <br />
+        {t[lang].hello} <br />
         <span className="text-blue">Nanda</span>{" "}
         <span className="text-green">Aulia</span>
       </h1>
 
       {/* DESC */}
       <p className="text-gray-600 max-w-md mb-6">
-        Saya membangun sistem bisnis berperforma tinggi
-        yang mampu menangani traffic nyata dan operasional real.
+        {t[lang].desc}
       </p>
 
       {/* INFO */}
@@ -215,10 +237,10 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
       {/* CTA */}
       <div className="flex gap-4 flex-wrap">
         <a href="#" className="btn-cartoon btn-pink">
-          View My Work
+          {t[lang].work}
         </a>
         <a href="#" className="btn-cartoon bg-white">
-          Download CV
+          {t[lang].cv}
         </a>
       </div>
 
@@ -230,24 +252,63 @@ ${isDarkMode ? "bg-[#0f172a]" : "bg-[#f4f4f5]"}`}>
       </div>
     </div>
 
-    {/* RIGHT IMAGE */}
-    <div className="relative flex justify-center">
+    {/* RIGHT IMAGE WRAPPER (CENTER FIX) */}
+    <div className="flex justify-center md:justify-end">
 
-      <div className="border-cartoon shadow-cartoon-lg bg-white p-2 rotate-2">
-        <img
-          src="/your-image.jpg"
-          className="w-[300px] h-[300px] object-cover"
-        />
-      </div>
+      <motion.div
+        className="relative inline-block w-fit"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [2, 0, 2]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
 
-      {/* STICKER */}
-      <div className="absolute -top-4 right-10 badge-cartoon rotate-6">
-        ⚡
-      </div>
+        {/* FRAME */}
+        <div className="border-cartoon shadow-cartoon-lg bg-white p-2 rotate-[3deg]">
+          <img
+            src="/your-image.jpg"
+            className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] object-cover rounded-2xl border-2 border-black shadow-[4px_4px_0px_black]"
+          />
+        </div>
 
-      <div className="absolute bottom-0 left-10 badge-cartoon bg-pink rotate-[-6deg]">
-        🚀
-      </div>
+        {/* ⚡ TOP RIGHT */}
+        <motion.div
+          className="absolute -top-3 -right-3 rotate-6"
+          animate={{ rotate: [0, 360] }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <div className="badge-cartoon">⚡</div>
+        </motion.div>
+
+        {/* 🚀 BOTTOM LEFT */}
+        <motion.div
+          className="absolute -bottom-3 -left-3 -rotate-6"
+          animate={{ 
+            y: [0, -10, 0],
+            rotate: [-10, 10, -10]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <div className="badge-cartoon bg-pink">🚀</div>
+        </motion.div>
+
+        {/* SHADOW (BIAR NGAMBANG) */}
+        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-6 bg-black/20 blur-xl rounded-full"></div>
+
+      </motion.div>
 
     </div>
 
