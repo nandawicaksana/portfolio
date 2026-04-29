@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning> 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* ThemeProvider inilah yang bikin light/dark mode aktif */}
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>

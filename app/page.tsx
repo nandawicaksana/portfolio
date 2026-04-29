@@ -3,6 +3,12 @@
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import Services from "@/components/Services";
+
 import { 
   Code2, Server, Globe, Mail, Phone, ExternalLink, 
   ChevronRight, X, Layout, Zap, Lightbulb, Rocket, 
@@ -91,13 +97,17 @@ export default function Portfolio() {
         "/projects/agenda/dashboard.png",
       ]
     },
-    // { 
-    //   title: "WA Automation Bot", 
-    //   tag: "Coming Soon", 
-    //   color: "from-emerald-500/20",
-    //   description: "Internal tool in progress",
-    //   images: []
-    // },
+    {
+      title: "Teknifix",
+      tag: "Live Project",
+      color: "from-blue-500/30 to-cyan-400/20",
+      description: "Website company profile & service platform for Teknifix, including SEO optimization and responsive UI.",
+      link: "https://teknifix.vercel.app", 
+      thumbnail: "/projects/teknifix/teknifixvercel.png",
+      images: [
+        "/projects/teknifix/teknifixvercel.png",
+      ]
+    },
     // { 
     //   title: "Analytic Dashboard", 
     //   tag: "Coming Soon", 
@@ -131,314 +141,12 @@ export default function Portfolio() {
 
 <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-cyan-500 z-[60] origin-left" style={{ scaleX }} />
 {/* NAVBAR */}
-     <nav className="fixed top-0 w-full z-50 bg-[var(--bg)]">
-  <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-6">
+<Navbar />
+{/* HERO SECTION */}
+<Hero />
+{/* ABOUT SECTION */}
+<About />
 
-    {/* LOGO */}
-    <h1 className="font-black text-lg">
-      NAW<span className="text-blue-500">.</span>
-    </h1>
-
-    {/* DESKTOP */}
-    <div className="hidden md:flex gap-4">
-      {["About","Skills","Projects","Contact"].map((item) => (
-        <a key={item} href={`#${item.toLowerCase()}`} className="nav-cartoon">
-          {item}
-        </a>
-      ))}
-    </div>
-
-    {/* RIGHT */}
-    <div className="flex items-center gap-3">
-
-
-      {/* THEME */}
-      <button
-        onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-        className="nav-cartoon"
-      >
-        {isDarkMode ? <Sun size={16}/> : <Moon size={16}/>}
-      </button>
-
-      <button
-        onClick={() => setLang(lang === "en" ? "id" : "en")}
-        className="nav-cartoon"
-      >
-        {lang === "en" ? "ID" : "EN"}
-      </button>
-
-      {/* HAMBURGER */}
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="nav-cartoon md:hidden"
-      >
-        {isMenuOpen ? <X size={18}/> : <Layout size={18}/>}
-      </button>
-    </div>
-  </div>
-
-  {/* MOBILE MENU */}
-  <AnimatePresence>
-    {isMenuOpen && (
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -20, opacity: 0 }}
-        className="md:hidden px-6 pb-6 flex flex-col gap-4"
-      >
-        {["About","Skills","Projects","Contact"].map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            onClick={() => setIsMenuOpen(false)}
-            className="nav-cartoon text-center"
-          >
-            {item}
-          </a>
-        ))}
-      </motion.div>
-    )}
-  </AnimatePresence>
-</nav>
-
-      {/* HERO SECTION */}
-<section className="min-h-screen flex items-center justify-center px-6 pt-32">
-
-  <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
-    {/* LEFT */}
-    <div>
-
-      {/* BADGE */}
-      <div className="badge-cartoon mb-6">
-        FULL STACK DEVELOPER
-      </div>
-
-      {/* TITLE */}
-      <h1 className="text-4xl md:text-7xl font-black leading-tight mb-6">
-        {t[lang].hello} <br />
-        <span className="text-blue">Nanda</span>{" "}
-        <span className="text-green">Aulia</span>
-      </h1>
-
-      {/* DESC */}
-      <p className="text-gray-600 max-w-md mb-6">
-        {t[lang].desc}
-      </p>
-
-      {/* INFO */}
-      <div className="flex items-center gap-4 text-sm mb-8">
-        <span>📧 nannsky9@gmail.com</span>
-        <span>📍 Jakarta</span>
-      </div>
-
-      {/* CTA */}
-      <div className="flex gap-4 flex-wrap">
-        <a href="#" className="btn-cartoon btn-pink">
-          {t[lang].work}
-        </a>
-        <a href="#" className="btn-cartoon bg-white">
-          {t[lang].cv}
-        </a>
-      </div>
-
-      {/* SOCIAL */}
-      <div className="flex gap-3 mt-8">
-        <a href="#" className="nav-cartoon bg-[#38bdf8] text-white hover:-translate-y-1 transition">
-          <FaGithub />
-        </a>
-        <a href="#" className="nav-cartoon bg-[#38bdf8] text-white hover:-translate-y-1 transition">
-          <FaLinkedin />
-        </a>
-        <a href="#" className="nav-cartoon bg-[#38bdf8] text-white hover:-translate-y-1 transition">
-          <Mail size={16} />
-        </a>
-      </div>
-    </div>
-
-    {/* RIGHT IMAGE WRAPPER (CENTER FIX) */}
-    <div className="flex justify-center md:justify-end">
-
-      <motion.div
-        className="relative inline-block w-fit"
-        animate={{ 
-          y: [0, -20, 0],
-          rotate: [2, 0, 2]
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-
-        {/* FRAME */}
-        <div className="border-cartoon shadow-cartoon-lg bg-[var(--surface)] p-2 rotate-[3deg]">
-          <img
-            src="/your-image.jpg"
-            className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] object-cover rounded-2xl border-2 border-[var(--border)] shadow-[4px_4px_0px_var(--shadow)]"
-          />
-        </div>
-
-        {/* ⚡ TOP RIGHT */}
-        <motion.div
-          className="absolute -top-4 -right-4 rotate-[12deg]"
-          animate={{ rotate: [0, 360] }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        >
-        <div className="badge-cartoon scale-150 shadow-[6px_6px_0px_var(--shadow)]">
-          ⚡
-        </div>
-        </motion.div>
-
-        {/* 🚀 BOTTOM LEFT */}
-        <motion.div
-          className="absolute -bottom-3 -left-3 -rotate-6"
-          animate={{ 
-            y: [0, -10, 0],
-            rotate: [-10, 10, -10]
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <div className="badge-cartoon scale-100 bg-pink">🚀</div>
-        </motion.div>
-
-        {/* SHADOW (BIAR NGAMBANG) */}
-        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-6 bg-black/20 blur-xl rounded-full"></div>
-
-      </motion.div>
-
-    </div>
-
-  </div>
-</section>
-
-    {/* ABOUT */}
-    <motion.section
-      id="tentang"
-      className="py-32 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
-
-      {/* LEFT */}
-      <div>
-
-        {/* TITLE */}
-        <h2 className="text-4xl md:text-5xl font-black mb-6">
-          About <span className="text-blue-500">Me</span>
-        </h2>
-
-        <div className="w-16 h-[4px] bg-green-400 mb-6"></div>
-
-        {/* TEXT */}
-        <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-4`}>
-          Saya adalah Full Stack Developer dengan pengalaman membangun sistem bisnis
-          yang stabil dan scalable di production.
-        </p>
-
-        <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-4`}>
-          Fokus pada Laravel, Next.js, dan performance optimization untuk memastikan
-          sistem berjalan cepat, aman, dan efisien.
-        </p>
-
-        <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-6`}>
-          Berpengalaman meningkatkan performa hingga 70% dan membangun sistem
-          yang digunakan langsung dalam operasional bisnis.
-        </p>
-
-        {/* BADGE INFO */}
-        <div className="flex flex-wrap gap-4 mt-6">
-
-          <div className="border-2 border-black px-4 py-2 shadow-[3px_3px_0px_black] bg-purple-200 text-sm font-bold">
-            🎓 Bachelor’s Degree in Computer Science at Nusa Mandiri University
-          </div>
-
-          <div className="border-2 border-black px-4 py-2 shadow-[3px_3px_0px_black] bg-blue-200 text-sm font-bold">
-            📍 Bekasi, Indonesia
-          </div>
-
-          <div className="border-2 border-black px-4 py-2 shadow-[3px_3px_0px_black] bg-green-200 text-sm font-bold">
-            💼 Available for Work
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* RIGHT */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-        {[
-          {
-            title: "Clean Code",
-            desc: "Menulis kode yang scalable dan mudah dirawat.",
-            icon: "💻",
-            color: "bg-pink-300"
-          },
-          {
-            title: "Problem Solving",
-            desc: "Menyelesaikan masalah kompleks dengan efisien.",
-            icon: "🧠",
-            color: "bg-blue-300"
-          },
-          {
-            title: "Collaboration",
-            desc: "Bekerja efektif dalam tim dan komunikasi.",
-            icon: "👥",
-            color: "bg-green-300"
-          },
-          {
-            title: "Performance",
-            desc: "Optimasi sistem untuk kecepatan & stabilitas.",
-            icon: "⚡",
-            color: "bg-purple-300"
-          }
-        ].map((item, i) => (
-
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
-            className="card-cartoon p-6"
-          >
-
-            {/* ICON */}
-            <div className={`w-12 h-12 flex items-center justify-center text-xl mb-4 
-            border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] ${item.color}`}>
-              {item.icon}
-            </div>
-
-            {/* TITLE */}
-            <h3 className="font-black text-lg mb-2">
-              {item.title}
-            </h3>
-
-            {/* DESC */}
-            <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-sm`}>
-              {item.desc}
-            </p>
-
-          </motion.div>
-
-        ))}
-
-      </div>
-
-    </motion.section>
       
       {/* VALUE PROPOSITION */}
       <motion.section
@@ -701,10 +409,15 @@ export default function Portfolio() {
   </div>
 
   {/* GRID */}
-  <div className="grid md:grid-cols-2 gap-8">
+{/* GRID */}
+<div className="grid md:grid-cols-2 gap-8">
 
-    {projects.map((proj, i) => (
+  {projects.map((proj, i) => {
 
+    const hasLink = !!proj.link;
+    const hasImages = proj.images && proj.images.length > 0;
+
+    return (
       <motion.div
         key={i}
         initial={{ opacity: 0, y: 30 }}
@@ -713,27 +426,35 @@ export default function Portfolio() {
         viewport={{ once: true }}
         whileHover={{ y: -8, rotate: i % 2 === 0 ? -1 : 1 }}
         onClick={() => {
-          if (proj.images.length > 0) setSelectedProject(proj);
+          if (hasLink) {
+            window.open(proj.link, "_blank");
+          } else if (hasImages) {
+            setSelectedProject(proj);
+          }
         }}
-        className={`card-cartoon p-4 cursor-pointer`}
+        className={`card-cartoon p-4 cursor-pointer transition duration-300 
+        hover:shadow-xl`}
       >
 
         {/* IMAGE */}
-        <div className="border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] overflow-hidden mb-4 bg-white">
+        <div className="border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] 
+        overflow-hidden mb-4 bg-white dark:bg-gray-900">
+
           {proj.thumbnail ? (
             <img
               src={proj.thumbnail}
-              className="w-full h-[220px] object-cover hover:scale-105 transition"
+              className="w-full h-[220px] object-cover hover:scale-105 transition duration-300"
             />
           ) : (
-            <div className="h-[220px] flex items-center justify-center text-sm">
+            <div className="h-[220px] flex items-center justify-center text-sm opacity-60">
               No Preview
             </div>
           )}
+
         </div>
 
         {/* TAG */}
-        <div className="text-xs font-bold mb-2 uppercase tracking-widest">
+        <div className="text-xs font-bold mb-2 uppercase tracking-widest opacity-70">
           {proj.tag}
         </div>
 
@@ -742,16 +463,34 @@ export default function Portfolio() {
           {proj.title}
         </h4>
 
+        {/* DESCRIPTION */}
+        <p className="text-sm mb-3 opacity-70">
+          {proj.description}
+        </p>
+
         {/* ACTION */}
-        <div className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-sm font-bold`}>
-          {proj.images.length > 0 ? "View Detail →" : "Coming Soon"}
+        <div
+          className={`text-sm font-bold flex items-center gap-1
+          ${
+            hasLink
+              ? "text-blue-500"
+              : isDarkMode
+              ? "text-gray-400"
+              : "text-gray-600"
+          }`}
+        >
+          {hasLink
+            ? "Live Demo →"
+            : hasImages
+            ? "View Detail →"
+            : "Coming Soon"}
         </div>
 
       </motion.div>
+    );
+  })}
 
-    ))}
-
-  </div>
+</div>
 
 </motion.section>
 
