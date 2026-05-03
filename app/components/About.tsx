@@ -33,17 +33,17 @@ export default function About({ lang, isDarkMode }: Props) {
         "🎓 Bachelor’s Degree in Information Systems - Nusa Mandiri University"
       ),
       className:
-        "border-purple-400 bg-purple-200 dark:bg-gradient-to-br dark:from-purple-500/30 dark:to-fuchsia-600/20 font-bold text-gray-900 dark:text-purple-200",
+        "bg-purple-200 text-purple-900 border-purple-400 dark:bg-purple-500/20 dark:text-purple-200",
     },
     {
       text: "📍 Bekasi, Indonesia",
       className:
-        "border-blue-400 bg-blue-200 dark:bg-gradient-to-br dark:from-blue-500/30 dark:to-cyan-500/20 text-gray-900 dark:text-blue-200",
+        "bg-blue-200 text-blue-900 border-blue-400 dark:bg-blue-500/20 dark:text-blue-200",
     },
     {
       text: txt("💼 Tersedia untuk bekerja ditempat / jarak jauh", "💼 Available for work on-site / remote"),
       className:
-        "border-green-400 bg-green-200 dark:bg-gradient-to-br dark:from-green-500/30 dark:to-emerald-500/20 text-gray-900 dark:text-green-200",
+        "bg-green-200 text-green-900 border-green-400 dark:bg-green-500/20 dark:text-green-200",
     },
   ];
 
@@ -122,14 +122,7 @@ export default function About({ lang, isDarkMode }: Props) {
           {badges.map((b, i) => (
             <div
               key={i}
-              className={`
-                border-2 border-black dark:border-white
-                px-4 py-2 rounded-lg
-                shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)]
-                ${b.className}
-                text-sm font-bold tracking-wide
-                text-black dark:text-white
-              `}
+              className={`border-2 border-black dark:border-white px-4 py-2 rounded-lg shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)] ${b.className} text-sm font-bold tracking-wide`}
             >
               {b.text}
             </div>
