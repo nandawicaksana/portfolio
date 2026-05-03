@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { useTheme } from "next-themes";
+import Loader from "@/components/Loader";
+import { useEffect, useState } from "react";
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -45,54 +46,86 @@ export default function Home() {
 ];
 
   const [lang, setLang] = useState<"en" | "id">("en");
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    let value = 0;
 
-  return (
-    <main>
+    const interval = setInterval(() => {
+      if (value < 60) {
+        value += Math.random() * 25; // cepet di awal
+      } else if (value < 90) {
+        value += Math.random() * 10; // mulai pelan
+      } else {
+        value += Math.random() * 3; // pelan banget di akhir
+      }
 
-      <Navbar lang={lang} setLang={setLang} />
+      if (value >= 100) {
+        value = 100;
+        setProgress(100);
 
-      <Hero lang={lang} />
+        setTimeout(() => {
+          setLoading(false);
+        }, 200); // lebih cepat close
 
-      <About lang={lang} isDarkMode={isDarkMode} />
+        clearInterval(interval);
+      }
 
-      <Services lang={lang} isDarkMode={isDarkMode} />
+      setProgress(Math.floor(value));
+    }, 60);
 
-      <Projects projects={projects} setSelectedProject={setSelectedProject} isDarkMode={isDarkMode}
-/>
+    return () => clearInterval(interval);
+  }, []);
 
-      <Certificate lang={lang} />
+return loading ? (
+  <Loader progress={progress} />
+) : (
+  <main>
 
-      <Contact lang={lang} />
+    <Navbar lang={lang} setLang={setLang} />
 
-      {selectedProject && (
+    <Hero lang={lang} />
+
+    <About lang={lang} isDarkMode={isDarkMode} />
+
+    <Services lang={lang} isDarkMode={isDarkMode} />
+
+    <Projects
+      projects={projects}
+      setSelectedProject={setSelectedProject}
+      isDarkMode={isDarkMode}
+    />
+
+    <Certificate lang={lang} />
+
+    <Contact lang={lang} />
+
+    {selectedProject && (
+      <div 
+        className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+        onClick={() => setSelectedProject(null)}
+      >
         <div 
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-          onClick={() => setSelectedProject(null)}
+          className="bg-white dark:bg-gray-900 p-6 rounded-xl max-w-lg w-full"
+          onClick={(e) => e.stopPropagation()}
         >
-          <div 
-            className="bg-white dark:bg-gray-900 p-6 rounded-xl max-w-lg w-full"
-            onClick={(e) => e.stopPropagation()}
+          <h3 className="text-xl font-bold mb-4">
+            {selectedProject.title}
+          </h3>
+
+          {selectedProject.images.map((img, i) => (
+            <img key={i} src={img} className="mb-3 rounded-lg" />
+          ))}
+
+          <button
+            onClick={() => setSelectedProject(null)}
+            className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
           >
-
-            <h3 className="text-xl font-bold mb-4">
-              {selectedProject.title}
-            </h3>
-
-            {selectedProject.images.map((img, i) => (
-              <img key={i} src={img} className="mb-3 rounded-lg" />
-            ))}
-
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
-            >
-              Close
-            </button>
-
-          </div>
+            Close
+          </button>
         </div>
-      )}
+      </div>
+    )}
 
-    </main>
-  );
-}
+  </main>
+);}

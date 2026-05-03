@@ -12,7 +12,7 @@ export default function Contact({ lang }: Props) {
         {txt("Mari Bekerja Sama", "Let's Work Together")}
       </h2>
 
-      <p className="text-gray-600 dark:text-gray-400 mb-8">
+      <p className="mb-8">
         {txt(
           "Saya siap membantu project Anda 🚀",
           "I'm ready to help your project 🚀"
