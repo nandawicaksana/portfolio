@@ -122,7 +122,14 @@ export default function About({ lang, isDarkMode }: Props) {
           {badges.map((b, i) => (
             <div
               key={i}
-              className={`border-2 border-black dark:border-white px-4 py-2 rounded-lg shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)] ${b.className} text-sm font-bold tracking-wide`}
+              className={`
+                border-2 border-black dark:border-white
+                px-4 py-2 rounded-lg
+                shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)]
+                ${b.className}
+                text-sm font-bold tracking-wide
+                text-black dark:text-white
+              `}
             >
               {b.text}
             </div>
