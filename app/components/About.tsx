@@ -122,7 +122,7 @@ export default function About({ lang, isDarkMode }: Props) {
           {badges.map((b, i) => (
             <div
               key={i}
-              className={`border-2 border-black dark:border-white font-black px-4 py-2 rounded-lg shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)] ${b.className} text-sm font-semibold tracking-wide`}
+              className={`border-2 border-black dark:border-white px-4 py-2 rounded-lg shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)] ${b.className} text-sm font-bold tracking-wide`}
             >
               {b.text}
             </div>
@@ -145,7 +145,7 @@ export default function About({ lang, isDarkMode }: Props) {
         className="relative 
         card-cartoon p-6 
         bg-white dark:bg-gray-900 
-        border-4 border-black dark:border-white"
+        border-4 border-black font dark:border-white"
       >
 
         {/* ICON FLOAT */}
