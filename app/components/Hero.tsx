@@ -39,7 +39,7 @@ export default function Hero({ lang }: Props) {
           </h1>
 
           {/* DESC */}
-          <p className="font-medium text-gray-700 dark:text-gray-300 max-w-md mb-6">
+          <p className="font-medium text-gray-800 dark:text-gray-200 max-w-md mb-6">
             {txt(
               "Saya membangun web modern, meningkatkan performa, dan menjaga keamanan sistem.",
               "I build modern web apps, optimize performance, and secure systems."
@@ -47,7 +47,7 @@ export default function Hero({ lang }: Props) {
           </p>
 
           {/* INFO */}
-          <div className="flex flex-wrap items-center gap-4 text-sm mb-8 opacity-80">
+          <div className="flex flex-wrap items-center gap-4 text-sm mb-8">
             <span>📧 nannsky9@gmail.com</span>
             <span>📍 Jakarta</span>
           </div>

@@ -2,66 +2,52 @@
 
 /* 🎨 BASE COLOR */
 :root {
-  --bg: #f4f4f5;
-  --text: #000;
+  --bg: #ffffff;
+  --text: #000000;
 
   --border: black;
   --shadow: black;
-
 
   --green: #22c55e;
   --blue: #3b82f6;
   --pink: #ec4899;
   --yellow: #facc15;
 }
+
+/* 🌙 DARK MODE */
 .dark {
   --bg: #0f172a;
-  --text: #fff;
+  --text: #ffffff;
 
   --border: white;
   --shadow: white;
 }
 
-.dark .nav-cartoon {
-  border: 2px solid white;
-  box-shadow: 3px 3px 0px white;
-}
-
-.dark .btn-cartoon {
-  border: 2px solid white;
-  box-shadow: 4px 4px 0px white;
-  color: black;
-}
-
-/* GLOBAL APPLY */
-body {
-  background: var(--bg);
-  color: var(--text);
-  background-color: #fff;
-}
-
-/* BASE */
+/* 🧠 GLOBAL BODY (NO DUPLICATE, NO CONFLICT) */
 body {
   background: var(--bg);
   color: var(--text);
   font-family: "Inter", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ✏️ GLOBAL BORDER STYLE (BIAR KONSISTEN) */
+/* ✏️ BORDER STYLE */
 .border-cartoon {
   border: 3px solid var(--border);
 }
 
-/* 🧱 SHADOW KOTAK (SIGNATURE BANGET) */
+/* 🧱 SHADOW */
 .shadow-cartoon {
   box-shadow: 4px 4px 0px var(--shadow);
 }
 
 .shadow-cartoon-lg {
-    box-shadow: 8px 8px 0px var(--shadow);
+  box-shadow: 8px 8px 0px var(--shadow);
 }
 
-/* 🎯 BUTTON STYLE */
+/* 🎯 BUTTON */
 .btn-cartoon {
   padding: 12px 24px;
   font-weight: 700;
@@ -75,7 +61,7 @@ body {
 
 .btn-cartoon:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px black;
+  box-shadow: 6px 6px 0px var(--shadow);
 }
 
 /* 🎨 VARIANT BUTTON */
@@ -89,11 +75,11 @@ body {
   background: var(--yellow);
 }
 
-/* 🧱 CARD STYLE */
+/* 🧱 CARD */
 .card-cartoon {
-  background: white;
+  background: var(--bg);
   border: 3px solid var(--border);
-  box-shadow: 6px 6px 0px black;
+  box-shadow: 6px 6px 0px var(--shadow);
   padding: 20px;
   border-radius: 12px;
   transition: all 0.2s ease;
@@ -101,7 +87,7 @@ body {
 
 .card-cartoon:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0px black;
+  box-shadow: 8px 8px 0px var(--shadow);
 }
 
 /* 🔲 NAV BUTTON */
@@ -116,17 +102,15 @@ body {
 
 .nav-cartoon:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0px black;
+  box-shadow: 5px 5px 0px var(--shadow);
 }
 
-.dark .card-cartoon {
-  background: #1e1e1e;
-  color: white;
-  border: 3px solid white;
-  box-shadow: 6px 6px 0px white;
+/* 🌙 DARK SPECIFIC FIX */
+.dark .btn-cartoon {
+  color: black;
 }
 
-/* 🎯 TAG / BADGE */
+/* 🎯 BADGE */
 .badge-cartoon {
   display: inline-block;
   padding: 6px 12px;
@@ -135,10 +119,9 @@ body {
   background: var(--green);
   border: 3px solid var(--border);
   box-shadow: 4px 4px 0px var(--shadow);
-
 }
 
-/* 🎨 TEXT ACCENT (NO GRADIENT!) */
+/* 🎨 TEXT ACCENT */
 .text-blue {
   color: var(--blue);
 }
@@ -149,18 +132,18 @@ body {
   color: var(--pink);
 }
 
-/* ❌ HAPUS SEMUA GLASS / BLUR EFFECT */
+/* ❌ NO GLASS EFFECT */
 .no-glass {
   backdrop-filter: none !important;
   background: white !important;
 }
 
-/* SCROLL */
+/* 🧭 SCROLL */
 html {
   scroll-behavior: smooth;
 }
 
-/* HIDE SCROLLBAR */
+/* 🧼 HIDE SCROLLBAR */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
