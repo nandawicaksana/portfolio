@@ -49,7 +49,7 @@ export default function Hero({ lang }: Props) {
           {/* INFO */}
           <div className="flex flex-wrap items-center gap-4 text-sm mb-8">
             <span>📧 nannsky9@gmail.com</span>
-            <span>📍 Jakarta</span>
+            <span>📍 Bekasi, Jawa Barat, Indonesia</span>
           </div>
 
           {/* CTA */}
@@ -57,7 +57,7 @@ export default function Hero({ lang }: Props) {
             <a href="#projects" className="btn-cartoon btn-pink hover:scale-105 transition">
               {txt("Lihat Project", "View My Work")}
             </a>
-            <a href="/cv.pdf" className="btn-cartoon bg-white text-black hover:scale-105 transition">
+            <a href="/resume-nanda-aulia.pdf" className="btn-cartoon bg-white text-black hover:scale-105 transition">
               {txt("Download CV", "Download CV")}
             </a>
           </div>

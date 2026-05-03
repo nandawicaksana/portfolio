@@ -87,7 +87,7 @@ export default function Footer({ lang, isDarkMode }: Props) {
             </p>
 
           <p className="text-xs mt-3 opacity-70">
-            📍 Bekasi, Indonesia
+            📍 Bekasi, Jawa Barat, Indonesia
           </p>
 
         </div>
