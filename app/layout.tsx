@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nanda Aulia Wicaksana | Portfolio",
   description: "IT Support & Developer Portfolio",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -34,3 +37,4 @@ export default function RootLayout({
     </html>
   );
 }
+

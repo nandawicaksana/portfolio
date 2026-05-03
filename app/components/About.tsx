@@ -29,8 +29,8 @@ export default function About({ lang, isDarkMode }: Props) {
   const badges = [
     {
       text: txt(
-        "🎓 Sarjana Ilmu Komputer - Universitas Nusa Mandiri",
-        "🎓 Bachelor’s Degree in Computer Science - Nusa Mandiri University"
+        "🎓 Sarjana Sistem Informasi - Universitas Nusa Mandiri",
+        "🎓 Bachelor’s Degree in Information Systems - Nusa Mandiri University"
       ),
       className:
         "border-purple-400 bg-purple-200 dark:bg-gradient-to-br dark:from-purple-500/30 dark:to-fuchsia-600/20 text-gray-900 dark:text-purple-200",
@@ -41,7 +41,7 @@ export default function About({ lang, isDarkMode }: Props) {
         "border-blue-400 bg-blue-200 dark:bg-gradient-to-br dark:from-blue-500/30 dark:to-cyan-500/20 text-gray-900 dark:text-blue-200",
     },
     {
-      text: txt("💼 Tersedia untuk kerja", "💼 Available for Work"),
+      text: txt("💼 Tersedia untuk bekerja ditempat / jarak jauh", "💼 Available for work on-site / remote"),
       className:
         "border-green-400 bg-green-200 dark:bg-gradient-to-br dark:from-green-500/30 dark:to-emerald-500/20 text-gray-900 dark:text-green-200",
     },
@@ -131,40 +131,54 @@ export default function About({ lang, isDarkMode }: Props) {
       </div>
 
       {/* RIGHT */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {skills.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
-            className="card-cartoon p-6"
-          >
-            {/* ICON */}
-            <div
-              className={`w-12 h-12 flex items-center justify-center text-xl mb-4 border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] ${item.color}`}
-            >
-              {item.icon}
-            </div>
+      <div className="grid grid-cols-2 gap-8">
 
-            {/* TITLE */}
-            <h3 className="font-black text-lg mb-2">
-              {item.title}
-            </h3>
+  {skills.map((s, i) => (
+    <div key={i} className="relative">
 
-            {/* DESC */}
-            <p
-              className={`${
-                isDarkMode ? "text-gray-400" : "text-gray-600"
-              } text-sm`}
-            >
-              {item.desc}
-            </p>
-          </motion.div>
-        ))}
-      </div>
+      {/* SHADOW */}
+      <div className="absolute inset-0 translate-x-2 translate-y-2 bg-black rounded-xl" />
+
+      {/* CARD */}
+      <motion.div
+        whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
+        className="relative 
+        card-cartoon p-6 
+        bg-white dark:bg-gray-900 
+        border-4 border-black dark:border-white"
+      >
+
+        {/* ICON FLOAT */}
+        <motion.div
+          className={`absolute -top-4 -left-4 ${s.color} 
+          border-2 border-black p-3 shadow-[4px_4px_0px_black]`}
+          animate={{ y: [0, -8, 0] }}
+          transition={{
+            duration: 2,
+            delay: i * 0.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {s.icon}
+        </motion.div>
+
+        {/* TITLE */}
+        <h3 className="font-black text-lg mt-4 mb-2">
+          {s.title}
+        </h3>
+
+        {/* DESC */}
+        <p className="text-sm opacity-70">
+          {s.desc}
+        </p>
+
+      </motion.div>
+
+    </div>
+  ))}
+
+</div>
     </motion.section>
   );
 }

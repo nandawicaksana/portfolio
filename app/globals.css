@@ -151,3 +151,8 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.dark .card-cartoon {
+  background: #111827; /* gray-900 */
+  color: white;
+}

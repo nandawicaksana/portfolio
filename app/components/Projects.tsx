@@ -2,20 +2,38 @@
 
 import { motion } from "framer-motion";
 
-type Props = {
-  projects: any[];
-  setSelectedProject: (project: any) => void;
-  isDarkMode: boolean;
+type Project = {
+  title: string;
+  tag: string;
+  description: string;
+  thumbnail?: string;
+  images: string[];
+  link?: string;
+  color?: string;
 };
 
-export default function Projects({ projects, setSelectedProject, isDarkMode }: Props) {
+type Props = {
+  projects: Project[];
+  setSelectedProject: (project: Project) => void;
+  isDarkMode: boolean;
+  lang: "en" | "id";
+};
+
+export default function Projects({
+  projects,
+  setSelectedProject,
+  isDarkMode,
+  lang,
+}: Props) {
+
+  const txt = (id: string, en: string) => (lang === "id" ? id : en);
 
   return (
     <section id="projects" className="py-24 px-6 max-w-6xl mx-auto">
 
       {/* TITLE */}
       <h2 className="text-3xl md:text-4xl font-black text-center mb-12">
-        My <span className="text-blue-500">Projects</span>
+        {txt("Project Saya", "My Projects")}
       </h2>
 
       {/* GRID */}
@@ -41,25 +59,33 @@ export default function Projects({ projects, setSelectedProject, isDarkMode }: P
                   setSelectedProject(proj);
                 }
               }}
-              className="card-cartoon p-4 cursor-pointer hover:shadow-xl transition duration-300"
+              className="card-cartoon p-4 cursor-pointer"
             >
 
               {/* IMAGE */}
-              <div className="border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] overflow-hidden mb-4 bg-white dark:bg-gray-900">
+              <div className="relative mb-4 overflow-hidden border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)]">
+
                 {proj.thumbnail ? (
-                  <img
-                    src={proj.thumbnail}
-                    className="w-full h-[220px] object-cover hover:scale-105 transition"
-                  />
+                  <>
+                    <img
+                      src={proj.thumbnail}
+                      className="w-full h-[220px] object-cover hover:scale-105 transition"
+                    />
+
+                    {/* GRADIENT */}
+                    {proj.color && (
+                      <div className={`absolute inset-0 bg-gradient-to-br ${proj.color} opacity-40`} />
+                    )}
+                  </>
                 ) : (
                   <div className="h-[220px] flex items-center justify-center text-sm opacity-60">
-                    No Preview
+                    {txt("Tidak ada preview", "No Preview")}
                   </div>
                 )}
               </div>
 
               {/* TAG */}
-              <div className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">
+              <div className="text-xs font-bold uppercase opacity-60 mb-1">
                 {proj.tag}
               </div>
 
@@ -68,7 +94,7 @@ export default function Projects({ projects, setSelectedProject, isDarkMode }: P
                 {proj.title}
               </h3>
 
-              {/* DESCRIPTION */}
+              {/* DESC */}
               <p className="text-sm opacity-70 mb-3">
                 {proj.description}
               </p>
@@ -84,10 +110,10 @@ export default function Projects({ projects, setSelectedProject, isDarkMode }: P
                 }`}
               >
                 {hasLink
-                  ? "Live Demo →"
+                  ? txt("Lihat Demo →", "Live Demo →")
                   : hasImages
-                  ? "View Detail →"
-                  : "Coming Soon"}
+                  ? txt("Lihat Detail →", "View Detail →")
+                  : txt("Segera Hadir", "Coming Soon")}
               </div>
 
             </motion.div>
