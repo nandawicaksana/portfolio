@@ -37,13 +37,7 @@
 body {
   background: var(--bg);
   color: var(--text);
-}
-/* 🌙 DARK MODE (tetap flat, bukan glow) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f0f0f;
-    --text: #ffffff;
-  }
+  background-color: #fff;
 }
 
 /* BASE */
