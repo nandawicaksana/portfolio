@@ -1,97 +1,170 @@
 "use client";
 
-import { useState } from "react";
-import { Sun, Moon, Layout, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
+type Props = {
+  lang: "en" | "id";
+  isDarkMode: boolean;
+};
 
-export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+export default function About({ lang, isDarkMode }: Props) {
+  const txt = (id: string, en: string) => (lang === "id" ? id : en);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lang, setLang] = useState<"en" | "id">("en");
+  // TEXT
+  const paragraphs = [
+    txt(
+      "Saya adalah Full Stack Developer dengan pengalaman membangun sistem bisnis yang stabil dan scalable di production.",
+      "I am a Full Stack Developer experienced in building stable and scalable business systems in production."
+    ),
+    txt(
+      "Fokus pada Laravel, Next.js, dan performance optimization untuk memastikan sistem berjalan cepat, aman, dan efisien.",
+      "Focused on Laravel, Next.js, and performance optimization to ensure systems run fast, secure, and efficient."
+    ),
+    txt(
+      "Berpengalaman meningkatkan performa hingga 70% dan membangun sistem yang digunakan langsung dalam operasional bisnis.",
+      "Experienced in improving performance by up to 70% and building systems used directly in business operations."
+    ),
+  ];
 
-  const isDarkMode = theme === "dark";
+  // BADGES (hindari class dinamis)
+  const badges = [
+    {
+      text: txt(
+        "🎓 Sarjana Ilmu Komputer - Universitas Nusa Mandiri",
+        "🎓 Bachelor’s Degree in Computer Science - Nusa Mandiri University"
+      ),
+      className:
+        "border-purple-400 bg-purple-200 dark:bg-gradient-to-br dark:from-purple-500/30 dark:to-fuchsia-600/20 text-gray-900 dark:text-purple-200",
+    },
+    {
+      text: "📍 Bekasi, Indonesia",
+      className:
+        "border-blue-400 bg-blue-200 dark:bg-gradient-to-br dark:from-blue-500/30 dark:to-cyan-500/20 text-gray-900 dark:text-blue-200",
+    },
+    {
+      text: txt("💼 Tersedia untuk kerja", "💼 Available for Work"),
+      className:
+        "border-green-400 bg-green-200 dark:bg-gradient-to-br dark:from-green-500/30 dark:to-emerald-500/20 text-gray-900 dark:text-green-200",
+    },
+  ];
 
-  const menuItems = ["About", "Skills", "Projects", "Contact"];
+  // SKILLS
+  const skills = [
+    {
+      title: "Clean Code",
+      desc: txt(
+        "Menulis kode yang scalable dan mudah dirawat.",
+        "Writing scalable and maintainable code."
+      ),
+      icon: "💻",
+      color: "bg-pink-300",
+    },
+    {
+      title: "Problem Solving",
+      desc: txt(
+        "Menyelesaikan masalah kompleks dengan efisien.",
+        "Solving complex problems efficiently."
+      ),
+      icon: "🧠",
+      color: "bg-blue-300",
+    },
+    {
+      title: txt("Kolaborasi", "Collaboration"),
+      desc: txt(
+        "Bekerja efektif dalam tim dan komunikasi.",
+        "Working effectively in teams and communication."
+      ),
+      icon: "👥",
+      color: "bg-green-300",
+    },
+    {
+      title: txt("Performa", "Performance"),
+      desc: txt(
+        "Optimasi sistem untuk kecepatan & stabilitas.",
+        "Optimizing systems for speed and stability."
+      ),
+      icon: "⚡",
+      color: "bg-purple-300",
+    },
+  ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[var(--bg)] backdrop-blur border-b border-black/10 dark:border-white/10">
+    <motion.section
+      id="about"
+      className="py-32 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      {/* LEFT */}
+      <div>
+        <h2 className="text-4xl md:text-5xl font-black mb-6">
+          {txt("Tentang", "About")}{" "}
+          <span className="text-blue-500">Me</span>
+        </h2>
 
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-5">
+        <div className="w-16 h-[4px] bg-green-400 mb-6"></div>
 
-        {/* LOGO */}
-        <h1 className="font-black text-lg">
-          NAW<span className="text-blue-500">.</span>
-        </h1>
+        {/* PARAGRAPHS */}
+        {paragraphs.map((p, i) => (
+          <p
+            key={i}
+            className={`${
+              isDarkMode ? "text-gray-400" : "text-gray-600"
+            } mb-4`}
+          >
+            {p}
+          </p>
+        ))}
 
-        {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-4">
-          {menuItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="nav-cartoon"
+        {/* BADGES */}
+        <div className="flex flex-wrap gap-4 mt-6">
+          {badges.map((b, i) => (
+            <div
+              key={i}
+              className={`border-2 border-black dark:border-white px-4 py-2 rounded-lg shadow-[3px_3px_0px_black] dark:shadow-[0_0_12px_rgba(0,0,0,0.3)] ${b.className} text-sm font-semibold tracking-wide`}
             >
-              {item}
-            </a>
+              {b.text}
+            </div>
           ))}
-        </div>
-
-        {/* RIGHT */}
-        <div className="flex items-center gap-3">
-
-          {/* THEME */}
-          <button
-            onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-            className="nav-cartoon"
-          >
-            {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-
-          {/* LANG */}
-          <button
-            onClick={() => setLang(lang === "en" ? "id" : "en")}
-            className="nav-cartoon text-xs font-bold"
-          >
-            {lang === "en" ? "ID" : "EN"}
-          </button>
-
-          {/* HAMBURGER */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="nav-cartoon md:hidden"
-          >
-            {isMenuOpen ? <X size={18} /> : <Layout size={18} />}
-          </button>
-
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {isMenuOpen && (
+      {/* RIGHT */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {skills.map((item, i) => (
           <motion.div
-            initial={{ y: -10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden px-6 pb-6 flex flex-col gap-4 bg-[var(--bg)]"
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -6, rotate: i % 2 === 0 ? -1 : 1 }}
+            className="card-cartoon p-6"
           >
-            {menuItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={() => setIsMenuOpen(false)}
-                className="nav-cartoon text-center"
-              >
-                {item}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* ICON */}
+            <div
+              className={`w-12 h-12 flex items-center justify-center text-xl mb-4 border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--shadow)] ${item.color}`}
+            >
+              {item.icon}
+            </div>
 
-    </nav>
+            {/* TITLE */}
+            <h3 className="font-black text-lg mb-2">
+              {item.title}
+            </h3>
+
+            {/* DESC */}
+            <p
+              className={`${
+                isDarkMode ? "text-gray-400" : "text-gray-600"
+              } text-sm`}
+            >
+              {item.desc}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
   );
 }

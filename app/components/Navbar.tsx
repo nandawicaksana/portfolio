@@ -5,15 +5,18 @@ import { Sun, Moon, Layout, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
-export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+type Props = {
+  lang: "en" | "id";
+  setLang: (lang: "en" | "id") => void;
+};
 
+export default function Navbar({ lang, setLang }: Props) {
+  const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lang, setLang] = useState<"en" | "id">("en");
 
   const isDarkMode = theme === "dark";
 
-  const menuItems = ["About", "Skills", "Projects", "Contact"];
+  const menu = ["About", "Skills", "Projects", "Contact"];
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-[var(--bg)] backdrop-blur border-b border-black/10 dark:border-white/10">
@@ -25,14 +28,10 @@ export default function Navbar() {
           NAW<span className="text-blue-500">.</span>
         </h1>
 
-        {/* DESKTOP MENU */}
+        {/* DESKTOP */}
         <div className="hidden md:flex gap-4">
-          {menuItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="nav-cartoon"
-            >
+          {menu.map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="nav-cartoon">
               {item}
             </a>
           ))}
@@ -68,7 +67,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -78,7 +77,7 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="md:hidden px-6 pb-6 flex flex-col gap-4 bg-[var(--bg)]"
           >
-            {menuItems.map((item) => (
+            {menu.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}

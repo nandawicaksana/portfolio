@@ -4,9 +4,17 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Mail } from "lucide-react";
 
-export default function Hero() {
+type Props = {
+  lang: "en" | "id";
+};
+
+export default function Hero({ lang }: Props) {
+
+  
+  const txt = (id: string, en: string) => (lang === "id" ? id : en);
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-32">
+    <section id="about" className="min-h-screen flex items-center justify-center px-6 pt-32">
 
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
@@ -20,7 +28,7 @@ export default function Hero() {
 
           {/* TITLE */}
           <h1 className="text-4xl md:text-7xl font-black leading-tight mb-6">
-            Hello, I'm <br />
+            {txt("Halo, saya", "Hello, I'm")} <br />
 
             <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
               Nanda
@@ -32,7 +40,10 @@ export default function Hero() {
 
           {/* DESC */}
           <p className="font-medium text-gray-700 dark:text-gray-300 max-w-md mb-6">
-            I build modern web applications, optimize performance, and secure systems for real-world business needs.
+            {txt(
+              "Saya membangun web modern, meningkatkan performa, dan menjaga keamanan sistem.",
+              "I build modern web apps, optimize performance, and secure systems."
+            )}
           </p>
 
           {/* INFO */}
@@ -44,10 +55,10 @@ export default function Hero() {
           {/* CTA */}
           <div className="flex gap-4 flex-wrap">
             <a href="#projects" className="btn-cartoon btn-pink hover:scale-105 transition">
-              View My Work
+              {txt("Lihat Project", "View My Work")}
             </a>
             <a href="/cv.pdf" className="btn-cartoon bg-white text-black hover:scale-105 transition">
-              Download CV
+              {txt("Download CV", "Download CV")}
             </a>
           </div>
 
