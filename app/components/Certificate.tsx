@@ -1,183 +1,303 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
+import { useRef } from "react";
 
 type Props = {
   lang: "en" | "id";
 };
 
 type Cert = {
-  file: string;
   title: string;
-  desc: string;
+  issuer: string;
+  description: string;
+  thumbnail: string;
   skills: string[];
-  color: string;
+  color?: string;
 };
 
-export default function Certificate({ lang }: Props) {
-  const txt = (id: string, en: string) => (lang === "id" ? id : en);
+export default function Certificates({
+  lang,
+}: Props) {
 
+  const sliderRef =
+    useRef<HTMLDivElement>(null);
+
+  const txt = (
+    id: string,
+    en: string
+  ) => (lang === "id" ? id : en);
+
+  /* SLIDER */
+  const scroll = (
+    dir: "left" | "right"
+  ) => {
+
+    if (!sliderRef.current) return;
+
+    const amount =
+      window.innerWidth < 768
+        ? 320
+        : 420;
+
+    sliderRef.current.scrollBy({
+      left:
+        dir === "left"
+          ? -amount
+          : amount,
+      behavior: "smooth",
+    });
+
+  };
+
+  /* DATA */
   const certificates: Cert[] = [
     {
-      file: "ccna-cisco.png",
-      title: "CCNA Routing & Switching",
-      desc: txt(
-        "Memahami dasar jaringan komputer, routing, switching, dan konfigurasi perangkat Cisco.",
-        "Learned networking fundamentals, routing, switching, and Cisco device configuration."
+      title:
+        "CCNA Routing & Switching",
+
+      issuer: "Cisco",
+
+      description: txt(
+        "Belajar routing, switching, dan networking dasar.",
+        "Learned routing, switching, and networking fundamentals."
       ),
-      skills: ["Networking", "Routing", "Switching"],
-      color: "from-cyan-400 to-blue-500",
+
+      thumbnail:
+        "/certificates/ccna-cisco.png",
+
+      skills: [
+        "Networking",
+        "Cisco",
+        "Routing",
+      ],
+
+      color:
+        "from-cyan-400 via-blue-500 to-indigo-500",
     },
+
     {
-      file: "docker-udemy.jpg",
-      title: "Docker & Kubernetes",
-      desc: txt(
-        "Mempelajari containerization menggunakan Docker dan dasar orkestrasi dengan Kubernetes.",
-        "Learned containerization with Docker and orchestration basics with Kubernetes."
+      title:
+        "Docker & Kubernetes",
+
+      issuer: "Udemy",
+
+      description: txt(
+        "Belajar containerization dan orchestration modern.",
+        "Learned modern containerization and orchestration."
       ),
-      skills: ["Docker", "Kubernetes", "DevOps"],
-      color: "from-indigo-400 to-violet-500",
+
+      thumbnail:
+        "/certificates/docker-udemy.jpg",
+
+      skills: [
+        "Docker",
+        "Kubernetes",
+      ],
+
+      color:
+        "from-violet-400 via-purple-500 to-fuchsia-500",
     },
+
     {
-      file: "phpunit-udemy.jpg",
-      title: "PHPUnit Testing",
-      desc: txt(
-        "Mempelajari unit testing menggunakan PHPUnit untuk memastikan kualitas kode.",
-        "Learned unit testing using PHPUnit to ensure code quality."
+      title:
+        "PHPUnit Testing",
+
+      issuer: "Udemy",
+
+      description: txt(
+        "Belajar unit testing menggunakan PHPUnit.",
+        "Learned unit testing using PHPUnit."
       ),
-      skills: ["PHPUnit", "Testing"],
-      color: "from-pink-400 to-rose-500",
+
+      thumbnail:
+        "/certificates/phpunit-udemy.jpg",
+
+      skills: [
+        "PHPUnit",
+        "Testing",
+      ],
+
+      color:
+        "from-pink-400 via-rose-500 to-red-500",
     },
+
     {
-      file: "html-sololearn.com.jpg",
-      title: "HTML Course",
-      desc: txt(
-        "Memahami struktur dasar HTML, semantic tags, dan pembuatan halaman web.",
-        "Learned HTML fundamentals, semantic tags, and building web pages."
+      title:
+        "HTML Course",
+
+      issuer: "Sololearn",
+
+      description: txt(
+        "Belajar semantic HTML dan struktur web.",
+        "Learned semantic HTML and web structure."
       ),
-      skills: ["HTML", "Web Structure"],
-      color: "from-orange-400 to-yellow-400",
+
+      thumbnail:
+        "/certificates/html-sololearn.com.jpg",
+
+      skills: [
+        "HTML",
+        "Semantic",
+      ],
+
+      color:
+        "from-yellow-300 via-orange-400 to-red-400",
     },
+
     {
-      file: "js-sololearn.com.png",
-      title: "JavaScript Course",
-      desc: txt(
-        "Belajar dasar JavaScript termasuk logic, DOM manipulation, dan event handling.",
-        "Learned JavaScript fundamentals including logic, DOM manipulation, and events."
+      title:
+        "JavaScript Course",
+
+      issuer: "Sololearn",
+
+      description: txt(
+        "Belajar JavaScript dan DOM manipulation.",
+        "Learned JavaScript and DOM manipulation."
       ),
-      skills: ["JavaScript", "DOM"],
-      color: "from-yellow-300 to-amber-500",
+
+      thumbnail:
+        "/certificates/js-sololearn.com.png",
+
+      skills: [
+        "JavaScript",
+        "DOM",
+      ],
+
+      color:
+        "from-yellow-300 via-amber-400 to-orange-500",
     },
+
     {
-      file: "php-sololearn.com.jpg",
-      title: "PHP Course",
-      desc: txt(
-        "Memahami backend dasar menggunakan PHP dan pengolahan data server-side.",
-        "Learned backend basics using PHP and server-side processing."
+      title:
+        "PHP Course",
+
+      issuer: "Sololearn",
+
+      description: txt(
+        "Belajar backend dasar menggunakan PHP.",
+        "Learned backend basics using PHP."
       ),
-      skills: ["PHP", "Backend"],
-      color: "from-purple-400 to-fuchsia-500",
+
+      thumbnail:
+        "/certificates/php-sololearn.com.jpg",
+
+      skills: [
+        "PHP",
+        "Backend",
+      ],
+
+      color:
+        "from-purple-400 via-fuchsia-500 to-pink-500",
     },
+
     {
-      file: "reactredux-sololearn.com.jpg",
-      title: "React Redux",
-      desc: txt(
-        "Mempelajari state management menggunakan Redux dalam aplikasi React.",
-        "Learned state management using Redux in React applications."
+      title:
+        "React Redux",
+
+      issuer: "Sololearn",
+
+      description: txt(
+        "Belajar Redux state management.",
+        "Learned Redux state management."
       ),
-      skills: ["React", "Redux"],
-      color: "from-cyan-400 to-teal-500",
+
+      thumbnail:
+        "/certificates/reactredux-sololearn.com.jpg",
+
+      skills: [
+        "React",
+        "Redux",
+      ],
+
+      color:
+        "from-cyan-400 via-sky-500 to-blue-500",
     },
   ];
-
-  const [index, setIndex] = useState<number | null>(null);
-  const [zoom, setZoom] = useState(1);
-
-  const open = (i: number) => {
-    setIndex(i);
-    setZoom(1);
-    document.body.style.overflow = "hidden";
-  };
-
-  const close = () => {
-    setIndex(null);
-    document.body.style.overflow = "auto";
-  };
-
-  const getIssuer = (file: string) => {
-    if (file.includes("udemy")) return "Udemy";
-    if (file.includes("cisco")) return "Cisco";
-    if (file.includes("sololearn")) return "Sololearn";
-    return "";
-  };
 
   return (
     <section
       className="
       relative overflow-hidden
-      py-28 px-6
+
+      py-20 md:py-28
+      px-5 md:px-6
+
       max-w-7xl mx-auto
+
       text-black dark:text-white
-    "
+      "
     >
-
-      {/* BG */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-
-        <div className="
-        absolute top-10 left-10
-        w-72 h-72
-        bg-cyan-400/20
-        rounded-full blur-3xl
-        " />
-
-        <div className="
-        absolute bottom-10 right-10
-        w-96 h-96
-        bg-pink-500/20
-        rounded-full blur-3xl
-        " />
-
-        <div className="
-        absolute top-1/2 left-1/2
-        -translate-x-1/2 -translate-y-1/2
-        w-[500px] h-[500px]
-        bg-yellow-300/10
-        rounded-full blur-3xl
-        " />
-
-      </div>
 
       {/* HEADER */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="relative z-10 text-center mb-20"
+        initial={{
+          opacity: 0,
+          y: 40,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+        viewport={{
+          once: true,
+        }}
+        className="
+        relative z-10
+
+        text-center
+
+        mb-12 md:mb-16
+        "
       >
 
+        {/* BADGE */}
         <div className="
         inline-flex items-center gap-2
+
         bg-yellow-300
+        dark:bg-yellow-400
+
         text-black
+
         border-4 border-black
-        px-6 py-3
+        dark:border-white/70
+
+        px-4 py-2
+        md:px-6 md:py-3
+
+        rounded-xl
+
+        text-xs sm:text-sm
         font-black
-        shadow-[6px_6px_0px_black]
+
+        shadow-[5px_5px_0px_#000]
+        dark:shadow-[5px_5px_0px_rgba(255,255,255,0.15)]
+
         rotate-[-2deg]
-        mb-8
+
+        mb-6
         ">
 
-          🎓 CERTIFICATION JOURNEY
+          🎓 CERTIFICATIONS
 
         </div>
 
+        {/* TITLE */}
         <h2 className="
-        text-5xl md:text-7xl
+        text-3xl sm:text-5xl md:text-7xl
+
         font-black
-        leading-none
+
+        leading-[0.95]
         tracking-tight
         ">
 
@@ -186,516 +306,399 @@ export default function Certificate({ lang }: Props) {
           from-cyan-400
           via-blue-500
           to-pink-500
+
           bg-clip-text
           text-transparent
           ">
 
-            {txt("Sertifikat", "Certificates")}
+            {txt(
+              "Sertifikat",
+              "Certificates"
+            )}
 
           </span>
 
         </h2>
 
+        {/* DESC */}
         <p className="
-        mt-6
-        text-lg
+        mt-5 md:mt-6
+
         max-w-2xl
         mx-auto
+
+        text-sm md:text-lg
+
         leading-relaxed
-        text-gray-700 dark:text-gray-300
+
+        text-gray-700
+        dark:text-gray-300
         ">
 
           {txt(
-            "Perjalanan pembelajaran dan sertifikasi yang membentuk skill saya dalam pengembangan web, networking, dan modern technologies.",
-            "A collection of certifications that shaped my expertise in web development, networking, and modern technologies."
+            "Beberapa sertifikat pembelajaran dan pengembangan skill.",
+            "Some certifications and learning journeys."
           )}
 
         </p>
 
       </motion.div>
 
-      {/* GRID */}
+      {/* CONTROLS */}
       <div className="
       relative z-10
-      grid md:grid-cols-2 xl:grid-cols-3
-      gap-10
+
+      flex items-center justify-end
+
+      gap-3
+
+      mb-6
       ">
 
-        {certificates.map((cert, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
-            viewport={{ once: true }}
-            whileHover={{
-              y: -10,
-              rotate: i % 2 === 0 ? -1 : 1,
-            }}
-            className="
-            group
-            relative
-            rounded-3xl
-            overflow-hidden
-            border-4 border-black dark:border-white
-            bg-white dark:bg-[#111827]
-            shadow-[10px_10px_0px_#000]
-            dark:shadow-[10px_10px_0px_#fff]
-            transition-all
-            "
-          >
+        <button
+          onClick={() =>
+            scroll("left")
+          }
+          className="
+          w-12 h-12
 
-            {/* HEADER */}
-            <div className={`
-            relative p-6
-            bg-gradient-to-r ${cert.color}
-            overflow-hidden
-            `}>
+          flex items-center justify-center
 
-              <div className="
-              absolute inset-0 opacity-20
-              bg-[radial-gradient(circle_at_top_right,white,transparent_40%)]
-              " />
+          rounded-xl
 
-              <div className="
-              absolute top-4 right-4
-              w-10 h-10
-              bg-black
-              border-2 border-white
-              rotate-12
-              flex items-center justify-center
+          bg-white
+          dark:bg-[#111827]
+
+          border-4
+          border-black
+          dark:border-white/70
+
+          shadow-[4px_4px_0px_#000]
+          dark:shadow-[0_0_12px_rgba(255,255,255,0.08)]
+
+          hover:translate-x-1
+          hover:translate-y-1
+          hover:shadow-none
+
+          transition-all
+          "
+        >
+
+          <ChevronLeft className="w-5 h-5" />
+
+        </button>
+
+        <button
+          onClick={() =>
+            scroll("right")
+          }
+          className="
+          w-12 h-12
+
+          flex items-center justify-center
+
+          rounded-xl
+
+          bg-white
+          dark:bg-[#111827]
+
+          border-4
+          border-black
+          dark:border-white/70
+
+          shadow-[4px_4px_0px_#000]
+          dark:shadow-[0_0_12px_rgba(255,255,255,0.08)]
+
+          hover:translate-x-1
+          hover:translate-y-1
+          hover:shadow-none
+
+          transition-all
+          "
+        >
+
+          <ChevronRight className="w-5 h-5" />
+
+        </button>
+
+      </div>
+
+      {/* SLIDER */}
+      <div
+        ref={sliderRef}
+        className="
+        relative z-10
+
+        flex gap-6 md:gap-8
+
+        overflow-x-auto
+        scroll-smooth
+
+        snap-x snap-mandatory
+
+        no-scrollbar
+
+        pb-6
+        "
+      >
+
+        {certificates.map(
+          (cert, i) => (
+
+            <motion.div
+              key={i}
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: i * 0.08,
+              }}
+              viewport={{
+                once: true,
+              }}
+              whileHover={{
+                y: -8,
+              }}
+              className="
+              group
+              relative
+
+              min-w-[300px]
+              md:min-w-[380px]
+
+              max-w-[300px]
+              md:max-w-[380px]
+
+              snap-start
+
+              overflow-hidden
+
+              rounded-3xl
+
+              border-4
+              border-black
+              dark:border-white/70
+
+              bg-white
+              dark:bg-[#111827]
+
+              shadow-[8px_8px_0px_#000]
+              dark:shadow-[0_0_20px_rgba(255,255,255,0.08)]
+
+              transition-all duration-300
+              "
+            >
+
+              {/* TOP */}
+              <div className={`
+              relative
+
+              p-5
+
+              bg-gradient-to-r
+              ${cert.color}
+
               text-white
-              shadow-[3px_3px_0px_white]
-              group-hover:rotate-0
-              transition
-              ">
-                🎖️
+              `}>
+
+                {/* ISSUER */}
+                <div className="
+                text-[10px] md:text-xs
+
+                font-black
+
+                uppercase
+
+                tracking-widest
+
+                opacity-80
+
+                mb-2
+                ">
+
+                  {cert.issuer}
+
+                </div>
+
+                {/* TITLE */}
+                <h3 className="
+                text-xl md:text-2xl
+
+                font-black
+
+                leading-tight
+
+                pr-12
+                ">
+
+                  {cert.title}
+
+                </h3>
+
+                {/* ICON */}
+                <div className="
+                absolute top-5 right-5
+
+                w-10 h-10
+
+                flex items-center justify-center
+
+                bg-black
+
+                border-2 border-white
+
+                rotate-12
+
+                shadow-[3px_3px_0px_white]
+
+                group-hover:rotate-0
+
+                transition
+                ">
+
+                  🎖️
+
+                </div>
+
               </div>
 
-              <h3 className="
-              relative
-              text-2xl
-              font-black
-              text-white
-              pr-12
-              leading-tight
-              ">
-                {cert.title}
-              </h3>
-
-              <p className="
-              relative
-              mt-2
-              text-sm
-              font-semibold
-              text-white/80
-              ">
-                {getIssuer(cert.file)}
-              </p>
-
-            </div>
-
-            {/* IMAGE */}
-            <div className="p-5">
-
+              {/* IMAGE */}
               <div className="
-              relative
-              overflow-hidden
-              rounded-2xl
-              border-4 border-black dark:border-white
-              shadow-[5px_5px_0px_#000]
-              dark:shadow-[5px_5px_0px_#fff]
+              relative overflow-hidden
               ">
 
                 <img
-                  src={`/certificates/${cert.file}`}
+                  src={cert.thumbnail}
                   alt={cert.title}
                   className="
                   w-full
-                  h-[220px]
+
+                  h-[220px] md:h-[240px]
+
                   object-cover
-                  transition duration-300
+
+                  transition duration-500
+
                   group-hover:scale-105
                   "
                 />
 
-                {/* BADGE */}
-                <div className="
-                absolute top-3 right-3
-                bg-green-400
-                text-black
-                text-xs
-                font-black
-                px-3 py-2
-                border-2 border-black
-                shadow-[3px_3px_0px_black]
-                ">
-                  CERTIFIED
-                </div>
-
                 {/* OVERLAY */}
                 <div className="
                 absolute inset-0
-                bg-black/70
-                opacity-0
-                group-hover:opacity-100
-                transition
-                flex items-center justify-center
-                ">
 
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      open(i);
-                    }}
-                    className="
-                    bg-white dark:bg-black
-                    text-black dark:text-white
-                    border-4 border-black dark:border-white
-                    px-6 py-3
-                    font-black
-                    rounded-xl
-                    shadow-[5px_5px_0px_black]
-                    dark:shadow-[5px_5px_0px_white]
-                    hover:translate-x-1
-                    hover:translate-y-1
-                    hover:shadow-none
-                    transition-all
-                    "
-                  >
-                    🔍 Preview
-                  </button>
+                bg-gradient-to-t
+                from-black/70
+                via-black/10
+                to-transparent
+                " />
 
-                </div>
-
-              </div>
-
-            </div>
-
-            {/* CONTENT */}
-            <div className="px-5 pb-5">
-
-              <p className="
-              text-sm
-              leading-relaxed
-              text-gray-700 dark:text-gray-300
-              min-h-[90px]
-              ">
-                {cert.desc}
-              </p>
-
-              {/* SKILLS */}
-              <div className="mt-6">
-
+                {/* LABEL */}
                 <div className="
-                inline-block
-                mb-3
-                bg-black dark:bg-white
-                text-white dark:text-black
-                text-xs
+                absolute bottom-4 left-4
+
+                bg-white
+                dark:bg-black
+
+                text-black
+                dark:text-white
+
+                border-2 border-black
+                dark:border-white/70
+
+                px-3 py-2
+
+                rounded-lg
+
+                text-[10px] md:text-xs
                 font-black
-                px-3 py-1
-                rounded-full
+
+                shadow-[3px_3px_0px_#000]
+                dark:shadow-[3px_3px_0px_rgba(255,255,255,0.15)]
+
+                rotate-[-2deg]
                 ">
-                  SKILLS COVERED
-                </div>
 
-                <div className="flex flex-wrap gap-2">
-
-                  {cert.skills.map((s, idx) => (
-                    <span
-                      key={idx}
-                      className="
-                      border-2 border-black dark:border-white
-                      bg-yellow-300 dark:bg-cyan-400
-                      text-black
-                      px-3 py-1
-                      text-xs
-                      font-black
-                      rounded-full
-                      hover:scale-105
-                      transition
-                      "
-                    >
-                      {s}
-                    </span>
-                  ))}
+                  ✨ Certified
 
                 </div>
 
               </div>
 
-              {/* BUTTON */}
-              <button
-                type="button"
-                onClick={() => open(i)}
-                className="
-                mt-8
-                w-full
-                bg-gradient-to-r
-                from-pink-500
-                to-orange-400
-                hover:from-cyan-400
-                hover:to-blue-500
-                text-white
-                font-black
-                py-4
-                border-4 border-black
-                rounded-xl
-                shadow-[6px_6px_0px_black]
-                hover:translate-x-1
-                hover:translate-y-1
-                hover:shadow-none
-                transition-all
-                "
-              >
+              {/* CONTENT */}
+              <div className="
+              p-5 md:p-6
+              ">
 
-                ↗ View Certificate
+                {/* DESC */}
+                <p className="
+                text-sm
 
-              </button>
+                leading-relaxed
 
-            </div>
+                text-gray-700
+                dark:text-gray-300
 
-          </motion.div>
-        ))}
+                min-h-[70px]
+                ">
+
+                  {cert.description}
+
+                </p>
+
+                {/* SKILLS */}
+                <div className="
+                flex flex-wrap gap-2
+
+                mt-5
+                ">
+
+                  {cert.skills.map(
+                    (skill, idx) => (
+
+                      <span
+                        key={idx}
+                        className="
+                        px-3 py-1
+
+                        rounded-full
+
+                        text-xs
+                        font-black
+
+                        bg-yellow-300
+                        dark:bg-cyan-400
+
+                        text-black
+
+                        border-2 border-black
+                        dark:border-white/70
+                        "
+                      >
+
+                        {skill}
+
+                      </span>
+
+                    )
+                  )}
+
+                </div>
+
+              </div>
+
+            </motion.div>
+
+          )
+        )}
 
       </div>
 
-      {/* MODAL */}
-      <AnimatePresence>
-        {index !== null && (
-          <ModalGallery
-            certificates={certificates}
-            index={index}
-            setIndex={setIndex}
-            zoom={zoom}
-            setZoom={setZoom}
-            close={close}
-          />
-        )}
-      </AnimatePresence>
-
     </section>
-  );
-}
-
-/* ========================= */
-/* MODAL */
-/* ========================= */
-
-function ModalGallery({
-  certificates,
-  index,
-  setIndex,
-  zoom,
-  setZoom,
-  close,
-}: any) {
-
-  const current = certificates[index];
-
-  const next = () => {
-    setIndex((prev: number) =>
-      prev === certificates.length - 1 ? 0 : prev + 1
-    );
-    setZoom(1);
-  };
-
-  const prev = () => {
-    setIndex((prev: number) =>
-      prev === 0 ? certificates.length - 1 : prev - 1
-    );
-    setZoom(1);
-  };
-
-  useEffect(() => {
-
-    const handle = (e: KeyboardEvent) => {
-
-      if (e.key === "Escape") close();
-
-      if (e.key === "ArrowRight") next();
-
-      if (e.key === "ArrowLeft") prev();
-
-    };
-
-    window.addEventListener("keydown", handle);
-
-    return () => window.removeEventListener("keydown", handle);
-
-  }, []);
-
-  return (
-    <motion.div
-      className="
-      fixed inset-0
-      z-[9999]
-      bg-black/80
-      backdrop-blur-md
-      flex items-center justify-center
-      p-4
-      "
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={close}
-    >
-
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 120 }}
-        className="
-        relative
-        max-w-5xl
-        w-full
-        "
-        onClick={(e) => e.stopPropagation()}
-      >
-
-        {/* IMAGE */}
-        <div className="
-        relative
-        overflow-hidden
-        rounded-3xl
-        border-4 border-white
-        shadow-[10px_10px_0px_#fff]
-        ">
-
-          <motion.img
-            key={current.file}
-            src={`/certificates/${current.file}`}
-            alt={current.title}
-            animate={{ scale: zoom }}
-            transition={{ type: "spring", stiffness: 120 }}
-            onClick={() => setZoom(zoom === 1 ? 1.8 : 1)}
-            className="
-            w-full
-            max-h-[80vh]
-            object-contain
-            bg-black
-            cursor-zoom-in
-            "
-          />
-
-        </div>
-
-        {/* TITLE */}
-        <div className="
-        mt-6
-        text-center
-        ">
-
-          <h3 className="
-          text-3xl
-          font-black
-          text-white
-          ">
-            {current.title}
-          </h3>
-
-        </div>
-
-        {/* NAV */}
-        <button
-          type="button"
-          onClick={prev}
-          className="
-          absolute
-          left-0 md:-left-16
-          top-1/2
-          -translate-y-1/2
-          w-14 h-14
-          rounded-full
-          bg-white
-          text-black
-          border-4 border-black
-          font-black text-xl
-          shadow-[5px_5px_0px_black]
-          hover:translate-x-1
-          hover:translate-y-[-50%]
-          hover:shadow-none
-          transition-all
-          "
-        >
-          ←
-        </button>
-
-        <button
-          type="button"
-          onClick={next}
-          className="
-          absolute
-          right-0 md:-right-16
-          top-1/2
-          -translate-y-1/2
-          w-14 h-14
-          rounded-full
-          bg-white
-          text-black
-          border-4 border-black
-          font-black text-xl
-          shadow-[5px_5px_0px_black]
-          hover:translate-x-1
-          hover:translate-y-[-50%]
-          hover:shadow-none
-          transition-all
-          "
-        >
-          →
-        </button>
-
-        {/* CLOSE */}
-        <button
-          type="button"
-          onClick={close}
-          className="
-          absolute
-          -top-5 -right-2
-          w-14 h-14
-          rounded-full
-          bg-red-500
-          text-white
-          border-4 border-black
-          font-black text-xl
-          shadow-[5px_5px_0px_black]
-          hover:translate-x-1
-          hover:translate-y-1
-          hover:shadow-none
-          transition-all
-          "
-        >
-          ✕
-        </button>
-
-        {/* ZOOM */}
-        <button
-          type="button"
-          onClick={() => setZoom(zoom === 1 ? 1.8 : 1)}
-          className="
-          absolute
-          top-4 left-4
-          bg-yellow-300
-          text-black
-          border-4 border-black
-          px-4 py-2
-          font-black
-          rounded-xl
-          shadow-[5px_5px_0px_black]
-          hover:translate-x-1
-          hover:translate-y-1
-          hover:shadow-none
-          transition-all
-          "
-        >
-          {zoom === 1 ? "🔍 Zoom" : "🔎 Reset"}
-        </button>
-
-      </motion.div>
-
-    </motion.div>
   );
 }

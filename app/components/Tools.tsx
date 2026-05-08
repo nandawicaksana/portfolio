@@ -42,7 +42,7 @@ export default function Tools({ lang }: Props) {
 
       {/* TITLE */}
       <h2 className="text-3xl md:text-4xl font-black mb-12">
-        {txt("Tools & Teknologi", "Tools & Technologies")}
+        {txt("Alat & Teknologi", "Tools & Technologies")}
       </h2>
 
       {/* GRID */}

@@ -87,7 +87,7 @@ export default function Home() {
     "Modern portfolio website with responsive design, interactive animations, dark mode, and UI/UX optimization for personal branding."
   ),
   link: "https://suciana.vercel.app",
-  thumbnail: "/projects/suciana/suciana.png",
+  thumbnail: "/projects/suciana/suciana.png", 
   images: [
     "/projects/suciana/suciana.png"
   ]
