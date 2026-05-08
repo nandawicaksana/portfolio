@@ -89,7 +89,7 @@ export default function Hero({ lang }: Props) {
             {/* IMAGE */}
             <div className="border-cartoon shadow-cartoon-lg bg-[var(--surface)] p-2 rotate-[3deg]">
               <img
-                src="/naw.jpeg"
+                src="/nanda.jpeg"
                 className="w-[260px] h-[260px] md:w-[320px] md:h-[320px] object-cover rounded-2xl border-2 border-[var(--border)]"
               />
             </div>
