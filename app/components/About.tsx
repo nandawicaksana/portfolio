@@ -6,7 +6,7 @@ type Props = {
   isDarkMode: boolean;
 };
 
-export default function About({ lang, isDarkMode }: Props) {
+export default function About( {lang, isDarkMode} : Props) {
   const txt = (id: string, en: string) => (lang === "id" ? id : en);
 
   // TEXT
@@ -100,22 +100,36 @@ export default function About({ lang, isDarkMode }: Props) {
       <div>
         <h2 className="text-4xl md:text-5xl font-black mb-6">
           {txt("Tentang", "About")}{" "}
-          <span className="text-blue-500">Me</span>
+          <span className="text-blue-500 dark:text-cyan-400 ">
+            {txt("Saya","Me")}
+          </span>
         </h2>
 
         <div className="w-16 h-[4px] bg-green-400 mb-6"></div>
 
         {/* PARAGRAPHS */}
-        {paragraphs.map((p, i) => (
-          <p
-            key={i}
-            className={`${
-              isDarkMode ? "text-gray-400" : "text-gray-600"
-            } mb-4`}
-          >
-            {p}
-          </p>
-        ))}
+        <div className="space-y-4">
+
+          {paragraphs.map((p, i) => (
+            <p
+              key={i}
+
+              className="
+              text-sm md:text-base
+
+              leading-relaxed
+
+              text-black/700
+              dark:text-white/700
+              "
+            >
+
+              {p}
+
+            </p>
+          ))}
+
+        </div>
 
         {/* BADGES */}
         <div className="flex flex-wrap gap-4 mt-6">

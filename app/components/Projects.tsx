@@ -1,7 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
 import { useRef } from "react";
 
 type Project = {
@@ -16,36 +20,80 @@ type Project = {
 
 type Props = {
   projects: Project[];
-  setSelectedProject: (project: Project) => void;
-  isDarkMode: boolean;
+  setSelectedProject: (
+    project: Project
+  ) => void;
+
   lang: "en" | "id";
 };
 
 export default function Projects({
   projects,
   setSelectedProject,
-  isDarkMode,
   lang,
 }: Props) {
 
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const sliderRef =
+    useRef<HTMLDivElement>(null);
 
-  const txt = (id: string, en: string) =>
-    lang === "id" ? id : en;
+  const txt = (
+    id: string,
+    en: string
+  ) => (
+    lang === "id"
+      ? id
+      : en
+  );
 
   /* SLIDER */
-  const scroll = (dir: "left" | "right") => {
+  const scroll = (
+    dir: "left" | "right"
+  ) => {
 
-    if (!sliderRef.current) return;
+    if (!sliderRef.current)
+      return;
 
-    const amount = window.innerWidth < 768 ? 320 : 420;
+    const amount =
+      window.innerWidth < 768
+        ? 320
+        : 420;
 
     sliderRef.current.scrollBy({
-      left: dir === "left" ? -amount : amount,
+      left:
+        dir === "left"
+          ? -amount
+          : amount,
+
       behavior: "smooth",
     });
 
   };
+
+  /* REUSABLE */
+  const borderClass =
+    "border-4 border-[var(--border)]";
+
+  const shadowClass =
+    "shadow-[6px_6px_0px_var(--shadow)]";
+
+  const btnClass = `
+  w-12 h-12
+
+  flex items-center justify-center
+
+  rounded-xl
+
+  bg-[var(--bg)]
+  text-[var(--text)]
+
+  ${borderClass}
+
+  shadow-[4px_4px_0px_var(--shadow)]
+
+  hover:shadow-none
+
+  transition-all
+  `;
 
   return (
     <section
@@ -53,48 +101,68 @@ export default function Projects({
       className="
       relative overflow-hidden
 
-      py-20 md:py-28
-      px-5 md:px-6
+      py-24 md:py-32
+      px-6
 
       max-w-7xl mx-auto
 
-      text-black dark:text-white
-
-      transition-colors duration-300
-    "
+      text-[var(--text)]
+      "
     >
 
-      {/* BG GLOW */}
+      {/* BG */}
       <div className="
       absolute inset-0
-      pointer-events-none
       overflow-hidden
+      pointer-events-none
       ">
 
         <div className="
-        absolute top-20 left-10
-        w-60 md:w-72
-        h-60 md:h-72
-        bg-cyan-400/10 dark:bg-cyan-400/20
-        rounded-full blur-3xl
+        absolute top-10 left-10
+
+        w-72 h-72
+
+        rounded-full
+        blur-3xl
+
+        bg-cyan-400/10
+        dark:bg-cyan-400/20
         " />
 
         <div className="
         absolute bottom-0 right-0
-        w-72 md:w-96
-        h-72 md:h-96
-        bg-pink-500/10 dark:bg-pink-500/20
-        rounded-full blur-3xl
+
+        w-96 h-96
+
+        rounded-full
+        blur-3xl
+
+        bg-pink-500/10
+        dark:bg-pink-500/20
         " />
 
       </div>
 
       {/* HEADER */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        initial={{
+          opacity: 0,
+          y: 50,
+        }}
+
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+
+        transition={{
+          duration: .6,
+        }}
+
+        viewport={{
+          once: true,
+        }}
+
         className="
         relative z-10
 
@@ -104,74 +172,47 @@ export default function Projects({
         "
       >
 
-        {/* BADGE */}
-        <div className="
-        inline-flex items-center gap-2
-
-        bg-cyan-400
-        dark:bg-cyan-300
-
-        text-black
-
-        border-4
-        border-black
-        dark:border-white/70
-
-        px-4 py-2
-        md:px-6 md:py-3
-
-        text-xs sm:text-sm
-        font-black
-
-        rounded-xl
-
-        shadow-[5px_5px_0px_#000]
-        dark:shadow-[5px_5px_0px_rgba(255,255,255,0.2)]
-
-        rotate-[-2deg]
-
-        mb-6 md:mb-8
-        ">
-
-          🚀 FEATURED WORKS
-
-        </div>
-
         {/* TITLE */}
         <h2 className="
-        text-3xl sm:text-5xl md:text-7xl
+        text-4xl md:text-5xl
 
         font-black
 
-        leading-[0.95]
-        tracking-tight
+        mb-6
         ">
 
+          {txt(
+            "Project",
+            "My"
+          )}{" "}
+
           <span className="
-          bg-gradient-to-r
-
-          from-pink-500
-          via-orange-400
-          to-yellow-300
-
-          dark:from-pink-400
-          dark:via-orange-300
-          dark:to-yellow-200
-
-          bg-clip-text
-          text-transparent
+          text-blue-500
+          dark:text-cyan-400
           ">
 
-            {txt("Project Saya", "My Projects")}
+            {txt(
+              "Saya",
+              "Projects"
+            )}
 
           </span>
 
         </h2>
 
+        {/* LINE */}
+        <div className="
+        w-16 h-[4px]
+
+        bg-green-400
+
+        mx-auto
+
+        mb-6
+        " />
+
         {/* DESC */}
         <p className="
-        mt-5 md:mt-6
-
         max-w-2xl
         mx-auto
 
@@ -179,8 +220,8 @@ export default function Projects({
 
         leading-relaxed
 
-        text-gray-700
-        dark:text-gray-300
+        text-black/700
+        dark:text-white/700
         ">
 
           {txt(
@@ -192,7 +233,7 @@ export default function Projects({
 
       </motion.div>
 
-      {/* CONTROLS */}
+      {/* CONTROL */}
       <div className="
       relative z-10
 
@@ -204,30 +245,11 @@ export default function Projects({
       ">
 
         <button
-          onClick={() => scroll("left")}
-          className="
-          w-12 h-12
+          onClick={() =>
+            scroll("left")
+          }
 
-          flex items-center justify-center
-
-          rounded-xl
-
-          bg-white
-          dark:bg-[#111827]
-
-          border-4
-          border-black
-          dark:border-white/70
-
-          shadow-[4px_4px_0px_#000]
-          dark:shadow-[4px_4px_0px_rgba(255,255,255,0.2)]
-
-          hover:translate-x-1
-          hover:translate-y-1
-          hover:shadow-none
-
-          transition-all
-          "
+          className={btnClass}
         >
 
           <ChevronLeft className="w-5 h-5" />
@@ -235,30 +257,11 @@ export default function Projects({
         </button>
 
         <button
-          onClick={() => scroll("right")}
-          className="
-          w-12 h-12
+          onClick={() =>
+            scroll("right")
+          }
 
-          flex items-center justify-center
-
-          rounded-xl
-
-          bg-white
-          dark:bg-[#111827]
-
-          border-4
-          border-black
-          dark:border-white/70
-
-          shadow-[4px_4px_0px_#000]
-          dark:shadow-[4px_4px_0px_rgba(255,255,255,0.2)]
-
-          hover:translate-x-1
-          hover:translate-y-1
-          hover:shadow-none
-
-          transition-all
-          "
+          className={btnClass}
         >
 
           <ChevronRight className="w-5 h-5" />
@@ -270,6 +273,7 @@ export default function Projects({
       {/* SLIDER */}
       <div
         ref={sliderRef}
+
         className="
         relative z-10
 
@@ -286,39 +290,70 @@ export default function Projects({
         "
       >
 
-        {projects.map((proj, i) => {
+        {projects.map((
+          proj,
+          i
+        ) => {
 
-          const hasLink = !!proj.link;
-          const hasImages = proj.images?.length > 0;
+          const hasLink =
+            !!proj.link;
+
+          const hasImages =
+            proj.images?.length > 0;
 
           return (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08 }}
-              viewport={{ once: true }}
-              whileHover={
-                typeof window !== "undefined" &&
-                window.innerWidth > 768
-                  ? {
-                      y: -10,
-                      rotate: i % 2 === 0 ? -1 : 1,
-                    }
-                  : {
-                      y: -3,
-                    }
-              }
-              onClick={() => {
-                if (hasLink) {
-                  window.open(proj.link, "_blank");
-                } else if (hasImages) {
-                  setSelectedProject(proj);
-                }
+
+              initial={{
+                opacity: 0,
+                y: 40,
               }}
-              className="
-              group
-              relative
+
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+
+              transition={{
+                delay: i * .08,
+              }}
+
+              viewport={{
+                once: true,
+              }}
+
+              whileHover={{
+                y: -8,
+                rotate:
+                  i % 2 === 0
+                    ? -1
+                    : 1,
+              }}
+
+              onClick={() => {
+
+                if (hasLink) {
+
+                  window.open(
+                    proj.link,
+                    "_blank"
+                  );
+
+                } else if (
+                  hasImages
+                ) {
+
+                  setSelectedProject(
+                    proj
+                  );
+
+                }
+
+              }}
+
+              className={`
+              group relative
 
               min-w-[300px]
               md:min-w-[380px]
@@ -332,31 +367,22 @@ export default function Projects({
 
               rounded-3xl
 
-              border-4
-              border-black
-              dark:border-white/70
+              bg-[var(--bg)]
 
-              bg-white
-              dark:bg-[#111827]
-
-              shadow-[8px_8px_0px_#000]
-              dark:shadow-[8px_8px_0px_rgba(255,255,255,0.2)]
+              ${borderClass}
+              ${shadowClass}
 
               transition-all duration-300
 
               cursor-pointer
-              "
+              `}
             >
 
-              {/* TOP BAR */}
+              {/* TOP */}
               <div className="
               flex items-center justify-between
 
               px-5 py-4
-
-              border-b-4
-              border-black
-              dark:border-white/70
 
               bg-gradient-to-r
               from-cyan-400
@@ -364,6 +390,8 @@ export default function Projects({
               to-purple-500
 
               text-white
+
+              border-b-4 border-[var(--border)]
               ">
 
                 {/* TAG */}
@@ -385,15 +413,18 @@ export default function Projects({
                 <div className="
                 w-9 h-9 md:w-10 md:h-10
 
-                bg-black
+                flex items-center justify-center
 
-                border-2 border-white
+                rounded-xl
 
                 rotate-12
 
-                flex items-center justify-center
+                bg-[var(--text)]
+                text-[var(--bg)]
 
-                shadow-[3px_3px_0px_white]
+                border-2 border-[var(--bg)]
+
+                shadow-[3px_3px_0px_var(--bg)]
 
                 group-hover:rotate-0
 
@@ -413,9 +444,11 @@ export default function Projects({
 
                 {proj.thumbnail ? (
                   <>
+
                     <img
                       src={proj.thumbnail}
                       alt={proj.title}
+
                       className="
                       w-full
 
@@ -451,7 +484,7 @@ export default function Projects({
 
                         opacity-30
                         mix-blend-overlay
-                      `}
+                        `}
                       />
                     )}
 
@@ -459,30 +492,32 @@ export default function Projects({
                     <div className="
                     absolute bottom-4 left-4
 
+                    px-3 py-2
+
+                    rounded-lg
+
+                    text-[10px] md:text-xs
+                    font-black
+
+                    rotate-[-2deg]
+
                     bg-yellow-300
                     dark:bg-yellow-400
 
                     text-black
 
-                    border-2 border-black
+                    border-2 border-[var(--border)]
 
-                    px-3 py-2
-
-                    text-[10px] md:text-xs
-                    font-black
-
-                    rounded-lg
-
-                    shadow-[3px_3px_0px_#000]
-
-                    rotate-[-2deg]
+                    shadow-[3px_3px_0px_var(--shadow)]
                     ">
 
                       ✨ Featured Project
 
                     </div>
+
                   </>
                 ) : (
+
                   <div className="
                   h-[200px] md:h-[240px]
 
@@ -494,9 +529,13 @@ export default function Projects({
                   text-sm font-bold
                   ">
 
-                    {txt("Tidak ada preview", "No Preview")}
+                    {txt(
+                      "Tidak ada preview",
+                      "No Preview"
+                    )}
 
                   </div>
+
                 )}
 
               </div>
@@ -512,9 +551,9 @@ export default function Projects({
 
                 font-black
 
-                mb-3
-
                 leading-tight
+
+                mb-3
                 ">
 
                   {proj.title}
@@ -527,10 +566,10 @@ export default function Projects({
 
                 leading-relaxed
 
-                text-gray-700
-                dark:text-gray-300
-
                 min-h-[90px]
+
+                text-black/700
+                dark:text-white/700
                 ">
 
                   {proj.description}
@@ -547,22 +586,17 @@ export default function Projects({
 
                   px-4 py-3 md:px-5
 
-                  border-4
-                  border-black
-                  dark:border-white/70
-
                   rounded-xl
 
                   text-xs md:text-sm
                   font-black
 
-                  shadow-[4px_4px_0px_#000]
-                  dark:shadow-[4px_4px_0px_rgba(255,255,255,0.2)]
-
                   transition-all
 
-                  group-hover:translate-x-1
-                  group-hover:translate-y-1
+                  ${borderClass}
+
+                  shadow-[4px_4px_0px_var(--shadow)]
+
                   group-hover:shadow-none
 
                   ${
@@ -575,10 +609,19 @@ export default function Projects({
                   `}>
 
                     {hasLink
-                      ? txt("🌐 Live Demo", "🌐 Live Demo")
+                      ? txt(
+                          "🌐 Live Demo",
+                          "🌐 Live Demo"
+                        )
                       : hasImages
-                      ? txt("🔍 View Detail", "🔍 View Detail")
-                      : txt("⏳ Coming Soon", "⏳ Coming Soon")}
+                      ? txt(
+                          "🔍 View Detail",
+                          "🔍 View Detail"
+                        )
+                      : txt(
+                          "⏳ Coming Soon",
+                          "⏳ Coming Soon"
+                        )}
 
                     <span className="text-lg">
                       →
@@ -597,11 +640,11 @@ export default function Projects({
 
               w-7 h-7 md:w-8 md:h-8
 
+              rotate-12
+
               bg-yellow-300
 
-              border-4 border-black
-
-              rotate-12
+              border-4 border-[var(--border)]
               " />
 
               <div className="
@@ -610,11 +653,11 @@ export default function Projects({
 
               w-7 h-7 md:w-8 md:h-8
 
+              rotate-12
+
               bg-pink-500
 
-              border-4 border-black
-
-              rotate-12
+              border-4 border-[var(--border)]
               " />
 
             </motion.div>

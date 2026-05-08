@@ -161,15 +161,16 @@ export default function Home() {
 
       <Projects
         projects={projects}
-        setSelectedProject={setSelectedProject}
-        isDarkMode={isDarkMode}
+        setSelectedProject={
+          setSelectedProject
+        }
         lang={lang}
       />
 
       <Certificate lang={lang} />
 
 
-      <Footer lang={lang} isDarkMode={isDarkMode} />
+      <Footer lang={lang} />
 
       {/* ✅ ONLY ONE MODAL */}
       {selectedProject && (
