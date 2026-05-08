@@ -136,11 +136,7 @@ export default function Footer({
             <span className="
             text-blue-500
             dark:text-cyan-400
-            ">
-
-              Wicaksana.
-
-            </span>
+            "> Wicaksana.</span>
 
           </h3>
 
