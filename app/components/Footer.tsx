@@ -138,7 +138,7 @@ export default function Footer({
             dark:text-cyan-400
             ">
 
-              .
+              Wicaksana.
 
             </span>
 
