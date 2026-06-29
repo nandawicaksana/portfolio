@@ -57,7 +57,7 @@ export default function Hero({ lang }: Props) {
             <a href="#projects" className="btn-cartoon btn-pink hover:scale-105 transition">
               {txt("Lihat Project", "View My Work")}
             </a>
-            <a href="/resume-nanda-aulia.pdf" className="btn-cartoon bg-white text-black hover:scale-105 transition">
+            <a href="/CV_Nanda_Aulia_Wicaksana.pdf" className="btn-cartoon bg-white text-black hover:scale-105 transition">
               {txt("Download CV", "Download CV")}
             </a>
           </div>
